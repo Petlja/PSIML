@@ -257,3 +257,6 @@ Output/*.txt
 # PyCharm config files
 .idea
 homework/problems/resistors/src/processed/*
+
+# User config files
+common.user.props

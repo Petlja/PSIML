@@ -3,6 +3,8 @@ import pickle
 from enum import Enum
 import numpy
 
+# <codecell>
+
 def load_data(dataset_path):
     """
     Loads the dataset from given file and returns three subsets: training, validation and test (i.e. blind).
@@ -257,6 +259,7 @@ def train_nn_with_sgd(dataset_path, epochs_count, alpha):
         test_error = neural_net.test(test_set)
         print('%d\t%f\t%f\t%f' %(epoch, 100 * train_error, 100 * valid_error, 100 * test_error))
 
+# <codecell>
 
 if __name__ == "__main__":
     train_nn_with_sgd(dataset_path=r'..\data\mnist.pkl.gz', epochs_count=100, alpha=0.01)

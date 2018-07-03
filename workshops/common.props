@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project InitialTarget="CheckPython" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <BuildDir>$(SolutionDir)\build</BuildDir>
+    <BuildScriptsDir>$(SolutionDir)\build_scripts</BuildScriptsDir>
+    <PythonPath></PythonPath>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\common.user.props" Condition="Exists('$(SolutionDir)\common.user.props')"/>
+</Project>
