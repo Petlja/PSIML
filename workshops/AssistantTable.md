@@ -3,9 +3,9 @@ PSIML 2018
 |Workshop                                                                                             |Owner                | Assistant         | Assistant         | Assistant       |
 |-----------------------------------------------------------------------------------------------------|---------------------|-------------------|-------------------|-----------------|
 |[Logistic Regression](https://github.com/Petlja/PSIML/tree/master/workshops/LogisticRegression)      |Vukasin Rankovic     |Goran Dubajic      |Olivera Stojanovic |                 |
-|[Neural Networks](https://github.com/Petlja/PSIML/tree/master/workshops/nn_backprop)                 |Ivan Razumenic       |                   |                   |                 |
-|[Convolutional NN](https://github.com/Petlja/PSIML/tree/master/workshops/conv_nets)                  |Nikola Milosavljevic |                   |                   |                 |
-|[Recurrent NN](https://github.com/Petlja/PSIML/tree/master/workshops/rnn)                            |Momcilo Vasilijevic  |                   |                   |                 |
+|[Neural Networks](https://github.com/Petlja/PSIML/tree/master/workshops/nn_backprop)                 |Ivan Razumenić       |                   |                   |                 |
+|[Convolutional NN](https://github.com/Petlja/PSIML/tree/master/workshops/conv_nets)                  |Nikola Milosavljevic |Ivan Razumenić     |                 |
+|[Recurrent NN](https://github.com/Petlja/PSIML/tree/master/workshops/rnn)                            |Momcilo Vasilijevic  |Ivan Razumenić     |                   |                 |
 |Generative Adversarial Networks                                                                      |Bruno Gavranovic     |Goran Dubajic      |                   |                 |
 |[Clustering & PCA](https://github.com/Petlja/PSIML/tree/master/workshops/clustering_pca_autoencoders)|Novak Novakovic      |Olivera Stojanovic |                   |                 |
 |Reinforcement Learning                                                                               |Milos Jordanski      |Goran Dubajic      |                   |                 |
