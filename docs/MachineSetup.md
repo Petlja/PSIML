@@ -111,9 +111,9 @@ pip install keras
 
 ## 5. Test the installation
 
-Let's try running ```examples/mnist_mlp.py``` in your Anaconda prompt.
+Let's try running ```examples/machinesetup/mnist_mlp.py``` in your Anaconda prompt.
 
-Open Anaconda prompt in the ```examples``` folder and type the following commands
+Open Anaconda prompt in the ```examples/machinesetup``` folder and type the following commands
 
 ```cmd
 activate tensorflow
