@@ -28,9 +28,9 @@ Miniconda Python distribution is installed at c:\Data\Programs\miniconda. This i
     ```
     conda activate <<path>>
     ```
-In virtual environment new python packages can be installed without affecting base miniconda install. If something goes wrong virtual environment can be easily remove and recreated.
+In virtual environment new python packages can be installed without affecting base miniconda install. If something goes wrong virtual environment can be easily removed and recreated.
 
-Once virtual environment is activated one can install required framework package. For example to install TensorFlow:
+Once virtual environment is activated one can install required framework packages. For example to install TensorFlow:
 ```
 pip install tensorflow-gpu
 ```
@@ -50,7 +50,7 @@ Steps to use Linux cloud machines:
 After machine is booted you will be presented with the desktop in browser.
 
 Machine OS is Ubuntu 16.04. Anaconda Python distribution is installed at /home/ubuntu/src/anaconda3 (there is a system-wide Python distribution but that one should not be used). Following ML frameworks pre-installed in anaconda base environment.:
-* Apache MXNet 
+* Apache MXNetÂ 
 * MXNet Model Server
 * TensorFlow
 * TensorBoard
@@ -77,7 +77,7 @@ Machine OS is Ubuntu 16.04. Anaconda Python distribution is installed at /home/u
     source activate <<path>>
     ```
 
-In virtual environment new python packages can be installed without affecting base anaconda install. If something goes wrong virtual environment can be easily remove and recreated.
+In virtual environment new python packages can be installed without affecting base anaconda install. If something goes wrong virtual environment can be easily removed and recreated.
 
 To reactivate virtual environment just repeat steps 1. and 3.
 
