@@ -37,7 +37,7 @@ To test if Jupyter conversion works one needs to build solution. Start Visual St
 ```
 msbuild.exe /t:build workshops.sln
 ```
-Once build process is finished, Jupyter notebooks are generated inside *build* directory in *workshop*. Jupyter notebooks can then be stared by cd-ing to that directory and issuing:
+Once build process is finished, Jupyter notebooks are generated inside *build* directory in *workshop*. Jupyter notebooks can then be started by cd-ing to that directory and issuing:
 ```
 jupyter notebook
 ```
