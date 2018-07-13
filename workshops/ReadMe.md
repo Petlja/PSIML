@@ -37,6 +37,8 @@ To test if Jupyter conversion works one needs to build solution. Start Visual St
 ```
 msbuild.exe /t:build workshops.sln
 ```
+Note: if build failed with "Python.exe not found" - you need to set the PythonPath in common.props found in the *workshops* directory.
+
 Once build process is finished, Jupyter notebooks are generated inside *build* directory in *workshop*. Jupyter notebooks can then be started by cd-ing to that directory and issuing:
 ```
 jupyter notebook
