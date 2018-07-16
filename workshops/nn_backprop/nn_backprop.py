@@ -1,6 +1,10 @@
+"""
+Gzip is used for compression.
+"""
 import gzip
 import pickle
 from enum import Enum
+import sys
 import numpy
 
 # <codecell>
@@ -21,31 +25,35 @@ class ActivationType(Enum):
     IDENTITY = 1
     TANH = 2
 
-class IdentityActivation(object):
+class IdentityActivation:
     """ Class that implements identity activation function (y = x). """
-    def forward(self, preactivation):
+    @classmethod
+    def forward(cls, preactivation):
         """ Implements forward pass. Since identity just returns preactivation as is. """
         # TODO: Replace dummy implementation below with identity forward pass.
         return numpy.zeros(preactivation.shape, dtype=numpy.float)
 
-    def backward(self, activation, output_grad):
+    @classmethod
+    def backward(cls, activation, output_grad):
         """ Implements backward pass. Since identity activation derivative is array of 1s (y = x => dy/dx = 1). """
         # TODO: Replace dummy implementation below with identity backward pass.
         return numpy.zeros(activation.shape, dtype=numpy.float)
 
-class TanhActivation(object):
+class TanhActivation:
     """ Class that implements tanh activation function (y = tanh(x)). """
-    def forward(self, preactivation):
+    @classmethod
+    def forward(cls, preactivation):
         """ Implements forward pass. Apply tanh to preactivation and return it. """
         # TODO: Replace dummy implementation below with tanh forward pass.
         return numpy.zeros(preactivation.shape, dtype=numpy.float)
 
-    def backward(self, activation, output_grad):
+    @classmethod
+    def backward(cls, activation, output_grad):
         """ Implements backward pass (y = tanh(x) => dy/dx = (1 - tanh^2(x)). """
         # TODO: Replace dummy implementation below with tanh backward pass.
         return numpy.zeros(activation.shape, dtype=numpy.float)
 
-class SoftmaxWithCrossEntropyLayer(object):
+class SoftmaxWithCrossEntropyLayer:
     """ Class that implements softmax + cross-entropy functionality. """
     def __init__(self, inputs_count):
         """
@@ -85,7 +93,7 @@ class SoftmaxWithCrossEntropyLayer(object):
         return self.y_max
 
 
-class FullyConnectedLayer(object):
+class FullyConnectedLayer:
     """ Class that implements fully connected layer functionality. """
     def __init__(self, rng, inputs_count, outputs_count, activation_type):
         """
@@ -151,7 +159,7 @@ class FullyConnectedLayer(object):
         self.b_biases -= alpha * self.bias_gradients
 
 
-class MLPNetwork(object):
+class MLPNetwork:
     """
     Multi-Layer Perceptron Class
 
@@ -258,8 +266,50 @@ def train_nn_with_sgd(dataset_path, epochs_count, alpha):
         valid_error = neural_net.test(valid_set)
         test_error = neural_net.test(test_set)
         print('%d\t%f\t%f\t%f' %(epoch, 100 * train_error, 100 * valid_error, 100 * test_error))
+    # Save the trained network.
+    gzip_file = gzip.open(r'.\nn.pkl.gz', 'wb')
+    pickle.dump(neural_net, gzip_file)
+    gzip_file.close()
+
+def test_nn(nn_path, dataset_path):
+    """ Performs testing of the MLP network on the given dataset.
+
+        :param nn_path: Path to nn file.
+        :param dataset_path: Path to dataset file.
+    """
+    # Load neural network.
+    nn_file = gzip.open(nn_path, 'rb')
+    neural_net = pickle.load(nn_file, encoding='latin1')
+    nn_file.close()
+    # Load datasets.
+    ds_file = gzip.open(dataset_path, 'rb')
+    _, _, test_set = pickle.load(ds_file, encoding='latin1')
+    ds_file.close()
+    # Test.
+    print('Test neural net %s on test set in %s' % (nn_path, dataset_path))
+    test_error = neural_net.test(test_set)
+    print('Test error: %f' %(100 * test_error))
+
+class Scenario(Enum):
+    """ Defines all possible scenarios. """
+    TEST = 1
+    TRAIN = 2
 
 # <codecell>
 
 if __name__ == "__main__":
-    train_nn_with_sgd(dataset_path=r'..\data\mnist.pkl.gz', epochs_count=100, alpha=0.01)
+    # Determine the scenario to run.
+    SCENARIO = Scenario.TEST
+    if len(sys.argv) != 1:
+        assert (len(sys.argv) == 2), "None or exactly one (\"train\" or \"test\") argument must be provided."
+        if sys.argv[1] == "test":
+            SCENARIO = Scenario.TEST
+        elif sys.argv[1] == "train":
+            SCENARIO = Scenario.TRAIN
+        else:
+            raise ValueError("Argument value must be \"train\" or \"test\".")
+
+    if SCENARIO == Scenario.TRAIN:
+        train_nn_with_sgd(dataset_path=r'.\data\mnist.pkl.gz', epochs_count=10, alpha=0.01)
+    else:
+        test_nn(r".\model\nn.pkl.gz", r".\data\mnist.pkl.gz")
