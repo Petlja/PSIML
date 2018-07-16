@@ -400,7 +400,9 @@ conv1_kernel_summary = setup_image_summary(
 
 # <codecell>
 
-# TODO
+conv1_output_summary = setup_image_summary(
+    tf.transpose(tf.slice(conv1, [0, 0, 0, 0], [1, -1, -1, -1]), [3, 1, 2, 0]),
+    name='conv1_output_summary')
 
 # <markdowncell>
 
@@ -720,8 +722,25 @@ visualize_classification((random_image[0] + mean_image) / 255.0, guess_class_val
 # <codecell>
 
 def bn_net(x, y, is_training):
-    # TODO
-    pass
+    # Convolution layer.
+    conv1 = tf.layers.conv2d(inputs=x, filters=32, kernel_size=[7, 7], strides=2, padding='SAME', activation=tf.nn.relu, name='conv1')
+
+    # Batch normalization layer.
+    bn1 = tf.layers.batch_normalization(conv1, training=is_training)
+
+    # Pooling layer.
+    pool1 = tf.layers.max_pooling2d(inputs=bn1, pool_size=[2, 2], strides=2, padding='SAME', name='pool1')
+
+    # First fully connected layer.
+    fc1_input_count = int(pool1.shape[1] * pool1.shape[2] * pool1.shape[3])
+    fc1_output_count = 1024
+    pool1_flat = tf.reshape(pool1, [-1, fc1_input_count])
+    fc1 = tf.layers.dense(inputs=pool1_flat, units=fc1_output_count, activation=tf.nn.relu, name='fc1')
+
+    # Second fully connected layer.
+    fc2 = tf.layers.dense(inputs=fc1, units=num_classes, name='fc2')
+
+    return fc2
 
 # <markdowncell>
 
@@ -763,8 +782,18 @@ with tf.Session() as sess:
 # <codecell>
 
 def cifar10_net(x, y, is_training):
-    # TODO
-    pass
+    conv1 = tf.layers.conv2d(inputs=x, filters=32, kernel_size=[5, 5], strides=1, padding='SAME', name='conv1')
+    pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[3, 3], strides=2, padding='VALID', name='pool1')
+    relu1 = tf.nn.relu(pool1, name='relu1')
+    conv2 = tf.layers.conv2d(inputs=relu1, filters=32, kernel_size=[5, 5], strides=1, padding='SAME', activation=tf.nn.relu, name='conv2')
+    pool2 = tf.layers.average_pooling2d(inputs=conv2, pool_size=[3, 3], strides=2, padding='VALID', name='pool2')
+    conv3 = tf.layers.conv2d(inputs=pool2, filters=64, kernel_size=[5, 5], strides=1, padding='SAME', activation=tf.nn.relu, name='conv3')
+    pool3 = tf.layers.average_pooling2d(inputs=conv3, pool_size=[3, 3], strides=2, padding='VALID', name='pool3')
+    fc1_input_count = int(pool3.shape[1] * pool3.shape[2] * pool3.shape[3])
+    pool3_flat = tf.reshape(pool3,[-1, fc1_input_count], name='pool3_flat')
+    fc1 = tf.layers.dense(inputs=pool3_flat, units=64, name='fc1')
+    fc2 = tf.layers.dense(inputs=fc1, units=num_classes, name='fc2')
+    return fc2
 
 # <codecell>
 
