@@ -9,7 +9,6 @@ PSIML 2018
 |Generative Adversarial Networks                                                                      |Bruno Gavranovic     |Goran Dubajic      |Natalija Radic     |                 |
 |[Clustering & PCA](https://github.com/Petlja/PSIML/tree/master/workshops/clustering_pca_autoencoders)|Novak Novakovic      |Olivera Stojanovic |                   |                 |
 |Reinforcement Learning                                                                               |Milos Jordanski      |Goran Dubajic      |Natalija Radic     |                 |
-|Natural Language Processing                                                                          |Milos Jovanovic      |Goran Dubajic      |Mladen Nikolic     |                 |
 
 We would like to have at least two assistants per workshop so please edit this file and add your name to the table:).
 
