@@ -4,6 +4,7 @@ Gzip is used for compression.
 import gzip
 import pickle
 from enum import Enum
+import os
 import sys
 import numpy
 
@@ -267,7 +268,8 @@ def train_nn_with_sgd(dataset_path, epochs_count, alpha):
         test_error = neural_net.test(test_set)
         print('%d\t%f\t%f\t%f' %(epoch, 100 * train_error, 100 * valid_error, 100 * test_error))
     # Save the trained network.
-    gzip_file = gzip.open(r'.\nn.pkl.gz', 'wb')
+    gzip_file_path_os_normalized = os.path.join(".","nn.pkl.gz")
+    gzip_file = gzip.open(gzip_file_path_os_normalized, 'wb')
     pickle.dump(neural_net, gzip_file)
     gzip_file.close()
 
@@ -309,7 +311,9 @@ if __name__ == "__main__":
         else:
             raise ValueError("Argument value must be \"train\" or \"test\".")
 
+    dataset_path_os_normalized = os.path.join(".","data","mnist.pkl.gz")
+    model_path_os_normalized = os.path.join(".","model","nn.pkl.gz")
     if SCENARIO == Scenario.TRAIN:
-        train_nn_with_sgd(dataset_path=r'.\data\mnist.pkl.gz', epochs_count=10, alpha=0.01)
+        train_nn_with_sgd(dataset_path=dataset_path_os_normalized, epochs_count=10, alpha=0.01)
     else:
-        test_nn(r".\model\nn.pkl.gz", r".\data\mnist.pkl.gz")
+        test_nn(model_path_os_normalized, dataset_path_os_normalized)
