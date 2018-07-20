@@ -2,7 +2,7 @@
 
 This repository contains the presentation and the code for the workshop for the GAN lecture on PSIML 2018.
 
-![](assets/gan_training_regime.png)
+![](workshops/gan/assets/gan_training_regime.png)
 
 ---
 
