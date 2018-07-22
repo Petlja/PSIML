@@ -149,7 +149,7 @@ def main():
             b_hk += update_b_hk
     plot_predictions(loss)
 
-    filename = "trained_net.wts.npz"
+    filename = r"model/trained_net.wts.npz"
     save_params(filename, W_ih, b_ih, W_hh, W_hk, b_hk)
 
     W_ih, b_ih, W_hh, W_hk, b_hk = load_params(filename)

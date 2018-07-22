@@ -50,7 +50,7 @@ def main():
     # b_hk.shape = (outputs,)
 
     # Load trained network.
-    filename = "trained_net.wts.npz"
+    filename = r"model/trained_net.wts.npz"
     W_ih, b_ih, W_hh, W_hk, b_hk = load_params(filename)
 
     # Get training set.
