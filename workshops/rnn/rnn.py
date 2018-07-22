@@ -49,7 +49,6 @@ def get_loss(y, z):
     # 2) -sum(expected * log predicted + (1-expected) log (1-predicted))
     # In case of 1) softmax will handle that only one output gets activated
     # If we don't use softmax, i.e. outputs are not exclusive, we have to use 2).
-    # TODO: see Bishop, 95, chapter 6
     if len(y) == 1:
         return (z - 1) * np.log(1 - y) - z * np.log(y)  # (3.15)
     else:
@@ -57,7 +56,7 @@ def get_loss(y, z):
 
 
 # Vanilla RNN.
-if __name__ == "__main__":
+def main():
     hidden_units = 15
     outputs = 1
     inputs = 5
@@ -166,3 +165,7 @@ if __name__ == "__main__":
         a_k[t] = np.dot(b_h[t], W_hk) + b_hk  # (3.32)
         y[t] = sigmoid(a_k[t])  # Binary classification
     plot_predictions(y)
+
+
+if __name__ == "__main__":
+    main()
