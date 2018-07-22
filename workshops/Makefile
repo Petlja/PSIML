@@ -1,5 +1,5 @@
 # WORKSHOPS := clustering_pca_autoencoders conv_nets LogisticRegression nn_backprop rnn
-WORKSHOPS := nn_backprop
+WORKSHOPS := nn_backprop conv_nets
 
 all:
 	# Loop over all workshops and build them.

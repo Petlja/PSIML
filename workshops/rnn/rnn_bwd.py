@@ -49,7 +49,6 @@ def get_loss(y, z):
     # 2) -sum(expected * log predicted + (1-expected) log (1-predicted))
     # In case of 1) softmax will handle that only one output gets activated
     # If we don't use softmax, i.e. outputs are not exclusive, we have to use 2).
-    # TODO: see Bishop, 95, chapter 6
     if len(y) == 1:
         return (z - 1) * np.log(1 - y) - z * np.log(y)  # (3.15)
     else:
@@ -57,7 +56,7 @@ def get_loss(y, z):
 
 
 # Vanilla RNN.
-if __name__ == "__main__":
+def main():
     hidden_units = 15
     outputs = 1
     inputs = 5
@@ -93,6 +92,8 @@ if __name__ == "__main__":
         loss[epoch] = 0
         print(str.format("Epoch {0} / {1}", epoch, epochs))
         for d_id in range(d.get_example_count()):
+            # x.shape = (sequence_length, inputs)
+            # z.shape = (sequence_length, 1)
             x, z = d.get_example(d_id)
             # Auxiliary variables.
             a_h = {}
@@ -152,7 +153,7 @@ if __name__ == "__main__":
             b_hk += update_b_hk
     plot_predictions(loss)
 
-    filename = "trained_net.wts.npz"
+    filename = r"model/trained_net.wts.npz"
     save_params(filename, W_ih, b_ih, W_hh, W_hk, b_hk)
 
     W_ih, b_ih, W_hh, W_hk, b_hk = load_params(filename)
@@ -168,3 +169,7 @@ if __name__ == "__main__":
         a_k[t] = np.dot(b_h[t], W_hk) + b_hk  # (3.32)
         y[t] = sigmoid(a_k[t])  # Binary classification
     plot_predictions(y)
+
+
+if __name__ == "__main__":
+    main()

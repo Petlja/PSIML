@@ -10,9 +10,9 @@ There will be three type of machines available for PSIML 2018 projects:
 Steps to use Linux cloud machines:
 * Got to https://app.fra.me/login
 * Enter the Windows credentials you received.
-* Pool of machines will be presented. Click on the machine you want to use.
-
-After machine is booted you will be presented with the desktop in browser.
+* In the upper left corner click _Go To Dashboard_ in the drop down (next to _Microsoft Powered by FRAME_ title).
+* In the _Apps_ tab click _POWER ON_ and wait machine to boot. This step can be skipped if machine is already booted.
+* After machine is booted click _Open Desktop_ and you will be presented with the desktop in browser.
 
 Miniconda Python distribution is installed at c:\Data\Programs\miniconda. This is the clean installation without any frameworks installed. **One should never use base Miniconda environment but rather create new virtual environment**. To do that follow the steps:
 * Activate base miniconda environment
@@ -45,7 +45,9 @@ To facilitate development and debugging following tools are installed:
 Steps to use Linux cloud machines:
 * Go to https://app.fra.me/login
 * Enter the Linux credentials you received.
-* Pool of machines will be presented. Click on the machine you want to use.
+* In the upper left corner click _Go To Dashboard_ in the drop down (next to _Microsoft Powered by FRAME_ title).
+* In the _Apps_ tab click _POWER ON_ and wait machine to boot. This step can be skipped if machine is already booted.
+* After machine is booted click _Open Desktop_ and you will be presented with the desktop in browser.
 
 After machine is booted you will be presented with the desktop in browser.
 
