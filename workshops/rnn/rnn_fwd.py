@@ -31,7 +31,7 @@ def sigmoid(x):
 
 
 # Vanilla RNN.
-if __name__ == "__main__":
+def main():
     hidden_units = 15
     outputs = 1
     inputs = 5
@@ -46,15 +46,17 @@ if __name__ == "__main__":
     # Hidden -> hidden connections
     # W_hh.shape = (hidden_units, hidden_units)
     # Hidden -> output connections
-    # W_hk = (hidden_units, outputs)
-    # b_hk = (outputs,)
+    # W_hk.shape = (hidden_units, outputs)
+    # b_hk.shape = (outputs,)
 
     # Load trained network.
-    filename = "trained_net.wts.npz"
+    filename = r"model/trained_net.wts.npz"
     W_ih, b_ih, W_hh, W_hk, b_hk = load_params(filename)
 
     # Get training set.
     d = DataProvider(examples, sequence_length, inputs, outputs)
+    # x.shape = (sequence_length, inputs)
+    # z.shape = (sequence_length, 1)
     x, z = d.get_example(0)
 
     # dictionary where key is the timestamp.
@@ -69,3 +71,7 @@ if __name__ == "__main__":
         a_k[t] = None  # (3.32)
         y[t] = None  # Binary classification
     plot_predictions(y)
+
+
+if __name__ == "__main__":
+    main()
