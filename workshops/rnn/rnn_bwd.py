@@ -92,6 +92,8 @@ def main():
         loss[epoch] = 0
         print(str.format("Epoch {0} / {1}", epoch, epochs))
         for d_id in range(d.get_example_count()):
+            # x.shape = (sequence_length, inputs)
+            # z.shape = (sequence_length, 1)
             x, z = d.get_example(d_id)
             # Auxiliary variables.
             a_h = {}

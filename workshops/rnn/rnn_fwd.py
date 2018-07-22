@@ -55,6 +55,8 @@ def main():
 
     # Get training set.
     d = DataProvider(examples, sequence_length, inputs, outputs)
+    # x.shape = (sequence_length, inputs)
+    # z.shape = (sequence_length, 1)
     x, z = d.get_example(0)
 
     # dictionary where key is the timestamp.
