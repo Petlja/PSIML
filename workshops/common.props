@@ -3,7 +3,7 @@
   <PropertyGroup Label="UserMacros">
     <BuildDir>$(SolutionDir)\build</BuildDir>
     <BuildScriptsDir>$(SolutionDir)\build_scripts</BuildScriptsDir>
-    <PythonPath></PythonPath>
+    <PythonPath>C:\ProgramData\Anaconda3\</PythonPath>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\common.user.props" Condition="Exists('$(SolutionDir)\common.user.props')"/>
 </Project>
