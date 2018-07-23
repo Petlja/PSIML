@@ -66,10 +66,10 @@ def main():
     a_k = {}
     y = {}
     for t in range(sequence_length):
-        a_h[t] = None  # (3.30)
-        b_h[t] = None  # (3.31)
-        a_k[t] = None  # (3.32)
-        y[t] = None  # Binary classification
+        a_h[t] = None  # TODO: (3.30), don't forget bias parameter
+        b_h[t] = None  # TODO: (3.31), hint: theta_h = tanh
+        a_k[t] = None  # TODO: (3.32), don't forget bias parameter
+        y[t] = None  # TODO: Binary classification
     plot_predictions(y)
 
 

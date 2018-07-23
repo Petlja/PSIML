@@ -102,12 +102,12 @@ def main():
             a_k = {}
             y = {}
             for t in range(sequence_length):
-                # TODO: forward pass and loss
+                # TODO: forward pass and loss. You can just copy/pase solution from rnn_fwd.py
                 # P.S. don't forget biases.
-                a_h[t] = None   # (3.30)
-                b_h[t] = None   # (3.31)
-                a_k[t] = None   # (3.32)
-                y[t] = None  # Binary classification
+                a_h[t] = None  # TODO: (3.30), don't forget bias parameter
+                b_h[t] = None  # TODO: (3.31), hint: theta_h = tanh
+                a_k[t] = None  # TODO: (3.32), don't forget bias parameter
+                y[t] = None    # TODO: Binary classification
                 loss[epoch] += get_loss(y[t], z[t])
                 # plot_predictions(y)
 
@@ -117,9 +117,9 @@ def main():
             delta_h = dict()
             delta_h[sequence_length] = np.zeros((hidden_units,))
             for t in reversed(range(sequence_length)):
-                # TODO: backward pass, deltas
-                delta_k[t] = None  # (3.19), (3.23)
-                delta_h[t] = None  # (3.33)
+                # Backward pass, deltas
+                delta_k[t] = None  # TODO: (3.19), (3.23)
+                delta_h[t] = None  # TODO: (3.33)
 
             # TODO: Calculate gradients, everything is derived from (3.35)
             d_W_ih = np.zeros_like(W_ih)
@@ -128,11 +128,11 @@ def main():
             d_W_hk = np.zeros_like(W_hk)
             d_b_hk = np.zeros_like(b_hk)
             for t in range(sequence_length):
-                d_W_ih += None
-                d_b_ih += None  # * 1
-                d_W_hh += None
-                d_W_hk += None
-                d_b_hk += None  # * 1
+                d_W_ih += None  # TODO: (3.35)
+                d_b_ih += None  # TODO: (3.35), hint: b_i^t = 1
+                d_W_hh += None  # TODO: (3.35)
+                d_W_hk += None  # TODO: (3.35)
+                d_b_hk += None  # TODO: (3.35), hint: b_i^t = 1
 
             # Clip gradients to mitigate exploding gradients
             clip_threshold = 3
