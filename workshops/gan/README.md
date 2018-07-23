@@ -8,7 +8,7 @@ This repository contains the presentation and the code for the workshop for the 
 
 ### Presentation
 
-Presentation slides can be found [here](https://github.com/bgavran/GAN_Lecture_Materials/blob/irb_seminar/presentation/presentation.pdf).
+Presentation slides can be found [here](https://github.com/bgavran/GAN_Lecture_Materials/blob/master/presentation/presentation.pdf).
 
 ### Workshop starting point
 
