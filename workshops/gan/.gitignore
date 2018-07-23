@@ -1,7 +1,7 @@
 # Added by bgavran
 .idea
 log/
-data/
+data/lfw-deepfunneled
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

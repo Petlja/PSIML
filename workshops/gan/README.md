@@ -26,7 +26,7 @@ You should be able to train a rudimentary WGAN-GP with fully connected generator
 
 #### Step 1. - Download the dataset
 The recommended version is the [deep funneled version](http://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz). 
-The code will look for images recursively in the `code/data/lfw-deepfunnelled` directory.
+The code will look for images recursively in the `gan/data/lfw-deepfunnelled` directory.
 
 #### Step 2. - Fill in the missing parts of the code!
 
