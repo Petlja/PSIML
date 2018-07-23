@@ -79,8 +79,10 @@ class WGAN:
         """
         ##################################################################
 
-        TODO: Create the optimizers for both critic and the generator. Each of the optimizers should only update only 
+        TODO: Create the optimizers for both critic and the generator. Each of the optimizers should update only 
         critic weights or only generator weights!
+        Hint: you can use tf.get_collection to fetch weights from only the network you need!
+        Hint #2: Pass those weights to the var_list optional argument of the optimization function!
         
         YOUR CODE BEGIN.
         
