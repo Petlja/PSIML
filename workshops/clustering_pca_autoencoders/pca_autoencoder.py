@@ -87,6 +87,9 @@ print('Mean Vector:\n', mean_vector)
 
 cov_mat = np.zeros((3,3))
 #    COMPUTE THE COVARIANCE MATRIX HERE!!!
+for i in range(all_samples.shape[1]):
+	cov_mat += (all_samples[:,i].reshape(3,1) - mean_vector).dot((all_samples[:,i].reshape(3,1) - mean_vector).T)
+cov_mat /= all_samples.shape[1]-1
 print('Covariance Matrix:\n', cov_mat)
 
 # <codecell>
@@ -95,7 +98,7 @@ print('Covariance Matrix:\n', cov_mat)
 #------------------------------------------------------
 
 #    COMPUTE THE EIGENVECTORS AND EIGENVALUES FOR THE FROM THE COVARIANCE MATRIX HERE!!!
-#    eig_val_cov, eig_vec_cov
+eig_val_cov, eig_vec_cov = np.linalg.eig(cov_mat)
 for i in range(len(eig_val_cov)):
     print('Eigenvalue {} from covariance matrix: {}'.format(i+1, eig_val_cov[i]))
     print(40 * '-')
@@ -128,6 +131,9 @@ plt.show()
 #------------------------------------------------------
 
 #    SORT THE (EIGENVALUE, EIGENVECTOR) TUPLES FROM HIGH TO LOW HERE!
+eig_pairs = [(np.abs(eig_val_cov[i]), eig_vec_cov[:,i]) for i in range(len(eig_val_cov))]
+
+eig_pairs.sort(key = lambda x: x[0], reverse = True)
 
 # Visually confirm that the list is correctly sorted by decreasing eigenvalues
 for i in eig_pairs:
@@ -139,14 +145,16 @@ for i in eig_pairs:
 #------------------------------------------------------
 
 #    COMPUTE THE PROJECTION MATRIX matrix_w HERE!
+matrix_w = np.hstack((eig_pairs[0][1].reshape(3,1), eig_pairs[1][1].reshape(3,1)))
 print('Matrix W:\n', matrix_w)
 
 # <codecell>
 #------------------------------------------------------
 #      TASK 5: Project onto the new base
 #------------------------------------------------------
-
+transformed = matrix_w.T.dot(all_samples)
 #     PROJECT THE all_samples TO A MATRIX trensformed HERE!
+
 assert transformed.shape == (2,12332), "The matrix has not the dimensions 2x12332"
 
 # <codecell>
@@ -208,16 +216,16 @@ X = tf.placeholder("float", [None, n_input])
 #    TASK 1: finish the correct initialization of tensors for the dictionary
 #------------------------------------------------------
 weights = {
-    #'encoder_h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
-    #'encoder_h2': # TODO
-    #'decoder_h1': # TODO
-    #'decoder_h2': # TODO
+    'encoder_h1': tf.Variable(tf.random_normal([n_input, n_hidden_1])),
+    'encoder_h2': tf.Variable(tf.random_normal([n_hidden_1, n_hidden_2])),
+    'decoder_h1': tf.Variable(tf.random_normal([n_hidden_2, n_hidden_1])),
+    'decoder_h2': tf.Variable(tf.random_normal([n_hidden_1, n_input])),
 }
 biases = {
-    #'encoder_b1': # TODO
-    #'encoder_b2': # TODO
-    #'decoder_b1': # TODO
-    #'decoder_b2': # TODO
+    'encoder_b1': tf.Variable(tf.random_normal([n_hidden_1])),
+    'encoder_b2': tf.Variable(tf.random_normal([n_hidden_2])),
+    'decoder_b1': tf.Variable(tf.random_normal([n_hidden_1])),
+    'decoder_b2': tf.Variable(tf.random_normal([n_input])),
 }
 
 
@@ -237,9 +245,11 @@ def encoder(x):
 #------------------------------------------------------
 def decoder(x):
     # Encoder Hidden layer with sigmoid activation #1
-    #layer_1 = #TODO
+    layer_1 = tf.nn.sigmoid(tf.add(tf.matmul(x, weights['decoder_h1']),
+                                   biases['decoder_b1']))
     # Decoder Hidden layer with sigmoid activation #2
-    #layer_2 = #TODO 
+    layer_2 = tf.nn.sigmoid(tf.add(tf.matmul(layer_1, weights['decoder_h2']),
+                                   biases['decoder_b2']))
     return layer_2
 
 # Construct model
@@ -249,14 +259,14 @@ encoder_op = encoder(X)
 #------------------------------------------------------
 #    TASK 3: finish up the model
 #------------------------------------------------------
-#decoder_op = #TODO
+decoder_op = decoder(encoder_op)
 
 # <codecell>
 #------------------------------------------------------
 #    TASK 4: prediction and label
 #------------------------------------------------------
-#y_pred = #TODO
-#y_true = #TODO
+y_pred = decoder_op
+y_true = X
 
 # Define loss and optimizer, minimize the squared error
 cost = tf.reduce_mean(tf.pow(y_true - y_pred, 2))
