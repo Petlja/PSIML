@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="autoencoder_workshop.py.ipynb" />
+    <Content Include="Robot2s.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Import Project="$(SolutionDir)\common.props" />
