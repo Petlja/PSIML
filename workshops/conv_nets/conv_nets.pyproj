@@ -10,11 +10,11 @@
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments />
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
     <Environment />
     <Name>conv_nets</Name>
+    <StartupFile>conv_nets.py</StartupFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -22,9 +22,11 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="conv_nets.py">
-      <Pynb>true</Pynb>
-    </Compile>
+    <Compile Include="conv_nets.py" />
+    <Compile Include="model.py" />
+    <Compile Include="model_utils.py" />
+    <Compile Include="runner.py" />
+    <Compile Include="trainer.py" />
     <Compile Include="utils.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
