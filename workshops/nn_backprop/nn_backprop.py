@@ -54,6 +54,20 @@ class TanhActivation:
         # TODO: Replace dummy implementation below with tanh backward pass.
         return numpy.zeros(activation.shape, dtype=numpy.float)
 
+def create_activation(activation_type):
+    """ Activation factory function. Based on the give type creates and returns corresponding activation.
+
+        :param activation_type: Type of activation.
+    """
+    activation = None
+    if activation_type == ActivationType.IDENTITY:
+        activation = IdentityActivation()
+    elif activation_type == ActivationType.TANH:
+        activation = TanhActivation()
+    else:
+        raise Exception("Unknown activation type.")
+    return activation
+
 class SoftmaxWithCrossEntropyLayer:
     """ Class that implements softmax + cross-entropy functionality. """
     def __init__(self, inputs_count):
@@ -120,10 +134,7 @@ class FullyConnectedLayer:
         self.bias_gradients = numpy.zeros((outputs_count, 1), dtype=numpy.float)
         self.input_gradients = numpy.zeros((inputs_count, 1), dtype=numpy.float)
         # Set activation function according to given type.
-        if activation_type == ActivationType.IDENTITY:
-            self.activation = IdentityActivation()
-        else:
-            self.activation = TanhActivation()
+        self.activation = create_activation(activation_type)
         # Declare input/output arrays to be used later.
         self.x_input = None
         self.y_output = numpy.zeros((outputs_count, 1), dtype=numpy.float)
