@@ -30,7 +30,7 @@ class IdentityActivation:
     """ Class that implements identity activation function (y = x). """
     @classmethod
     def forward(cls, preactivation):
-        """ Implements forward pass. Since identity just returns preactivation as is. """
+        """ Implements forward pass. Since identity just returns preactivation as is (y = x). """
         # TODO: Replace dummy implementation below with identity forward pass.
         return numpy.zeros(preactivation.shape, dtype=numpy.float)
 
@@ -44,7 +44,7 @@ class TanhActivation:
     """ Class that implements tanh activation function (y = tanh(x)). """
     @classmethod
     def forward(cls, preactivation):
-        """ Implements forward pass. Apply tanh to preactivation and return it. """
+        """ Implements forward pass. Apply tanh to preactivation and return it (y = tanh(x)). """
         # TODO: Replace dummy implementation below with tanh forward pass.
         return numpy.zeros(preactivation.shape, dtype=numpy.float)
 
@@ -100,7 +100,8 @@ class SoftmaxWithCrossEntropyLayer:
 
         :param target: Expected output (to be used in loss function).
         """
-        # Gradients are calculated using [gradient] = [output] - [target].
+        # Gradients are calculated using [gradient] = [output] - [target]. NOTE: Target argument is scalar (index of
+        # expected output) not the one-hot vector.
         # TODO: Implement softmax + crossentropy backward compute below as [gradient] = [output] - [target].
 
     def prediction(self):
@@ -159,7 +160,11 @@ class FullyConnectedLayer:
         # Calculate preactivation gradients.
         pre_activation_gradient = self.activation.backward(self.y_output, output_grad)
         # Based on preactivation gradient calculate bias, weights and input gradients.
-        # TODO: Implement fully connected layer backward. Compute bias_gradients, weight_gradients and input_gradients.
+        # TODO: Implement fully connected layer backward. Compute bias_gradients, weight_gradients and input_gradients
+        #       using the formulas below:
+        #       [bias_gradients] = [preactivation_gradients]
+        #       [weights_gradients] = [preactivation_gradients] * [input]T
+        #       [input_gradients] = [wights]T * [preactivation_gradients]
 
     def update_weights(self, alpha):
         """
