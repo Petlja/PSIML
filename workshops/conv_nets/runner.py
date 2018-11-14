@@ -32,7 +32,10 @@ class Runner(object):
         """
         # Advantage of using a dictionary over a list is being able to later reference results in a more
         # robust way (by ID instead of by index in the list).
-        return None
+        return {
+            "guess_class" : self.model.guess_class,
+            "guess_prob" : self.model.guess_prob,
+            }
 
     def get_feed_dict(self, image):
         """
@@ -49,7 +52,8 @@ class Runner(object):
         # In order to reduce dimensions you can use:
         # [`np.squeeze`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html).
 
-        return None
+        # Note that a singleton batch axis is added.
+        return {self.model.images : np.expand_dims(image, axis=0)}
 
     def get_predictions(self, result):
         """
@@ -65,7 +69,8 @@ class Runner(object):
         # In order to reduce dimensions you can use:
         # [`np.squeeze`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html).
 
-        return None
+        # Remove singleton batch axis.
+        return np.squeeze(result["guess_class"], axis=0), np.squeeze(result["guess_prob"], axis=0)
 
     def create_tensorboard_log(self, log_dir):
         """
