@@ -20,7 +20,7 @@ def image_placeholder(height, width, channels, name):
     # - Use [tf.placeholder](https://www.tensorflow.org/api_docs/python/tf/placeholder).
     # - Shape dimensions with value None are set automatically once actual data is provided.
 
-    return None
+    return tf.placeholder(dtype=tf.float32, shape=[None, height, width, channels], name=name)
 
 def conv_layer(inputs, filters, kernel_size, strides, with_activation, name):
     """
@@ -47,7 +47,15 @@ def conv_layer(inputs, filters, kernel_size, strides, with_activation, name):
     # - For ReLU activation function use [tf.nn.relu](https://www.tensorflow.org/api_docs/python/tf/nn/relu).
     # - Bias is enabled by default for convolutional layers.
 
-    return None
+    activation = tf.nn.relu if with_activation else None
+    return tf.layers.conv2d(
+        inputs=inputs,
+        filters=filters,
+        kernel_size=kernel_size,
+        strides=strides,
+        padding="SAME",
+        activation=activation,
+        name=name)
 
 def pool_layer(inputs, pool_size, strides, name):
     """
@@ -66,7 +74,12 @@ def pool_layer(inputs, pool_size, strides, name):
     # Hint:
     # Use [tf.layers.max_pooling2d](https://www.tensorflow.org/api_docs/python/tf/layers/max_pooling2d).
 
-    return None
+    return tf.layers.max_pooling2d(
+        inputs=inputs,
+        pool_size=pool_size,
+        strides=strides,
+        padding="SAME",
+        name=name)
 
 def fc_layer(inputs, units, with_activation, name):
     """
@@ -88,7 +101,9 @@ def fc_layer(inputs, units, with_activation, name):
     # - One way to flatten is using [tf.reshape](https://www.tensorflow.org/api_docs/python/tf/manip/reshape).
     # - Tensor shape can be accessed using [Tensor.shape](https://www.tensorflow.org/api_docs/python/tf/Tensor#shape).
 
-    return None
+    inputs_flat = inputs if len(inputs.shape) < 2 else tf.reshape(inputs, [-1, np.prod(inputs.shape[1:])])
+    activation = tf.nn.relu if with_activation else None
+    return tf.layers.dense(inputs=inputs_flat, units=units, activation=activation, name=name)
 
 def label_placeholder(name):
     """

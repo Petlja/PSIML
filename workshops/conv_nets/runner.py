@@ -32,7 +32,10 @@ class Runner(object):
         """
         # Advantage of using a dictionary over a list is being able to later reference results in a more
         # robust way (by ID instead of by index in the list).
-        return None
+        return {
+            "guess_class" : self.model.guess_class,
+            "guess_prob" : self.model.guess_prob,
+            }
 
     def get_feed_dict(self, image):
         """
@@ -43,7 +46,8 @@ class Runner(object):
         :returns: Dictionary that maps input nodes to data.
             See [`tf.Session.run`](https://www.tensorflow.org/api_docs/python/tf/Session#run).
         """
-        return None
+        # Note that a singleton batch axis is added.
+        return {self.model.images : np.expand_dims(image, axis=0)}
 
     def get_predictions(self, result):
         """
@@ -53,7 +57,8 @@ class Runner(object):
 
         :returns: A tuple consisting of a list of class indices, and a list of corresponding class probabilities.
         """
-        return None
+        # Remove singleton batch axis.
+        return np.squeeze(result["guess_class"], axis=0), np.squeeze(result["guess_prob"], axis=0)
 
     def create_tensorboard_log(self, log_dir):
         """
