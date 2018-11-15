@@ -120,7 +120,7 @@ def label_placeholder(name):
     # - Use [tf.placeholder](https://www.tensorflow.org/api_docs/python/tf/placeholder).
     # - Shape dimensions with value None are set automatically once actual data is provided.
 
-    return None
+    return tf.placeholder(tf.int64, [None], name=name)
 
 def cross_entropy_loss(labels, logits, name):
     """
@@ -143,7 +143,8 @@ def cross_entropy_loss(labels, logits, name):
     # - Use [`tf.nn.sparse_softmax_cross_entropy_with_logits`](https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits).
     # - Use [`tf.reduce_sum`](https://www.tensorflow.org/api_docs/python/tf/math/reduce_sum) to sum over examples in batch.
 
-    return None
+    loss_per_sample = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=labels, logits=logits)
+    return tf.reduce_sum(loss_per_sample)
 
 def classification_accuracy(labels, prob, name):
     """
@@ -164,7 +165,8 @@ def classification_accuracy(labels, prob, name):
     # [`tf.reduce_mean`](https://www.tensorflow.org/api_docs/python/tf/math/reduce_mean),
     # [`tf.cast`](https://www.tensorflow.org/api_docs/python/tf/dtypes/cast).
 
-    return None
+    is_correct = tf.equal(tf.argmax(prob, axis=1), labels)
+    return tf.reduce_mean(tf.cast(is_correct, tf.float32))
 
 def get_conv_weights(graph, layer_name):
     """
