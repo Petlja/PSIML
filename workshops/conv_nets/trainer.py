@@ -38,7 +38,7 @@ class Trainer(object):
         # Hint:
         # Use [`tf.train.AdamOptimizer`](https://www.tensorflow.org/api_docs/python/tf/train/AdamOptimizer#minimize).
 
-        return None
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.model.loss)
 
     def get_fetches(self, is_training):
         """
@@ -61,6 +61,9 @@ class Trainer(object):
             "loss" : self.model.loss,
             "accuracy" : self.model.accuracy,
             }
+        if is_training:
+            # If training, also evaluate the weight update node.
+            fetches["train_op"] = self.train_op
         return fetches
 
     def get_feed_dict(self, images, labels, is_training):
@@ -279,4 +282,6 @@ class Trainer(object):
         # - Since weights are available only inside a session, `tf.train.Saver.save` requires a session object
         #   as a parameter.
 
-        pass
+        with self.model.graph.as_default():
+            saver = tf.train.Saver()
+            saver.save(self.session, file_path)
