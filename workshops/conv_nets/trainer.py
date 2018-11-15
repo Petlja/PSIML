@@ -177,7 +177,8 @@ class Trainer(object):
         # - Graph can be written to log by passing it to [`tf.summary.FileWriter`] constructor, or by
         #   invoking a dedicated method.
 
-        pass
+        self.writer_train = tf.summary.FileWriter(logdir=train_log_dir_path, graph=self.model.graph)
+        self.writer_val = tf.summary.FileWriter(logdir=val_log_dir_path, graph=self.model.graph)
 
     def get_summary(self, loss, accuracy):
         """
@@ -196,7 +197,10 @@ class Trainer(object):
         # - [`tf.Summary.Value`] has a `simple_value` field which is used for storing scalars.
         # - [`tf.Summary.Value`] has a `tag` field which represents name of the scalar.
 
-        return None
+        return tf.Summary(value=[
+            tf.Summary.Value(tag="loss", simple_value=loss),
+            tf.Summary.Value(tag="accuracy", simple_value=accuracy),
+            ])
 
     def log_to_tensorboard(self, epoch, summary_train, summary_val):
         """
@@ -211,7 +215,8 @@ class Trainer(object):
         # Use [`tf.summary.FileWriter.add_summary`](https://www.tensorflow.org/api_docs/python/tf/summary/FileWriter#add_summary).
         # Use TensorBoards you have previously created in function `create_tensorboard_log`
 
-        pass
+        self.writer_train.add_summary(summary_train, epoch)
+        self.writer_val.add_summary(summary_val, epoch)
 
     def train(self, images_train, labels_train, images_val, labels_val, batch_size, epochs, print_every):
         """
