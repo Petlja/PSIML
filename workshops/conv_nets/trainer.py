@@ -77,7 +77,7 @@ class Trainer(object):
         :returns: Dictionary that maps input nodes to data.
             See [`tf.Session.run`](https://www.tensorflow.org/api_docs/python/tf/Session#run).
         """
-        return {self.model.images : images, self.model.labels : labels}
+        return {self.model.images : images, self.model.labels : labels, self.model.is_training : is_training}
 
     def get_loss_and_accuracy(self, result):
         """

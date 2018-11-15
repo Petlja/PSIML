@@ -48,7 +48,7 @@ class Runner(object):
             See [`tf.Session.run`](https://www.tensorflow.org/api_docs/python/tf/Session#run).
         """
         # Note that a singleton batch axis is added.
-        return {self.model.images : np.expand_dims(image, axis=0)}
+        return {self.model.images : np.expand_dims(image, axis=0), self.model.is_training : False}
 
     def get_predictions(self, result):
         """
