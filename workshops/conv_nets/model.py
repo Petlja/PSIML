@@ -27,13 +27,20 @@ class Model(object):
         # Placeholder for input batch of images. It will later be bound to actual image data.
         self.images = model_utils.image_placeholder(height=32, width=32, channels=3, name="images")
 
+        # Placeholder for a flag indicating if the network is in training or evaluation regime.
+        self.is_training = tf.placeholder(dtype=tf.bool, shape=[], name="is_training")
+
         # The main "body" of the network, consisting of:
-        # - Convolutional layer.
+        # - Convolutional layer without ReLU activation.
+        # - Batch normalization layer.
+        # - ReLU activation.
         # - Pooling layer.
         # - Fully connected layer with ReLU activation.
         # - Fully connected layer without activation, which outputs a score for each of 10 classes.
-        self.conv1 = model_utils.conv_layer(inputs=self.images, filters=32, kernel_size=[7, 7], strides=2, with_activation=True, name="conv1")
-        self.pool1 = model_utils.pool_layer(inputs=self.conv1, pool_size=[2, 2], strides=2, name="pool1")
+        self.conv1 = model_utils.conv_layer(inputs=self.images, filters=32, kernel_size=[7, 7], strides=2, with_activation=False, name="conv1")
+        self.bn1 = tf.layers.batch_normalization(inputs=self.conv1, training=self.is_training, name="bn1")
+        self.relu1 = tf.nn.relu(features=self.bn1, name="relu1")
+        self.pool1 = model_utils.pool_layer(inputs=self.relu1, pool_size=[2, 2], strides=2, name="pool1")
         self.fc1 = model_utils.fc_layer(inputs=self.pool1, units=1024, with_activation=True, name="fc1")
         self.fc2 = model_utils.fc_layer(inputs=self.fc1, units=10, with_activation=False, name="fc2")
 

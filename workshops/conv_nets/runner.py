@@ -54,7 +54,7 @@ class Runner(object):
         # [`np.squeeze`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html).
 
         # Note that a singleton batch axis is added.
-        return {self.model.images : np.expand_dims(image, axis=0)}
+        return {self.model.images : np.expand_dims(image, axis=0), self.model.is_training : False}
 
     def get_predictions(self, result):
         """
