@@ -35,6 +35,7 @@ class Runner(object):
         return {
             "guess_class" : self.model.guess_class,
             "guess_prob" : self.model.guess_prob,
+            "summary" : self.model.summary,
             }
 
     def get_feed_dict(self, image):
@@ -84,7 +85,7 @@ class Runner(object):
         # - Graph can be written to log by passing it to [`tf.summary.FileWriter`] constructor, or by
         #   invoking a dedicated method.
 
-        pass
+        self.writer = tf.summary.FileWriter(logdir=log_dir, graph=self.model.graph)
 
     def log_to_tensorboard(self, result):
         """
@@ -96,7 +97,7 @@ class Runner(object):
         # Hint:
         # Use [`tf.summary.FileWriter.add_summary`](https://www.tensorflow.org/api_docs/python/tf/summary/FileWriter#add_summary).
 
-        pass
+        self.writer.add_summary(result["summary"])
 
     def run(self, image):
         """
