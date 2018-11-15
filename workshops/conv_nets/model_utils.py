@@ -185,7 +185,7 @@ def get_conv_weights(graph, layer_name):
     #   <name of the node producing the tensor>:<output index>. For example, the name of the tensor
     #   containing the bias of conv1 is "conv1/bias:0".
 
-    return None
+    return graph.get_tensor_by_name(layer_name + "/kernel:0")
 
 def get_conv_outputs(graph, layer_name):
     """
@@ -205,7 +205,7 @@ def get_conv_outputs(graph, layer_name):
     #   <name of the node producing the tensor>:<output index>. For example, the name of the tensor
     #   containing the bias of conv1 is "conv1/bias:0".
 
-    return None
+    return graph.get_tensor_by_name(layer_name + "/Conv2D:0")
 
 def image_summary(tensor, name):
     """
@@ -240,7 +240,12 @@ def conv_weight_summary(conv_weight_tensor, name):
     # - Remember to transpose the tensor appropriately. Weights are stored as tensors of shape
     #   (<kernel_height>, <kernel_width>, <num_input_channels>, <num_output_channels>).
 
-    return None
+    # Reduce along the input channel axis.
+    images = tf.norm(conv_weight_tensor, axis=2, keepdims=True)
+    # Transpose into a batch of single-channel images to visualize.
+    images = tf.transpose(images, [3, 0, 1, 2])
+    # Visualize as batch of images.
+    return image_summary(images, name=name)
 
 def conv_output_summary(conv_output_tensor, example_index, name):
     """
@@ -261,4 +266,9 @@ def conv_output_summary(conv_output_tensor, example_index, name):
     # - Remember to transpose the tensor appropriately. Convolutional layer outputs are laid out the
     #   same way as input images, see `image_placeholder`.
 
-    return None
+    # Slice along the batch axis to select the example.
+    images = tf.slice(conv_output_tensor, [example_index, 0, 0, 0], [1, -1, -1, -1])
+    # Transpose into a batch of single-channel images to visualize.
+    images = tf.transpose(images, [3, 1, 2, 0])
+    # Visualize as batch of images.
+    return image_summary(images, name=name)
