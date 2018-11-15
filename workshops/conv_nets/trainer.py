@@ -57,7 +57,11 @@ class Trainer(object):
         # Hint:
         # Remember to evaluate the weight update node when training.
 
-        return None
+        fetches = {
+            "loss" : self.model.loss,
+            "accuracy" : self.model.accuracy,
+            }
+        return fetches
 
     def get_feed_dict(self, images, labels, is_training):
         """
@@ -70,7 +74,7 @@ class Trainer(object):
         :returns: Dictionary that maps input nodes to data.
             See [`tf.Session.run`](https://www.tensorflow.org/api_docs/python/tf/Session#run).
         """
-        return None
+        return {self.model.images : images, self.model.labels : labels}
 
     def get_loss_and_accuracy(self, result):
         """
@@ -80,7 +84,7 @@ class Trainer(object):
 
         :returns: A tuple consisting of loss and accuracy values for the batch.
         """
-        return None
+        return result["loss"], result["accuracy"]
 
     def run_minibatch(self, images, labels, is_training):
         """
