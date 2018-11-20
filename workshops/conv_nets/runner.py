@@ -138,4 +138,6 @@ class Runner(object):
         # - Use [`tf.train.Saver.restore`](https://www.tensorflow.org/api_docs/python/tf/train/Saver#restore).
         # - Implementation is analogous to `Trainer.save` in `trainer.py`.
 
-        pass
+        with self.model.graph.as_default():
+            saver = tf.train.Saver()
+            saver.restore(self.session, file_path)
