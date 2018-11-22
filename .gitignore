@@ -260,3 +260,5 @@ homework/problems/resistors/src/processed/*
 
 # User config files
 common.user.props
+
+__pycache__/
