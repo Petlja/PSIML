@@ -15,6 +15,7 @@
     <IsWindowsApplication>False</IsWindowsApplication>
     <Environment />
     <Name>script_detection</Name>
+    <StartupFile>script.py</StartupFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -23,8 +24,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="collect_data.py" />
+    <Compile Include="image_reader.py" />
+    <Compile Include="model.py" />
+    <Compile Include="model_utils.py" />
     <Compile Include="render_images.py" />
     <Compile Include="create_tfrecord.py" />
+    <Compile Include="script.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Import Project="$(SolutionDir)\common.props" />
