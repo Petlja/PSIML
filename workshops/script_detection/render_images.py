@@ -53,7 +53,7 @@ def create_images(in_dir, out_dir):
         font_name = font_by_language[language]
         # Create output dir (name it after language code).
         out_lang_dir = os.path.join(out_dir, language)
-        os.mkdir(out_lang_dir)
+        os.makedirs(out_lang_dir)
         # Load all lines from the file.
         in_file = open(file_path, "r", encoding="utf-8")
         text_lines = in_file.read().split("\n")
