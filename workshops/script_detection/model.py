@@ -97,7 +97,7 @@ class Trainer(object):
         self.valid_data = valid_data
         self.train_history = []
         self.valid_history = []
-        self.early_stop_after = 1
+        self.early_stop_after = 4
         self.batch_size = 32
 
     def train(self):
