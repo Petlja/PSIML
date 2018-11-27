@@ -7,7 +7,7 @@ import numpy as np
 
 
 def _load_image(image_path, height):
-    image = Image.open(image_path).convert('L') # greyscale
+    image = Image.open(image_path).convert('L')  # greyscale
     width_orig, height_orig = image.size
     width = int(width_orig * height / height_orig)
     image = image.resize(size=(width, height))
@@ -47,6 +47,7 @@ class ImageReader(object):
     def __init__(self, line_height, root_dir):
         self.line_height = line_height
         self._images, self._labels = _read_data(root_dir)
+        self._labels = [np.array([label]) for label in self._labels]
         self._images = [_read_image(image, line_height) for image in self._images]
         self._images = [image.T for image in self._images]  # transpose to have width x height
         self._indices = list(range(self.__len__()))
@@ -60,5 +61,5 @@ class ImageReader(object):
     def __getitem__(self, index):
         index = self._indices[index]
         image = self._images[index]
-        label = self._label[index]
+        label = self._labels[index]
         return image, label
