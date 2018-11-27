@@ -2,18 +2,28 @@ channels:
   - defaults
 dependencies:
   - certifi=2018.8.24=py35_1
+  - freetype=2.9.1=ha9979f8_1
+  - jpeg=9b=hb83a4c4_2
+  - libpng=1.6.35=h2a8f88b_0
+  - libtiff=4.0.9=h36446d0_2
+  - olefile=0.46=py35_0
+  - pillow=5.2.0=py35h08bbbbd_0
   - pip=10.0.1=py35_0
   - python=3.5.6=he025d50_0
   - setuptools=40.2.0=py35_0
+  - tk=8.6.8=hfa6e2cd_0
   - vc=14.1=h0510ff6_4
   - vs2015_runtime=14.15.26706=h3a45250_0
   - wheel=0.31.1=py35_0
   - wincertstore=0.2=py35hfebbdb8_0
+  - zlib=1.2.11=h62dcd97_3
   - pip:
     - absl-py==0.6.1
     - astor==0.7.1
     - backcall==0.1.0
+    - beautifulsoup4==4.6.3
     - bleach==3.0.2
+    - chardet==3.0.4
     - colorama==0.4.0
     - cycler==0.10.0
     - decorator==4.3.0
@@ -22,6 +32,7 @@ dependencies:
     - gast==0.2.0
     - grpcio==1.16.0
     - h5py==2.8.0
+    - idna==2.7
     - ipykernel==5.1.0
     - ipython==7.1.1
     - ipython-genutils==0.2.0
@@ -45,6 +56,7 @@ dependencies:
     - nltk==3.3
     - notebook==5.7.0
     - numpy==1.15.4
+    - opencv-python==3.4.3.18
     - pandas==0.23.4
     - pandocfilters==1.4.2
     - parso==0.3.1
@@ -59,6 +71,7 @@ dependencies:
     - pywinpty==0.5.4
     - pyzmq==17.1.2
     - qtconsole==4.4.3
+    - requests==2.20.1
     - send2trash==1.5.0
     - six==1.11.0
     - tensorboard==1.12.0
@@ -68,9 +81,11 @@ dependencies:
     - testpath==0.4.2
     - tornado==5.1.1
     - traitlets==4.3.2
+    - urllib3==1.24.1
     - wcwidth==0.1.7
     - webencodings==0.5.1
     - werkzeug==0.14.1
     - wget==3.2
     - widgetsnbextension==3.4.2
+    - wikipedia==1.4.0
     - win-unicode-console==0.5
