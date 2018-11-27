@@ -56,7 +56,7 @@ class ImageReader(object):
         random.shuffle(self._indices)
 
     def __len__(self):
-        return len(self._labels) - 1
+        return len(self._labels)
 
     def __getitem__(self, index):
         index = self._indices[index]
