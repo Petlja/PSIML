@@ -21,6 +21,26 @@ def rnn_vanilla(inputs, units, sequence_length=None):
     _, last_states = tf.nn.dynamic_rnn(cell=cell, inputs=inputs, sequence_length=sequence_length, dtype=tf.float32)
     return last_states
 
+def conv_layer(inputs, filters, kernel_size, strides):
+    # Add singleton "channel" axis because tf.layers.conv2d requires it.
+    inputs_expanded = tf.expand_dims(inputs, axis=3)
+
+    # Apply convolution to compute feature maps.
+    conv = tf.layers.conv2d(
+        inputs=inputs_expanded,
+        filters=filters,
+        kernel_size=kernel_size,
+        strides=strides,
+        padding="SAME",
+        activation=tf.nn.relu)
+
+    # Flatten column and channel (feature map) axis into a single column axis. Note that for dimensions that
+    # are unknown at graph construction time (batch size, and line width) runtime values can be accessed through
+    # tf.shape, which creates a small subnetwork that computes the shape at runtime. For other dimensions
+    # Tensor.shapre property can be used.
+    conv_shape = tf.shape(conv)
+    conv_flat = tf.reshape(conv, shape=(conv_shape[0], conv_shape[1], conv.shape[2] * filters))
+    return conv_flat
 
 def save_graph_summary(summary_file):
     summary_writer = tf.summary.FileWriter(summary_file)

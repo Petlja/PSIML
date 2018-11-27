@@ -10,6 +10,9 @@ import tfrecord_reader
 # Hyper-parameters
 _RNN_UNITS = 100
 
+_CONV1_FILTERS = 4
+_CONV1_KERNEL_SIZE = 3
+_CONV1_STRIDE = 1
 
 class Model(object):
     def __init__(self, line_height, output_classes=4):
@@ -22,8 +25,16 @@ class Model(object):
             self.line_width = tf.placeholder(dtype=tf.int32, shape=(batch_size,))
             self.labels = tf.placeholder(dtype=tf.int32, shape=(batch_size, 1))
 
+            # Create convolutional layer for featurization.
+            conv1 = model_utils.conv_layer(
+                self.line_image,
+                filters=_CONV1_FILTERS,
+                kernel_size=[_CONV1_FILTERS, _CONV1_KERNEL_SIZE],
+                strides=[_CONV1_STRIDE, _CONV1_STRIDE]
+                )
+
             # Create RNN
-            rnn_out = model_utils.rnn_vanilla(inputs=self.line_image, units=_RNN_UNITS,
+            rnn_out = model_utils.rnn_vanilla(inputs=conv1, units=_RNN_UNITS,
                                               sequence_length=self.line_width)
 
             # Create predictions
