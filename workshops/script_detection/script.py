@@ -1,32 +1,24 @@
 import argparse
 import logging
 import model
-import image_reader
+import tfrecord_reader
 
 
 def train(args):
-    train_root = args.train
-    valid_root = args.valid
+    train_tfrecord_path = args.train
+    valid_tfrecord_path = args.valid
     output = args.output
-    line_height = 32
-    logging.info('Reading validation set')
-    valid_data = image_reader.ImageReader(line_height=line_height, root_dir=valid_root)
-    logging.info('Reading training set')
-    train_data = image_reader.ImageReader(line_height=line_height, root_dir=train_root)
     logging.info('Training')
-    trainer = model.Trainer(train_data=train_data, valid_data=valid_data, output=output)
+    trainer = model.Trainer(train_tfrecord_path=train_tfrecord_path, valid_tfrecord_path=valid_tfrecord_path, output=output)
     trainer.train()
 
 def analyze(args):
     checkpoint = args.model
-    dataset_root = args.dataset
+    dataset_path = args.dataset
     output = args.output
-    line_height = 32
-    logging.info('Reading analysis dataset')
-    analysis_data = image_reader.ImageReader(line_height=line_height, root_dir=dataset_root)
     logging.info('Analyzing')
-    runner = model.Runner(line_height=line_height, checkpoint=checkpoint)
-    runner.analyze(analysis_data, output)
+    runner = model.Runner(checkpoint=checkpoint, dataset_path=dataset_path, output=output)
+    runner.analyze()
 
 def add_train_subparser(subparsers):
     subparser = subparsers.add_parser(name='train', help='Trains the model',

@@ -5,6 +5,7 @@ import numpy as np
 from utils.progress import ProgressBar
 from utils.io import ensure_parent_exists
 from PIL import Image
+import tfrecord_reader
 
 # Hyper-parameters
 _RNN_UNITS = 100
@@ -70,7 +71,7 @@ def _get_padded_batch(image_data, from_elem, to_elem, padding_value):
     batch_line_width = []
     batch_labels = []
     for i in range(from_elem, to_elem):
-        line, label = image_data[i]
+        line, label = image_data.get_data()
         line, line_width, label = _prepare_data(line, label)
         batch_line.append(line)
         batch_line_width.append(line_width)
@@ -84,9 +85,10 @@ def _get_padded_batch(image_data, from_elem, to_elem, padding_value):
 
 
 class Trainer(object):
-    def __init__(self, train_data, valid_data, output):
-        assert train_data.line_height == valid_data.line_height
-        self.model = Model(line_height=train_data.line_height)
+    def __init__(self, train_tfrecord_path, valid_tfrecord_path, output):
+        self.train_data = tfrecord_reader.TFRecordReader(tfrecord_path=train_tfrecord_path)
+        self.valid_data = tfrecord_reader.TFRecordReader(tfrecord_path=valid_tfrecord_path)
+        self.model = Model(line_height=self.train_data.get_line_height())
         self.output = output
         self.model.save_graph_summary(os.path.join(self.output, 'summary'))
         self.train_summary_writer = \
@@ -96,8 +98,6 @@ class Trainer(object):
         with self.model.graph.as_default():
             self.session = tf.Session()
         self._init_model()
-        self.train_data = train_data
-        self.valid_data = valid_data
         self.train_history = []
         self.valid_history = []
         self.early_stop_after = 4
@@ -116,7 +116,7 @@ class Trainer(object):
     def validate(self):
         with self.model.graph.as_default():
             epoch_loss = 0
-            batch_count = self._batch_count(len(self.valid_data))
+            batch_count = self._batch_count(self.valid_data.examples_count())
             self._reset_accuracy()
             progress_bar = ProgressBar(total=batch_count, name="valid")
             for batch_id in range(batch_count):
@@ -164,11 +164,10 @@ class Trainer(object):
         return data_length // self.batch_size
 
     def _train_epoch(self):
-        self.train_data.shuffle()
         with self.model.graph.as_default():
             self._reset_accuracy()
             epoch_loss = 0
-            batch_count = self._batch_count(len(self.train_data))
+            batch_count = self._batch_count(self.train_data.examples_count())
             progress_bar = ProgressBar(total=batch_count, name="train")
             for batch_id in range(batch_count):
                 batch_start = batch_id * self.batch_size
@@ -199,34 +198,29 @@ class Trainer(object):
 
 
 class Runner(object):
-    def __init__(self, line_height, checkpoint):
-        self.model = Model(line_height=line_height)
+    def __init__(self, checkpoint, dataset_path, output):
+        self.dataset_data = tfrecord_reader.TFRecordReader(tfrecord_path=dataset_path)
+        self.output = output
+        self.model = Model(line_height=self.dataset_data.get_line_height())
         with self.model.graph.as_default():
             self.session = tf.Session()
         model_utils.load_graph(self.model.graph, self.session, checkpoint)
         self.batch_size = 32
 
-    def script(self, line):
-        line, line_width, _ = _prepare_data(line, line.shape[0], label=1)
-        with self.model.graph.as_default():
-            output = self.session.run(self.model.outputs,
-                                      feed_dict={self.model.line_image: line, self.model.line_width: line_width})
-            return output
-
     def _batch_count(self, data_length):
         return data_length // self.batch_size
 
-    def analyze(self, dataset, output):
+    def analyze(self):
         # Initialize confusion matrix.
         confusion = np.zeros((self.model.output_classes, self.model.output_classes))
 
         with self.model.graph.as_default():
-            batch_count = self._batch_count(len(dataset))
+            batch_count = self._batch_count(self.dataset_data.examples_count())
             progress_bar = ProgressBar(total=batch_count, name="analyze")
             for batch_id in range(batch_count):
                 batch_start = batch_id * self.batch_size
                 batch_end = batch_start + self.batch_size
-                batch_line, batch_line_width, batch_labels = _get_padded_batch(image_data=dataset,
+                batch_line, batch_line_width, batch_labels = _get_padded_batch(image_data=self.dataset_data,
                                                                                from_elem=batch_start,
                                                                                to_elem=batch_end,
                                                                                padding_value=0)
@@ -244,7 +238,7 @@ class Runner(object):
 
                     # Dump incorrect images.
                     out_image_path = os.path.join(
-                        output,
+                        self.output,
                         'target_%d_prediction_%d' % (target, prediction),
                         'batch_%d_sample_%d.png' % (batch_id, sample_id)
                         )
@@ -257,13 +251,13 @@ class Runner(object):
 
             # Output confusion matrix.
             np.savetxt(
-                os.path.join(output, 'confusion_counts.tsv'),
+                os.path.join(self.output, 'confusion_counts.tsv'),
                 confusion,
                 fmt='%5d',
                 delimiter='\t'
                 )
             np.savetxt(
-                os.path.join(output, 'confusion_fractions.tsv'),
+                os.path.join(self.output, 'confusion_fractions.tsv'),
                 confusion / np.sum(confusion, axis=1, keepdims=True),
                 fmt='%.3f',
                 delimiter='\t')
