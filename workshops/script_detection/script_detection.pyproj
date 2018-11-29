@@ -30,6 +30,7 @@
     <Compile Include="render_images.py" />
     <Compile Include="create_tfrecord.py" />
     <Compile Include="script.py" />
+    <Compile Include="split_train_val.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Import Project="$(SolutionDir)\common.props" />
