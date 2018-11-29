@@ -3,6 +3,8 @@ import model_utils
 import os
 import numpy as np
 from utils.progress import ProgressBar
+from utils.io import ensure_parent_exists
+from PIL import Image
 
 # Hyper-parameters
 _RNN_UNITS = 100
@@ -11,6 +13,7 @@ _RNN_UNITS = 100
 class Model(object):
     def __init__(self, line_height, output_classes=4):
         self.graph = tf.Graph()
+        self.output_classes = output_classes
         batch_size = None
         with self.graph.as_default():
             # Create input placeholders
@@ -201,6 +204,7 @@ class Runner(object):
         with self.model.graph.as_default():
             self.session = tf.Session()
         model_utils.load_graph(self.model.graph, self.session, checkpoint)
+        self.batch_size = 32
 
     def script(self, line):
         line, line_width, _ = _prepare_data(line, line.shape[0], label=1)
@@ -208,3 +212,58 @@ class Runner(object):
             output = self.session.run(self.model.outputs,
                                       feed_dict={self.model.line_image: line, self.model.line_width: line_width})
             return output
+
+    def _batch_count(self, data_length):
+        return data_length // self.batch_size
+
+    def analyze(self, dataset, output):
+        # Initialize confusion matrix.
+        confusion = np.zeros((self.model.output_classes, self.model.output_classes))
+
+        with self.model.graph.as_default():
+            batch_count = self._batch_count(len(dataset))
+            progress_bar = ProgressBar(total=batch_count, name="analyze")
+            for batch_id in range(batch_count):
+                batch_start = batch_id * self.batch_size
+                batch_end = batch_start + self.batch_size
+                batch_line, batch_line_width, batch_labels = _get_padded_batch(image_data=dataset,
+                                                                               from_elem=batch_start,
+                                                                               to_elem=batch_end,
+                                                                               padding_value=0)
+                outputs = self.session.run(
+                    self.model.outputs,
+                    feed_dict={self.model.line_image: batch_line, self.model.line_width: batch_line_width}
+                )
+
+                for sample_id in range(self.batch_size):
+                    target = batch_labels[sample_id]
+                    prediction = outputs[sample_id]
+
+                    # Update confusion matrix.
+                    confusion[target, prediction] += 1
+
+                    # Dump incorrect images.
+                    out_image_path = os.path.join(
+                        output,
+                        'target_%d_prediction_%d' % (target, prediction),
+                        'batch_%d_sample_%d.png' % (batch_id, sample_id)
+                        )
+                    numpy_img = 255.0 * (1.0 - np.transpose(batch_line[sample_id]))
+                    pil_img = Image.fromarray(numpy_img).convert('L')
+                    ensure_parent_exists(out_image_path)
+                    pil_img.save(out_image_path)
+
+                progress_bar.show(batch_id)
+
+            # Output confusion matrix.
+            np.savetxt(
+                os.path.join(output, 'confusion_counts.tsv'),
+                confusion,
+                fmt='%5d',
+                delimiter='\t'
+                )
+            np.savetxt(
+                os.path.join(output, 'confusion_fractions.tsv'),
+                confusion / np.sum(confusion, axis=1, keepdims=True),
+                fmt='%.3f',
+                delimiter='\t')
