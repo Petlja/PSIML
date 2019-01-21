@@ -23,11 +23,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="conv_nets.py" />
+    <Compile Include="data_utils.py" />
     <Compile Include="model.py" />
     <Compile Include="model_utils.py" />
     <Compile Include="runner.py" />
     <Compile Include="trainer.py" />
-    <Compile Include="utils.py" />
+    <Compile Include="vis_utils.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Import Project="$(SolutionDir)\common.props" />
