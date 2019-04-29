@@ -12,7 +12,7 @@
     </ItemGroup>
     <MakeDir Directories="$(BuildDir)" />
     <MakeDir Directories="$(BuildDir)\$(ProjectName)" />
-    <Exec Command='"$(PythonPath)python.exe" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\@(PyNotebookFile)" -out "$(BuildDir)\$(ProjectName)\@(PyNotebookFile).ipynb"' />
+    <Exec Condition="'@(PyNotebookFile)'!=''" Command='"$(PythonPath)python.exe" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\@(PyNotebookFile)" -out "$(BuildDir)\$(ProjectName)\@(PyNotebookFile).ipynb"' />
     <Copy SourceFiles="@(PythonFile)" DestinationFiles="@(PythonFile->'$(BuildDir)\$(ProjectName)\%(Identity)')" />
   </Target>
 </Project>
