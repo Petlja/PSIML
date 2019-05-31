@@ -1,0 +1,96 @@
+\begin{tikzpicture}
+\clip (0,0) rectangle (6.500000,6.500000);
+{\footnotesize
+
+% Drawing 2D Cartesian system
+\draw [line width=0.016cm] (0.400000,0.400000) circle (0.040000);%
+\draw (0.300000,0.300000) node [anchor=north east] { $0$ };%
+\draw [line width=0.016cm] (0.000000,0.400000) -- (0.360000,0.400000);%
+\draw [line width=0.016cm] (0.440000,0.400000) -- (6.500000,0.400000);%
+\draw [line width=0.016cm] (6.202567,0.439158) -- (6.500000,0.400000);%
+\draw [line width=0.016cm] (6.202567,0.439158) -- (6.400000,0.400000);%
+\draw [line width=0.016cm] (6.202567,0.360842) -- (6.500000,0.400000);%
+\draw [line width=0.016cm] (6.202567,0.360842) -- (6.400000,0.400000);%
+\draw [line width=0.016cm] (0.400000,0.000000) -- (0.400000,0.360000);%
+\draw [line width=0.016cm] (0.400000,0.440000) -- (0.400000,6.500000);%
+\draw [line width=0.016cm] (0.360842,6.202567) -- (0.400000,6.500000);%
+\draw [line width=0.016cm] (0.360842,6.202567) -- (0.400000,6.400000);%
+\draw [line width=0.016cm] (0.439158,6.202567) -- (0.400000,6.500000);%
+\draw [line width=0.016cm] (0.439158,6.202567) -- (0.400000,6.400000);%
+
+% Changing color 200 0 0
+\definecolor{r200g0b0}{rgb}{0.784314,0.000000,0.000000}%
+\color{r200g0b0}% 
+
+% Filling circle P1 P2
+\fill (0.500000,0.500000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (1.000000,0.600000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (0.600000,0.800000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (0.800000,1.500000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (2.000000,0.700000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (2.500000,2.500000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (0.700000,2.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (3.000000,2.100000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (1.400000,2.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (1.000000,3.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (3.500000,1.000000) circle (0.100000);%
+
+% Changing color 0 0 200
+\definecolor{r0g0b200}{rgb}{0.000000,0.000000,0.784314}%
+\color{r0g0b200}% 
+
+% Filling circle P1 P2
+\fill (4.000000,4.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (3.000000,4.200000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (2.000000,4.500000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (1.500000,5.500000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (6.000000,4.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (5.000000,5.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (6.000000,6.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (4.000000,6.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (2.500000,6.200000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (5.500000,3.000000) circle (0.100000);%
+
+% Filling circle P1 P2
+\fill (4.500000,3.200000) circle (0.100000);%
+\color{black}
+}
+\end{tikzpicture}
