@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(SolutionDir)\common.props" />
   <ItemGroup>
-    <PrezentationItem Include="nn_backprop.md"/>
+    <PresentationItem Include="nn_backprop.md"/>
     <AuxItem Include="media\convolutional.png"/>
     <AuxItem Include="media\fully_connected.png"/>
     <AuxItem Include="media\human_nervous_system.png"/>

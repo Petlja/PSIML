@@ -22,16 +22,16 @@
   </UsingTask>
 
   <Target Name="Build">
-    <Message Text="%(PrezentationItem.FullPath)" Importance="High" />
+    <Message Text="%(PresentationItem.FullPath)" Importance="High" />
     <Error
         Text="node.exe not found. Please set NodeJsPath property to parent dir of node.exe (including trailing \)."
         Condition="!Exists('$(NodeJsPath)node.exe')"/>
-    <MakeDir Directories="$(PrezentationOutputDir)" />
-    <MakeDir Directories="$(PrezentationOutputDir)\$(MSBuildProjectName)" />
+    <MakeDir Directories="$(PresentationOutputDir)" />
+    <MakeDir Directories="$(PresentationOutputDir)\$(MSBuildProjectName)" />
     <SetEnvironmentVariableTask Name="NODE_PATH" Value="$(NodeJsPath)node_modules" />
-    <Exec Command='"$(NodeJsPath)node.exe" "$(BuildScriptsDir)\make_presentation.js" "%(PrezentationItem.FullPath)" "$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"' />
-    <MakeDir Directories="$(PrezentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
-    <Copy SourceFiles="%(AuxItem.FullPath)" DestinationFolder="$(PrezentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
-    <Exec Command='"$(ChromeExePath)" --headless --print-to-pdf="$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).pdf" "$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"'/>
+    <Exec Command='"$(NodeJsPath)node.exe" "$(BuildScriptsDir)\make_presentation.js" "%(PresentationItem.FullPath)" "$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"' />
+    <MakeDir Directories="$(PresentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
+    <Copy SourceFiles="%(AuxItem.FullPath)" DestinationFolder="$(PresentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
+    <Exec Command='"$(ChromeExePath)" --headless --print-to-pdf="$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).pdf" "$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"'/>
   </Target>
 </Project>

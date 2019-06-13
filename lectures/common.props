@@ -2,7 +2,7 @@
 <Project InitialTarget="CheckPython" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
     <BuildDir>$(SolutionDir)\build</BuildDir>
-    <PrezentationOutputDir>$(SolutionDir)\build\prezentations</PrezentationOutputDir>
+    <PresentationOutputDir>$(SolutionDir)\build\presentations</PresentationOutputDir>
     <TempOutputDir>$(SolutionDir)\build\temp</TempOutputDir>
     <OutputPath>$(TempOutputDir)\bin\$(MSBuildProjectName)</OutputPath>
     <IntermediateOutputPath>$(TempOutputDir)\int\$(MSBuildProjectName)</IntermediateOutputPath>
