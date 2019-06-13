@@ -1,12 +1,11 @@
-import fs from 'fs'
-import Marpit from '@marp-team/marpit'
-
+const fs = require('fs');
 const markdownItContainer = require('markdown-it-container')
-
 var markdownItAttrs = require('markdown-it-attrs');
+var markdownItMath = require('markdown-it-mathjax');
+const  {Marpit} = require('@marp-team/marpit')
 
 // 1. Create instance (with options if you want)
-const marpit = new Marpit().use(markdownItContainer, 'two_columns').use(markdownItContainer, 'first_column').use(markdownItContainer, 'second_column').use(markdownItAttrs)
+const marpit = new Marpit().use(markdownItContainer, 'container').use(markdownItAttrs).use(markdownItMath)
 
 // 2. Add theme CSS
 const theme = `
@@ -29,16 +28,25 @@ h1 {
   color: #8cf;
 }
 
+.container {
+}
+
 .two_columns {
   display: grid;
   grid-column-gap: 50px;
   grid-template-columns: auto auto;
 }
 
+.min_content {
+  grid-template-columns: min-content min-content;
+}
+
 `
 marpit.themeSet.default = marpit.themeSet.add(theme)
 
-const markdown = fs.readFileSync('nn_backprop.md', 'utf8');
+console.log("Converting %s to %s", process.argv[2], process.argv[3])
+
+const markdown = fs.readFileSync(process.argv[2], 'utf8');
 
 //// 3. Render markdown
 //const markdown = `
@@ -60,9 +68,13 @@ const { html, css } = marpit.render(markdown)
 // 4. Use output in your HTML
 const htmlFile = `
 <!DOCTYPE html>
-<html><body>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
   <style>${css}</style>
   ${html}
 </body></html>
 `
-fs.writeFileSync('nn_backprop.html', htmlFile.trim())
+fs.writeFileSync(process.argv[3], htmlFile.trim())

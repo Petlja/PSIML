@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask
+      TaskName="SetEnvironmentVariableTask"
+      TaskFactory="CodeTaskFactory"
+      AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+
+      <ParameterGroup>
+        <Name ParameterType="System.String" Required="true" />
+        <Value ParameterType="System.String" Required="true" />
+      </ParameterGroup>
+
+      <Task>
+        <Using Namespace="System" />
+        <Code Type="Fragment" Language="cs">
+          <![CDATA[
+            Environment.SetEnvironmentVariable(Name, Value);
+          ]]>
+        </Code>
+      </Task>
+
+  </UsingTask>
+
+  <Target Name="Build">
+    <Message Text="%(PrezentationItem.FullPath)" Importance="High" />
+    <Error
+        Text="node.exe not found. Please set NodeJsPath property to parent dir of node.exe (including trailing \)."
+        Condition="!Exists('$(NodeJsPath)node.exe')"/>
+    <MakeDir Directories="$(PrezentationOutputDir)" />
+    <MakeDir Directories="$(PrezentationOutputDir)\$(MSBuildProjectName)" />
+    <SetEnvironmentVariableTask Name="NODE_PATH" Value="$(NodeJsPath)node_modules" />
+    <Exec Command='"$(NodeJsPath)node.exe" "$(BuildScriptsDir)\make_presentation.js" "%(PrezentationItem.FullPath)" "$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"' />
+    <MakeDir Directories="$(PrezentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
+    <Copy SourceFiles="%(AuxItem.FullPath)" DestinationFolder="$(PrezentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
+    <Exec Command='"$(ChromeExePath)" --headless --print-to-pdf="$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).pdf" "$(PrezentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"'/>
+  </Target>
+</Project>

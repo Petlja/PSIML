@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project InitialTarget="CheckPython" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <BuildDir>$(SolutionDir)\build</BuildDir>
+    <PrezentationOutputDir>$(SolutionDir)\build\prezentations</PrezentationOutputDir>
+    <TempOutputDir>$(SolutionDir)\build\temp</TempOutputDir>
+    <OutputPath>$(TempOutputDir)\bin\$(MSBuildProjectName)</OutputPath>
+    <IntermediateOutputPath>$(TempOutputDir)\int\$(MSBuildProjectName)</IntermediateOutputPath>
+    <BuildScriptsDir>$(SolutionDir)\build_scripts</BuildScriptsDir>
+    <NodeJsPath></NodeJsPath>
+    <ChromeExePath></ChromeExePath>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\common.user.props" Condition="Exists('$(SolutionDir)\common.user.props')"/>
+</Project>

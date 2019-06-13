@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{70D37464-E2B9-441E-AE9A-32C82B1AC35A}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\common.props" />
+  <ItemGroup>
+    <PrezentationItem Include="nn_backprop.md"/>
+    <AuxItem Include="media\convolutional.png"/>
+    <AuxItem Include="media\fully_connected.png"/>
+    <AuxItem Include="media\human_nervous_system.png"/>
+    <AuxItem Include="media\neuron.png"/>
+    <AuxItem Include="media\nn_complex.png"/>
+    <AuxItem Include="media\nn_simple.png"/>
+    <AuxItem Include="media\perceptron.png"/>
+    <AuxItem Include="media\recurrent.png"/>
+    <AuxItem Include="media\xor_function.png"/>
+  </ItemGroup>
+  <Import Project="$(SolutionDir)\common.targets" />
+</Project>

@@ -47,11 +47,11 @@ $size: 16:9
 
 * 1960 - Perceptron
     * Limited to linearly separable problems
-:::::: two_columns
-::: first_column
+:::::: container {.two_columns .min_content}
+::: container
 ![](media/perceptron.png "")
 :::
-::: second_column
+::: container
 ![](media/xor_function.png "")
 ::::::
 
@@ -62,8 +62,8 @@ $size: 16:9
 
 # History
 
-:::::: two_columns
-::: first_column
+:::::: container {.two_columns}
+::: container
 * 1980-1995 – Multilayer perceptron
   * Universal approximator
   * Enough compute power
@@ -77,15 +77,15 @@ $size: 16:9
   * Large datasets GPU compute
 * Very popular technique until today
 :::
-::: second_column
+::: container
 ![](media/nn_simple.png "")
 ![](media/nn_complex.png "")
 ::::::
 ---
 # Neural Network types
 
-:::::: two_columns
-::: first_column
+:::::: container {.two_columns}
+::: container
 * Feed forward
   * Fully connected
 
@@ -95,9 +95,28 @@ $size: 16:9
   
     ![](media/convolutional.png "")
 :::
-::: second_column
+::: container
 * Recurrent
 
     ![](media/recurrent.png "")
 ::::::
 ---
+
+# FF Neural Networks - Neuron
+
+:::::: container {.two_columns}
+::: container
+* Neuron – basic building block
+  * Input vector
+
+    $$I_{xx}=\int\int_Ry^2f(x,y)\cdot{}dydx$$
+  * Weights vector
+
+    $$a^2 + b^2 = c^2$$
+  * Bias $b$
+:::
+::: container
+
+![](media/neuron.png "")
+
+::::::
