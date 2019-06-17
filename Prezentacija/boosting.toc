@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Terminology}{3}{0}{1}
+\beamer@sectionintoc {2}{History}{9}{0}{2}
+\beamer@sectionintoc {3}{AdaBoost}{11}{0}{3}
+\beamer@sectionintoc {4}{Variants of AdaBoost}{21}{0}{4}
+\beamer@sectionintoc {5}{Gradient Boosting}{24}{0}{5}
+\beamer@sectionintoc {6}{Concluding remarks}{36}{0}{6}
