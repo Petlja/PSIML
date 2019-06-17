@@ -1,0 +1,81 @@
+\begin{thebibliography}{DBST02}
+
+\bibitem[CG16]{ChenGuestrin2016}
+Tianqi Chen and Carlos Guestrin.
+\newblock {XBGoost:} a scalable tree boosting system.
+\newblock In {\em Proceedings of the 22nd acm sigkdd international conference
+  on knowledge discovery and data mining}, pages 785--794. ACM, 2016.
+
+\bibitem[CH15]{ChenHe2015}
+Tianqi Chen and Tong He.
+\newblock Higgs boson discovery with boosted trees.
+\newblock In {\em NIPS 2014 Workshop on High-energy Physics and Machine
+  Learning}, pages 69--80, 2015.
+
+\bibitem[CZ08]{CossockEtAl2008}
+David Cossock and Tong Zhang.
+\newblock Statistical analysis of bayes optimal subset ranking.
+\newblock {\em IEEE Transactions on Information Theory}, 54(11):5140--5154,
+  2008.
+
+\bibitem[DBST02]{DemirizEtAl2002}
+Ayhan Demiriz, Kristin~P Bennett, and John Shawe-Taylor.
+\newblock Linear programming boosting via column generation.
+\newblock {\em Machine Learning}, 46(1-3):225--254, 2002.
+
+\bibitem[FF12]{FerrFigu2012}
+Artur Ferreira and M{\'a}rio Figueiredo.
+\newblock Boosting algorithms: A review of methods, theory, and applications.
+\newblock In {\em Ensemble machine learning}, pages 35--85. Springer, 2012.
+
+\bibitem[FHT00]{FriedmanEtAl2000}
+Jerome Friedman, Trevor Hastie, and Robert Tibshirani.
+\newblock Additive logistic regression: a statistical view of boosting (with
+  discussion and a rejoinder by the authors).
+\newblock {\em The annals of statistics}, 28(2):337--407, 2000.
+
+\bibitem[Fre95]{Freund1995}
+Yoav Freund.
+\newblock Boosting a weak learning algorithm by majority.
+\newblock {\em Information and computation}, 121(2):256--285, 1995.
+
+\bibitem[Fre01]{Freund2001}
+Yoav Freund.
+\newblock An adaptive version of the boost by majority algorithm.
+\newblock {\em Machine learning}, 43(3):293--318, 2001.
+
+\bibitem[Fri01]{Friedman2001}
+Jerome~H Friedman.
+\newblock Greedy function approximation: a gradient boosting machine.
+\newblock {\em Annals of statistics}, pages 1189--1232, 2001.
+
+\bibitem[FS96]{FreundSchapire1996}
+Yoav Freund and Robert~E Schapire.
+\newblock Experiments with a new boosting algorithm.
+\newblock In {\em Proceedings of the 13th {ICML}}, pages 148--156, 1996.
+
+\bibitem[HTF09]{HastieEtAl2009}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock {\em The elements of statistical learning: data mining, inference,
+  and prediction}.
+\newblock Springer, 2009.
+
+\bibitem[KV94]{KearnsValiant1994}
+Michael Kearns and Leslie Valiant.
+\newblock Cryptographic limitations on learning boolean formulae and finite
+  automata.
+\newblock {\em Journal of the ACM (JACM)}, 41(1):67--95, 1994.
+
+\bibitem[Sch90]{Schapire1990}
+Robert~E Schapire.
+\newblock The strength of weak learnability.
+\newblock {\em Machine learning}, 5(2):197--227, 1990.
+
+\bibitem[VJ01]{ViolaJones2001}
+Paul Viola and Michael Jones.
+\newblock Rapid object detection using a boosted cascade of simple features.
+\newblock In {\em Computer Vision and Pattern Recognition (CVPR), 2001.
+  Proceedings of the 2001 IEEE Computer Society Conference on}, volume~1, pages
+  I--I. IEEE, 2001.
+
+\end{thebibliography}
