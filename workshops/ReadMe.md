@@ -14,6 +14,36 @@ To work with workshops code one needs to have:
   * make
   * Code editor (Visual Studio code is recommended)
 
+## Setting up the environment
+1. install miniconda for Python 3.7 from e.g. [here](https://docs.conda.io/en/latest/miniconda.html)
+2. use conda environment made out of environment.yml file in workshops directory. Command to make environment is:
+  ```
+  conda env create -f path_to_environment.yml -p environment_name
+  ```
+3. activate the conda environment:
+  ```
+  conda activate environment_name
+  ```
+4. build the solution
+  * *Windows*:
+    Start Visual Studio command prompt, cd to *workshops* directory and issue following command:
+    ```
+    msbuild /p:Platform="Any CPU";Configuration=Debug workshops.sln
+    ```
+    Note: if build failed with "Python.exe not found" - you need to set the PythonPath in common.props found in the *workshops* directory.
+  * *Linux*:
+  
+    Invoke make from *workshops* directory in terminal:
+    ```
+    make
+    ```
+5. Once build process is finished, Jupyter notebooks are generated inside *build* directory in *workshops*. Jupyter notebooks can then be started in Anaconda by cd-ing to that directory and issuing:
+    ```
+    jupyter notebook
+    ```
+    from terminal. If all went well, jupyter notebook will open in browser.
+
+
 ## Code organisation rules
 
 * Each workshop is in the separate directory
@@ -44,22 +74,4 @@ To add new workshop follow the steps:
 Additionally, for the conversion to make sense, file author needs to add Jupyter markers in the code. Supported markers are `# <codecell>` for the new code cell and `# <markdowncell>` for markdown cell.
 Displaying imported python files is currently not supported by Jupyter, so if this is important authors are encouraged to avoid using imports and implement code in the single file. Issue with importing the files will be addressed in the future.
 
-To test if Jupyter conversion works one needs to build workshops.
-
-* *Windows*:
-  Start Visual Studio command prompt, cd to *workshops* directory and issue following command:
-  ```
-  msbuild.exe /t:build workshops.sln
-  ```
-  Note: if build failed with "Python.exe not found" - you need to set the PythonPath in common.props found in the *workshops* directory.
-* *Linux*:
-  Invoke make from *workshops* directory in terminal:
-  ```
-  make
-  ```
-
-Once build process is finished, Jupyter notebooks are generated inside *build* directory in *workshops*. Jupyter notebooks can then be started by cd-ing to that directory and issuing:
-```
-jupyter notebook
-```
-from terminal. If all went well, jupyter notebook will open in browser.
+To test if Jupyter conversion works one needs to build workshops. Follow the steps from above to build and test jupyter conversion.
