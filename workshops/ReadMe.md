@@ -63,7 +63,7 @@ To add new workshop follow the steps:
         <Pynb>true</Pynb>
     </Compile>
     ```
-  * Once project is created it needs to be added to Visual Studio solution workshops.sln in *workshops* directory.
+  * Once project is created it needs to be added to Visual Studio solution workshops.sln in *workshops* directory. Don't forget to add build configurations for the new project as well inside the ProjectConfigurationPlatforms section.
 * *Linux specific*:
   * Add workshop Makefile. Easiest way to do this is to copy existing workshop makefile and then edit it in text editor. Relevant macros whose values need to be changed are:
     * NOTEBOOK_SOURCE_FILES - Python source files to be converted to jupyter notebook.
