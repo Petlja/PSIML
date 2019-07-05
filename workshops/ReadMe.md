@@ -15,22 +15,26 @@ To work with workshops code one needs to have:
   * Code editor (Visual Studio code is recommended)
 
 ## Setting up the environment
-1. install miniconda for Python 3.7 from e.g. [here](https://docs.conda.io/en/latest/miniconda.html)
-2. use conda environment made out of environment.yml file in workshops directory. Command to make environment is:
+1. Install miniconda for Python 3.7 from e.g. [here](https://docs.conda.io/en/latest/miniconda.html)
+2. Use conda environment made out of *environment.yml* file in *workshops* directory.
+   Assuming *<clone_dir>* is the directory where you cloned this repo, the command to make environment is:
   ```
-  conda env create -f path_to_environment.yml -p environment_name
+  conda env create -f <clone_dir>\workshops\environment.yml -p <environment_name>
   ```
-3. activate the conda environment:
+3. Activate the conda environment:
   ```
-  conda activate environment_name
+  conda activate <environment_name>
   ```
-4. build the solution
+4. Build the solution. Instructions for building differ based on the operating system, as follows.
   * *Windows*:
-    Start Visual Studio command prompt, cd to *workshops* directory and issue following command:
+    Edit *<clone_dir>\workshops\common.props*, where *<clone_dir>* is the directory where you cloned this repo, so that *PythonPath* points to the directory that contains python.exe that you want to use.
+    *PythonPath* should end with a trailing backslash.
+    Start Developer Command Prompt for Visual Studio 2017 (can be found using Windows search).
+    cd to *workshops* directory and issue following command:
     ```
     msbuild /p:Platform="Any CPU";Configuration=Debug workshops.sln
     ```
-    Note: if build failed with "Python.exe not found" - you need to set the PythonPath in common.props found in the *workshops* directory.
+    Note: if build failed with "Python.exe not found" please check that your *PythonPath* is set correctly, as explained above.
   * *Linux*:
   
     Invoke make from *workshops* directory in terminal:
