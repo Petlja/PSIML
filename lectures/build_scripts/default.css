@@ -35,3 +35,7 @@ h1 {
 .min_content {
   grid-template-columns: min-content min-content;
 }
+
+.center {
+  text-align: center;
+}

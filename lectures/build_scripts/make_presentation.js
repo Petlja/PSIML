@@ -9,10 +9,11 @@ var markdownItMath = require('markdown-it-mathjax')({
     beforeInlineMath: '\\(',
     afterInlineMath: '\\)'
 });
+var markdownItGraphviz = require('markdown-it-graphviz-exec');
 const {Marpit} = require('@marp-team/marpit')
 
 // Create marpit instance (using loaded markdown extensions).
-const marpit = new Marpit().use(markdownItContainer, 'container').use(markdownItAttrs).use(markdownItMath)
+const marpit = new Marpit().use(markdownItContainer, 'container').use(markdownItAttrs).use(markdownItMath).use(markdownItGraphviz)
 
 // Load default CSS theme.
 const theme = fs.readFileSync(path.resolve(__dirname, 'default.css'), 'utf8');
