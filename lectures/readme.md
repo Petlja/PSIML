@@ -99,9 +99,3 @@ For writing presentation one can use usual markdown features (https://github.com
 ```
 
 TODO: Add documentation for installed extensions and their usage.
-
-# Know issues
-
-Currently build will fail due to bad support for automated printing math to pdf. However, pdf will be created with bad math. 
-
-Proper math rendering can be obtained by manually loading html output to chrome and printing to pdf.
