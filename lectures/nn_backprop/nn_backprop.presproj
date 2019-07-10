@@ -10,11 +10,18 @@
     <AuxItem Include="media\convolutional.png"/>
     <AuxItem Include="media\fully_connected.png"/>
     <AuxItem Include="media\human_nervous_system.png"/>
+    <AuxItem Include="media\layer.png"/>
+    <AuxItem Include="media\linear-rectifier.png"/>
+    <AuxItem Include="media\network-capacity.png"/>
+    <AuxItem Include="media\network.png"/>
+    <AuxItem Include="media\neuron-capacity.png"/>
     <AuxItem Include="media\neuron.png"/>
     <AuxItem Include="media\nn_complex.png"/>
     <AuxItem Include="media\nn_simple.png"/>
     <AuxItem Include="media\perceptron.png"/>
     <AuxItem Include="media\recurrent.png"/>
+    <AuxItem Include="media\sigmoid.png"/>
+    <AuxItem Include="media\tanh.png"/>
     <AuxItem Include="media\xor_function.png"/>
   </ItemGroup>
   <Import Project="$(SolutionDir)\common.targets" />

@@ -1,0 +1,37 @@
+/* @theme default */
+
+section {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  padding: 40px;
+}
+
+h1,
+h2 {
+  text-align: left;
+  margin: 0;
+}
+
+h1 {
+  color: #8cf;
+}
+
+.container {
+}
+
+.two_columns {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: auto auto;
+}
+
+.three_columns {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns: auto auto auto;
+}
+
+.min_content {
+  grid-template-columns: min-content min-content;
+}

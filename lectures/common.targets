@@ -32,6 +32,6 @@
     <Exec Command='"$(NodeJsPath)node.exe" "$(BuildScriptsDir)\make_presentation.js" "%(PresentationItem.FullPath)" "$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"' />
     <MakeDir Directories="$(PresentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
     <Copy SourceFiles="%(AuxItem.FullPath)" DestinationFolder="$(PresentationOutputDir)\$(MSBuildProjectName)\%(AuxItem.RelativeDir)" />
-    <Exec Command='"$(ChromeExePath)" --headless --print-to-pdf="$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).pdf" "$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"'/>
+    <Exec Command='"$(ChromeExePath)" --disable-features=NetworkService --virtual-time-budget=10000 --headless --print-to-pdf="$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).pdf" "$(PresentationOutputDir)\$(MSBuildProjectName)\$(MSBuildProjectName).html"'/>
   </Target>
 </Project>
