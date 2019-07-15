@@ -3,17 +3,44 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+# Kick off build just on master branch.
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+variables:
+  CONDA_ENV_NAME: test_env
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+# Linux build.
+- job: Linux
+  displayName: 'Run workshops build on Linux'
+  pool:
+    vmImage: 'ubuntu-16.04'
+  steps:
+  # 1) Add conda to path.
+  - bash: echo "##vso[task.prependpath]$CONDA/bin"
+  # 2) Create conda environment based on checked in yaml file.
+  # 3) Activate created environment.
+  # 4) Build using make.
+  - script: |
+      conda env create --quiet --file workshops/environment.yml --name $(CONDA_ENV_NAME)
+      source activate $(CONDA_ENV_NAME)
+      make --directory workshops
+# Windows build.
+- job: Windows
+  displayName: 'Run workshops build on Windows'
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+  # 1) Add conda to path.
+  - powershell: Write-Host "##vso[task.prependpath]$env:CONDA\Scripts"
+  # 2) Create conda environment based on checked in yaml file.
+  # 3) Activate created environment.
+  # 4) Figure out msbuild location using vswhere unitility (install it using chocolatey).
+  # 5) Build using msbuild.
+  - script: |
+      conda env create --quiet --file workshops/environment.yml --name $(CONDA_ENV_NAME)
+      call activate $(CONDA_ENV_NAME)
+      choco install vswhere
+      for /f "tokens=*" %%i in ('vswhere -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe -nologo') do set msbuildpath="%%i"
+      call %msbuildpath% workshops\workshops.sln /p:Platform="Any CPU";Configuration=Debug
