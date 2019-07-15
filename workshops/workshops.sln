@@ -14,6 +14,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "conv_nets", "conv_nets\conv
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "clustering_pca_autoencoders", "clustering_pca_autoencoders\clustering_pca_autoencoders.pyproj", "{F9BC0229-3FB7-4204-97DA-BF05F3F2DD49}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Logistic Regression", "LogisticRegression\LogisticRegression.pyproj", "{756EADA5-8CFB-4525-874B-415436F82DE9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,9 @@ Global
 		{F9BC0229-3FB7-4204-97DA-BF05F3F2DD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9BC0229-3FB7-4204-97DA-BF05F3F2DD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9BC0229-3FB7-4204-97DA-BF05F3F2DD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756EADA5-8CFB-4525-874B-415436F82DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756EADA5-8CFB-4525-874B-415436F82DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756EADA5-8CFB-4525-874B-415436F82DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
