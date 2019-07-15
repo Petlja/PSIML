@@ -3,7 +3,11 @@
   <PropertyGroup Label="UserMacros">
     <BuildDir>$(SolutionDir)\build</BuildDir>
     <BuildScriptsDir>$(SolutionDir)\build_scripts</BuildScriptsDir>
+<<<<<<< HEAD
     <PythonPath>c:\Predavanja\Masinsko ucenje\PSIML\workshops\psimlenv\</PythonPath>
+=======
+    <PythonPath></PythonPath>
+>>>>>>> 15dac1a60512734bf83d8ff870a6d83a243c0900
   </PropertyGroup>
   <Import Project="$(SolutionDir)\common.user.props" Condition="Exists('$(SolutionDir)\common.user.props')"/>
 </Project>

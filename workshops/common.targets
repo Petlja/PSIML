@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Build">
+  <Target Name="CheckPython">
+    <!-- Check if we have Python in path. -->
+    <Exec Command="python.exe --version" ConsoleToMsBuild="true" StandardOutputImportance="low" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="ExecExitCode" />
+    </Exec>
+    <!-- Check that Python is somehow provided (either in path or using PythonPath property). -->
     <Error
-        Text="Python.exe not found. Please set PythonPath property to parent dir of python.exe (including trailing \)."
-        Condition="!Exists('$(PythonPath)python.exe')"/>
+        Text="Python.exe not found. Please set PythonPath property to parent dir of python.exe (including trailing \) or install and add Python to path."
+        Condition="'$(ExecExitCode)'=='9009' And '$(PythonPath)'==''"/>
+    <!-- Save full path to python.exe to use in the rest of processing. -->
+    <PropertyGroup Condition="'$(ExecExitCode)'!='9009'">
+      <FullPythonExePath>python.exe</FullPythonExePath>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(ExecExitCode)'=='9009'">
+      <FullPythonExePath>$(PythonPath)python.exe</FullPythonExePath>
+   </PropertyGroup>
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="CheckPython">
     <ItemGroup>
       <PyNotebookFile Include="@(Compile)" Condition="'%(Compile.Pynb)'=='true'"/>
     </ItemGroup>
@@ -16,7 +31,7 @@
       Text="No files found with Pynb attribute. Please read the readme for workshop creation to find info on how to fix this." />
     <MakeDir Directories="$(BuildDir)" />
     <MakeDir Directories="$(BuildDir)\$(ProjectName)" />
-    <Exec Command='"$(PythonPath)python.exe" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\@(PyNotebookFile)" -out "$(BuildDir)\$(ProjectName)\@(PyNotebookFile).ipynb"' />
+    <Exec Command='"$(FullPythonExePath)" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\@(PyNotebookFile)" -out "$(BuildDir)\$(ProjectName)\@(PyNotebookFile).ipynb"' />
     <Copy SourceFiles="@(PythonFile)" DestinationFiles="@(PythonFile->'$(BuildDir)\$(ProjectName)\%(Identity)')" />
   </Target>
 </Project>
