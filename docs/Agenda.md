@@ -1,24 +1,56 @@
-# PSIML 2018
-
-|Time\Date | 22-07                                  | 23-07                                  | 24-07                                      | 25-07                             | 26-07               | 27-07                                                              | 28-07                        | 29-07                          | 30-07               | 31-07     |
-|----------|----------------------------------------|----------------------------------------|--------------------------------------------|-----------------------------------|---------------------|--------------------------------------------------------------------|------------------------------|--------------------------------|---------------------|-----------|
-|9         |                                        | Breakfast                              | Breakfast                                  | Breakfast                         | Breakfast           | Breakfast                                                          | Breakfast                    | Breakfast                      | Breakfast           | Breakfast |
-|10        |                                        | **NN and Backpropagation (IvanR)**     | **GANs (Bruno)**                           | **NLP (Danijela)**                | Hike                | **SLAM (Filip)**                                                   | **ML in Medicine (Olivera)** | **Invited Talk (Andrew)**      |                     | Leave     |
-|11        |                                        | **NN and Backpropagation (IvanR)**     | **GANs (Bruno)**                           | **NLP (Danijela)**                | Hike                | **SLAM (Filip)**                                                   | **ML in Medicine (Olivera)** | **Invited Talk (Andrew)**      |                     |           |
-|12        |                                        | **_NN and Backpropagation (IvanR)_**   | **_GANs (Bruno)_**                         | **SVM adn RKHS (Jovana)**         | Hike                |                                                                    |                              |                                |                     |           |
-|13        | Intro                                  | **_NN and Backpropagation (IvanR)_**   | **_GANs (Bruno)_**                         | **SVM adn RKHS (Jovana)**         | Hike                |                                                                    |                              |                                |                     |           |
-|14        | Lunch                                  | Lunch                                  | Lunch                                      | Lunch                             | Lunch               | Lunch                                                              | Lunch                        | Lunch                          | Lunch               |           |
-|15        | **ML Basics (Mladen)**                 | **Convolutional NN (NikolaM)**         | **Clustering and PCA (Novak)**             | Pool                              | Hike                |                                                                    |                              |                                | Presenting Projects |           |
-|16        | **ML Basics (Mladen)**                 | **_Convolutional NN (NikolaM)_**       | **_Clustering and PCA (Novak)_**           | Pool                              | Hike                |                                                                    |                              |                                | Presenting Projects |           |
-|17        | **RDF In Computer Vision (Filip)**     | **_Convolutional NN (NikolaM)_**       | Talk About Projects                        | Pool                              | Hike                | **Supervised learning algorithms: Design and Evaluation (Mladen)** |                              |                                | Presenting Projects |           |
-|18        | **RDF In Computer Vision (Filip)**     | Break                                  | **Reinforcement Learning (M. Jordanski)**  | Pool                              | Hike                | **Supervised learning algorithms: Design and Evaluation (Mladen)** |                              |                                | Presenting Projects |           |
-|19        | **_Numpy Intro (Vukasin)_**            | **Recurrent NN (Momcilo)**             | **Reinforcement Learning (M. Jordanski)**  | **SVM Applications (NikolaT)**    | Hololens Playground | **Supervised learning algorithms: Design and Evaluation (Mladen)** |                              |                                | Presenting Projects |           |
-|20        | Dinner                                 | Dinner                                 | Dinner                                     | Dinner                            | Dinner              | Dinner                                                             | Dinner                       | Dinner                         | Barbecue            |           |
-|21        | **_Logistic Regression (Vukasin)_**    | **_Recurrent NN (Momcilo)_**           | **_Reinforcement Learning_ (M. Jordanski)**| Talk About Projects               | Kick Off Projects   | Project related scrum                                              | Project related scrum        | Project related scrum          | Barbecue            |           |
-|22        | Break                                  | **_Recurrent NN (Momcilo)_**           | **_Reinforcement Learning_ (M. Jordanski)**|                                   |                     |                                                                    |                              |                                | Barbecue            |           |
-|23        | Movie                                  | Hololens Playground                    |                                            |                                   |                     |                                                                    |                              |                                | Barbecue            |           |
-|24        | Movie                                  |                                        |                                            |                                   |                     |                                                                    |                              |                                | Barbecue            |           |
+# PSI:ML 2019
 
 Lectures are in **bold**.
 
 Workshops are in **_bold italic_**.
+
+<table>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Aug 3rd, Saturday</th>
+      <th>Aug 4th, Sunday</th>
+      <th>Aug 5th, Monday</th>
+      <th>Aug 6th, Tuesday</th>
+      <th>Aug 7th, Wednesday</th>
+      <th>Aug 8th, Thursday</th>
+      <th>Aug 9th, Friday</th>
+      <th>Aug 10th, Saturday</th>
+      <th>Aug 11th, Sunday</th>
+      <th>Aug 12th, Monday</th>
+      <th>Aug 13th, Tuesday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>09</td>
+      <td></td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td rowspan=2><b>NN and Backprop</b> (Katarina)</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+      <td>Breakfast</td>
+    </tr>
+    <tr>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
