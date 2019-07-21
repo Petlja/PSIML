@@ -29,10 +29,18 @@ Workshops are in **_bold italic_**.
     </tr>
     <tr>
       <td>10</td>
-      <td rowspan=2><b>NN and Backprop</b> (Katarina Mićić)</td>
-      <td rowspan=2><b>NLP</b> (Miloš Jovanović)</td>
+      <td rowspan=2><b>NN and Backpropagation</b> (Katarina Mićić)</td>
+      <td rowspan=4>
+        <i>10:00</i> <b>NLP</b> (Miloš Jovanović)<br>
+        <i>12:30</i> <b>RNN</b> (Nikola Milisavljević)<br>
+        <i>13:30</i> <b><i>RNN</i></b> (Momčilo Vasilijević)<br>
+      </td>
       <td rowspan=2><b>Generative models</b> (Miloš Nešić)</td>
-      <td><b>Random Decision Forests</b> (Filip Panjević)</td>
+      <td rowspan=4>
+        <i>10:00</i> <b>Random Decision Forests</b> (Filip Panjević)<br>
+        <i>11:20</i> <b>Boosting</b> (Predrag Tadić)<br>
+        <i>12:40</i> <b>Gaussian Processes</b> (Nikola Popović)
+      </td>
       <td rowspan=10>Hike</td>
       <td rowspan=4></td>
       <td rowspan=2><b>SLAM</b> (Filip Panjević)</td>
@@ -42,7 +50,23 @@ Workshops are in **_bold italic_**.
     </tr>
     <tr>
       <td>11</td>
-      <td><b>Boosting</b> (Predrag Tadić)</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><b>TensorFlow Intro</b> (Filip Panjević & Natalija Radić)</td>
+      <td rowspan=2><b><i>Generative Models</i></b> (Abi Gicić)</td>
+      <td rowspan=2></td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Intro</td>
+      <td><b><i>TensorFlow Intro</i></b> (Filip Panjević & Natalija Radić)</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td colspan=5 align="center">Lunch</td>
+      <td colspan=4 align=
+>Lunch</td>
     </tr>
   </tbody>
 </table>
