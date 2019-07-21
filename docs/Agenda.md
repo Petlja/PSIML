@@ -39,15 +39,16 @@ Workshops are in **_bold italic_**.
     <tr>
       <td>10</td>
       <td></td>
-      <td rowspan=2><b>NN and Backprop</b> (Katarina)</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
-      <td>Breakfast</td>
+      <td rowspan=2><b>NN and Backprop</b> (Katarina Mićić)</td>
+      <td>RNN</td>
+      <td rowspan=2><b>Generative models</b> (Miloš Nešić)</td>
+      <td><b>Random Decision Forests</b> (Filip Panjević)</td>
+      <td rowspan=10>Hike</td>
+      <td rowspan=4></td>
+      <td rowspan=2><b>SLAM</b> (Filip Panjević)</td>
+      <td rowspan=4></td>
+      <td rowspan=4></td>
+      <td>Departure</td>
     </tr>
     <tr>
       <td>11</td>
