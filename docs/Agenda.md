@@ -69,13 +69,64 @@ Workshops are in **_bold italic_**.
     </tr>
     <tr>
       <td>15</td>
-      <td colspan=3></td>
+      <td rowspan=3><b>ML Basics</b> (Mladen Nikolić)</td>
+      <td colspan=2></td>
       <td rowspan=5>Swimming pool</td>
       <td></td>
       <td rowspan=3></td>
       <td rowspan=5></td>
       <td rowspan=5></td>
       <td rowspan=5>Project presentations</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><b><i>TensorFlow NN</i></b> (Filip Panjević & Natalija Radić)</td>
+      <td><b><i>RNN</i></b> (Momčilo Vasilijević)</td>
+      <td rowspan=2><b>Reinforcement Learning</b> (Miloš Jordanski)</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td rowspan=3>
+        <b>CNN</b> (Aleksa Gordić)<br>
+        <b>Object Detection</b> (Uroš Stegić)
+      </td>
+      <td><b><i>RNN and NLP - Advanced Concepts</i></b> (Miloš & Momčilo)</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td></td>
+      <td><b>Clustering and PCA</b> (Novak Novaković)</td>
+      <td><b><i>Reinforcement Learning</i></b> (Miloš Brzaković)</td>
+      <td><b>Intelligent Systems</b> (Matthew Johnson)</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td><b><i>Numpy intro</i></b> (Mladen Nikolić)</td>
+      <td><b><i>Clustering and PCA</b> (Novak Novaković)</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td colspan=9 align="center">Dinner</td>
+      <td rowspan=4>BBQ</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td rowspan=2><b><i>Logistic Regression</i></b> (Mladen Nikolić)</td>
+      <td rowspan=2><b><i>CNN</i></b> (Vladimir Vesić)</td>
+      <td>Industry demo session</td>
+      <td>Academia session</td>
+      <td>Projects kickoff</td>
+      <td colspan=4 align="center">Project related scrum</td>      
+    </tr>
+    <tr>
+      <td>22</td>
+      <td colspan=2 align="center">Talk about projects</td>
+    </tr>
+    <tr>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>24</td>
     </tr>
   </tbody>
 </table>
