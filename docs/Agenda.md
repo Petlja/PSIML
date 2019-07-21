@@ -65,8 +65,7 @@ Workshops are in **_bold italic_**.
     <tr>
       <td>14</td>
       <td colspan=5 align="center">Lunch</td>
-      <td colspan=4 align=
->Lunch</td>
+      <td colspan=4 align="center">Lunch</td>
     </tr>
   </tbody>
 </table>
