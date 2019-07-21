@@ -67,5 +67,15 @@ Workshops are in **_bold italic_**.
       <td colspan=5 align="center">Lunch</td>
       <td colspan=4 align="center">Lunch</td>
     </tr>
+    <tr>
+      <td>15</td>
+      <td colspan=3></td>
+      <td rowspan=5>Swimming pool</td>
+      <td></td>
+      <td rowspan=3></td>
+      <td rowspan=5></td>
+      <td rowspan=5></td>
+      <td rowspan=5>Project presentations</td>
+    </tr>
   </tbody>
 </table>
