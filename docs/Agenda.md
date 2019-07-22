@@ -96,8 +96,8 @@ Workshops are in **_bold italic_**.
       <td>18</td>
       <td></td>
       <td><b>Clustering and PCA</b> (Novak Novaković)</td>
-      <td><b><i>Reinforcement Learning</i></b> (Miloš Brzaković)</td>
-      <td><b>Intelligent Systems</b> (Matthew Johnson)</td>
+      <td rowspan=2><b><i>Reinforcement Learning</i></b> (Miloš Brzaković)</td>
+      <td rowspan=2><b>Intelligent Systems</b> (Matthew Johnson)</td>
     </tr>
     <tr>
       <td>19</td>
