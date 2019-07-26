@@ -85,7 +85,7 @@ def fc_layer(inputs, units, with_activation, name):
     # - Bias is enabled by default for fully connected layers.
     # - For ReLU activation function use [tf.nn.relu](https://www.tensorflow.org/api_docs/python/tf/nn/relu).
     # - Input to a fully connected layer needs to be flat (one-dimensional).
-    # - One way to flatten is using [tf.reshape](https://www.tensorflow.org/api_docs/python/tf/manip/reshape).
+    # - One way to flatten is using [tf.reshape](https://www.tensorflow.org/api_docs/python/tf/reshape).
     # - Tensor shape can be accessed using [Tensor.shape](https://www.tensorflow.org/api_docs/python/tf/Tensor#shape).
 
     return None
@@ -125,7 +125,7 @@ def cross_entropy_loss(labels, logits, name):
     # stable to merge softmax function with it.
 
     # Hints:
-    # - Use [`tf.sparse_softmax_cross_entropy_with_logits`](https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits).
+    # - Use [`tf.nn.sparse_softmax_cross_entropy_with_logits`](https://www.tensorflow.org/api_docs/python/tf/nn/sparse_softmax_cross_entropy_with_logits).
     # - Use [`tf.reduce_sum`](https://www.tensorflow.org/api_docs/python/tf/math/reduce_sum) to sum over examples in batch.
 
     return None

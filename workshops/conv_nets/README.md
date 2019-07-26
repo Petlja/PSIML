@@ -28,6 +28,19 @@ General comments:
 * Some task may require you to implement many methods. However, implementations are very short -- up to
 10 lines of code, usually far fewer.
 
+Before you start it is important to examine project a bit. Navigate to conv_nets.py file to the main function at the bottom.
+You will see how executing this file with certain number will do one of the following things:
+ 1. Prepare dataset, which makes sure all of the images are present on the machine and shows you how they look.
+ 2. Evaluate image, which runs random image from prepared dataset through the model, predicting and visualizing the class it belongs to.
+ 3. Evaluate dataset, which calculates loss and accuracy of the model (how well the model performs) on test set.
+ 4. 6. Train, which will train the model in order to improve its performance (calculated in step 3) and store trained weights on the disk.
+ 5. 7. Evaluate image, which is identical to the one in number 2, but is using trained model stored on the disk.
+
+In simple words, the relation between `model.py`, `runner.py` and `trainer.py` files can be seen as following:
+`model.py` contains the definition of the network, and its nodes.
+`runner.py` is used to produce prediction on a single image, based on the given model (defined in `model.py`).
+`trainer.py` is used for training and evaluating given model on batch of images.
+
 ## Tasks
 
 1) **Download and verify dataset**
@@ -70,14 +83,20 @@ TensorFlow provides other high-level APIs, such as
 has a large number of [pretrained models](https://github.com/tensorflow/models/tree/master/research/slim).
 TF-Slim models can be combined `tf.layers`.
 
+It may be helpful to inspect the already implemented `Model.add_classifier_net` method in `model.py` to
+see how following layers connect with each other to form a network. Note that this function is called from 
+`Model.__init__` method in `model.py` which is called from `conv_nets.evaluate_image` method in `conv_nets.py`.
+
 In `model_utils.py` implement the following functions
 * `image_placeholder`, which creates a *placeholder* for image data, which will be bound to actual data
 later, when evaluating the network.
 * `conv_layer`, which creates a convolutional layer.
 * `pool_layer`, which creates a pooling layer.
 * `fc_layer`, which creates a fully connected layer.
-It may be helpful to inspect the already implemented `Model. add_classifier_net` method in `model.py` to
-see how these layers connect with each other to form a network.
+
+It may be helpful to inspect the already implemented `Runner.run` and `Runner.__init__` methods to see how
+to instantiate `tf.Session`, and how the above three functions are combined when evaluating a network. 
+Note that these function are called from `conv_nets.evaluate_image` method in `conv_nets.py`.
 
 A network is executed by creating a `tf.Session` object and calling its
 [`run` method](https://www.tensorflow.org/api_docs/python/tf/Session#run).
@@ -85,11 +104,9 @@ A session object encapsulates the control and state of the TensorFlow runtime.
 The `run` method requires a set of outputs to be computed, and a mapping of input placeholders to actual data items.
 
 In `runner.py` implement the following methods in `Runner` class:
-* `get_fetches`, which defines which network nodes should be evaluated.
+* `get_fetches`, which defines which network nodes (outputs) should be evaluated.
 * `get_feed_dict`, which defines how input placeholders map to actual input data.
 * `get_predictions`, which post-processes the output (as described in documentation for that function).
-It may be helpful to inspect the already implemented `Runner.run` and `Runner.__init__` methods to see how
-to instantiate `tf.Session`, and how the above three functions are combined when evaluating a network.
 
 To test correctness run
 ```
@@ -112,15 +129,17 @@ Class "airplane" with probability 0%.
 3) **Evaluate untrained network on test set**
 
 The goal of this task is to implement additional operations for computing loss and accuracy, and
-test is by evaluating loss and accuracy on CIFAR-10 test set. Since the network is still not
+test it by evaluating loss and accuracy on CIFAR-10 test set. Since the network is still not
 trained we expect accuracy to be low (similar to random guessing).
+
+It may be helpful to inspect the already implemented `Model.add_loss_and_accuracy` method in `model.py` to see
+how these new subnetworks attach to the network built earlier. Note that this function is called from 
+`Model.__init__` method in `model.py` which is called from `conv_nets.evaluate_dataset` method in `conv_nets.py`.
 
 In `model_utils.py` implement the following functions:
 * `label_placeholder`, which creates a placeholder for human-annotated ground truth image label.
 * `cross_entropy_loss`, which creates a subnetwork for computing cross-entropy loss function.
 * `classification_accuracy`, which creates a subnetwork for computing classification accuracy.
-It may be helpful to inspect the already implemented `Model.add_loss_and_accuracy` method in `model.py` to see
-how these new subnetworks attach to the network built earlier.
 
 In `trainer.py` implement the following methods in the `Trainer` class:
 * `get_fetches`, which defines which network nodes should be evaluated.

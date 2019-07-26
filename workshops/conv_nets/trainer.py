@@ -187,6 +187,7 @@ class Trainer(object):
         #   and [`tf.Summary.Value`](https://www.tensorflow.org/api_docs/python/tf/summary/Summary/Value).
         # - [`tf.Summary`] has a `value` field which is a list of instances of [`tf.Summary.Value`].
         # - [`tf.Summary.Value`] has a `simple_value` field which is used for storing scalars.
+        # - [`tf.Summary.Value`] has a `tag` field which represents name of the scalar.
 
         return None
 
@@ -201,6 +202,7 @@ class Trainer(object):
 
         # Hint:
         # Use [`tf.summary.FileWriter.add_summary`](https://www.tensorflow.org/api_docs/python/tf/summary/FileWriter#add_summary).
+        # Use TensorBoards you have previously created in function `create_tensorboard_log`
 
         pass
 
