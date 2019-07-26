@@ -32,7 +32,7 @@ Workshops are in **_bold italic_**.
       <td rowspan=2><b>NN and Backpropagation</b> (Katarina Mićić)</td>
       <td rowspan=4>
         <i>10:00</i> <b>NLP</b> (Miloš Jovanović)<br>
-        <i>12:30</i> <b>RNN</b> (Nikola Milisavljević)<br>
+        <i>12:30</i> <b>RNN</b> (Nikola Milosavljević)<br>
         <i>13:30</i> <b><i>RNN</i></b> (Momčilo Vasilijević)<br>
       </td>
       <td rowspan=2><b>Generative models</b> (Miloš Nešić)</td>
