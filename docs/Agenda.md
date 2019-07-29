@@ -43,7 +43,7 @@ Workshops are in **_bold italic_**.
       </td>
       <td rowspan=10>Hike</td>
       <td rowspan=4></td>
-      <td rowspan=2><b>SLAM</b> (Filip Panjević)</td>
+      <td rowspan=2><b>Machine Learning in Geometric Computer Vision</b> (Filip Panjević)</td>
       <td rowspan=4></td>
       <td rowspan=4></td>
       <td>Departure</td>
