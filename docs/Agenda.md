@@ -95,14 +95,14 @@ Workshops are in **_bold italic_**.
     <tr>
       <td>18</td>
       <td></td>
-      <td><b>Clustering and PCA</b> (Novak Novaković)</td>
+      <td><b>Clustering and PCA</b> (Mladen Nikolić)</td>
       <td rowspan=2><b><i>Reinforcement Learning</i></b> (Miloš Brzaković)</td>
       <td rowspan=2><b>Intelligent Systems</b> (Matthew Johnson)</td>
     </tr>
     <tr>
       <td>19</td>
       <td><b><i>Numpy intro</i></b> (Mladen Nikolić)</td>
-      <td><b><i>Clustering and PCA</b> (Novak Novaković)</td>
+      <td><b><i>Clustering and PCA</b> (Mladen Nikolić)</td>
     </tr>
     <tr>
       <td>20</td>
