@@ -68,8 +68,8 @@ class Trainer(object):
     def _save_val_predictions_plot(self):
         fig = plot_data(self.val_predictions)
         img = utils.plot_to_image(fig)
-        summary = tf.Summary(value=[tf.Summary.Value(tag="Val predictions", 
-            image=tf.Summary.Image(encoded_image_string=img, height=6, width=6))])
+        summary = tf.Summary(value=[tf.Summary.Value(tag="Val predictions",
+                                                     image=tf.Summary.Image(encoded_image_string=img, height=6, width=6))])
         self.valid_summary_writer.add_summary(summary, self._epochs_training)
 
     def _init_model(self):
@@ -101,3 +101,7 @@ class Trainer(object):
                 self.train_summary_writer.add_summary(
                     summary, self._epochs_training)
             self._epochs_training += 1
+
+    def save_final_accuracy(self):
+        self.valid_summary_writer.add_summary(tf.Summary(value=[tf.Summary.Value(
+            tag="Final val accuracy", simple_value=self.val_accuracy)]))
