@@ -12,11 +12,11 @@
 
 \newcolumntype{K}[1]{>{\centering\arraybackslash}p{#1}}
 
-%\definecolor{MyYellow}{RGB}{236,168,32}
-%\setbeamercolor{frametitle}{fg=MyYellow}
+\definecolor{chlorine}{RGB}{161,198,63}
+\definecolor{darkgreen}{RGB}{26,128,63}
 
-\title{\ \\\ \\\ \\Machine Learning Basics}
-\author{Mladen Nikoli\'c\\\ \\Machine Learning Group \\\url{machinelearning.math.rs}\\\ \\Faculty of Mathematics\\ University of Belgrade}
+\title{\ \\\ \\\ \\\ \\\textcolor{chlorine}{Machine Learning Basics}}
+\author{\textcolor{darkgreen}{Mladen Nikoli\'c}\\\ \\\textcolor{darkgreen}{Machine Learning Group} \\\textcolor{darkgreen}{\url{machinelearning.math.rs}}\\\ \\\textcolor{darkgreen}{Faculty of Mathematics}\\ \textcolor{darkgreen}{University of Belgrade}}
 \date{}
 
 \begin{document}
@@ -27,8 +27,16 @@
 }
 }
 
+\usebackgroundtemplate{
+\includegraphics[width=\paperwidth,height=\paperheight]{title_slide.jpg}
+}
+
 \frame{
 \titlepage
+}
+
+\usebackgroundtemplate{
+\includegraphics[width=\paperwidth,height=\paperheight]{regular_slide.jpg}
 }
 
 \frame{
@@ -223,7 +231,8 @@
 \end{minipage}
 \begin{minipage}{0.66\textwidth}
 \begin{figure}
-\includegraphics[width=\textwidth]{yolo.jpg}
+\vspace{2mm}
+\includegraphics[width=0.9\textwidth]{yolo.jpg}
 \caption{\url{https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b}}
 \end{figure}
 \end{minipage}
@@ -289,8 +298,9 @@
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.44\textwidth}
+\vspace{3mm}
 \begin{figure}
-\includegraphics[width=0.8\textwidth]{social.png}
+\includegraphics[width=0.7\textwidth]{social.png}
 \caption{\url{http://francescopochetti.com/community-detection-social-networks/}}
 \end{figure}
 \end{minipage}
@@ -434,7 +444,7 @@
 \frametitle{With respect to statistical framework}
 \begin{itemize}
 \item Frequentist -- most people consider it standard
-\item Bayesian  -- most people consider it exotic (but the minority will hate them for it)
+\item Bayesian  -- most people consider it exotic 
 \item Deep theoretical distinction, often poorly understood
 \end{itemize}
 }
@@ -569,7 +579,7 @@
 \begin{figure}
 \begin{center}
 \vspace{4mm}
-\includegraphics[width=\textwidth]{ann.png}
+\includegraphics[width=0.9\textwidth]{ann.png}
 \vspace{-5mm}
 \caption{\url{https://en.wikipedia.org/wiki/Artificial_neural_network}}
 \end{center}
@@ -588,21 +598,6 @@
 \item Often not hard to train
 \item Can be computationally demanding, but that depends on the kind of models being combined
 \item Not interpretable
-\end{itemize}
-}
-
-\frame{
-\frametitle{Latent variable models}
-\begin{itemize}
-\item Assume existence of some unobserved variables which may be useful to the model for various reasons like
-\begin{itemize}
-\item Factorization of probability distribution to more tractable ones
-\item Finding hidden knowledge, like grouping of instances
-\item Representation learning for modelling semantics of values of categorical variables
-\item Representation learning for merging heterogenous data sources (like images and text)
-\item ...
-\end{itemize}
-\item Can have high mathematical and computational overhead
 \end{itemize}
 }
 
@@ -781,6 +776,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- linear classifier prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{linear.png}
 \vspace{-1.3mm}
@@ -793,6 +789,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- polynomial classifier prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{polinom.png}
 \vspace{-1.3mm}
@@ -806,6 +803,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10-9.png}
 \vspace{-1.3mm}
@@ -818,6 +816,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10-6.png}
 \vspace{-1.3mm}
@@ -830,6 +829,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10-3.png}
 \vspace{-1.3mm}
@@ -843,6 +843,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10-0.png}
 \vspace{-1.3mm}
@@ -855,6 +856,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10+1.png}
 \vspace{-1.3mm}
@@ -867,6 +869,7 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frametitle{Regularization example -- regularized poly. prediction}
 \begin{adjustwidth}{-1.4cm}{0cm}
 \begin{figure}
+\vspace{2mm}
 \includegraphics[width=0.59\textwidth]{tacke.png}
 \includegraphics[width=0.59\textwidth]{10+2.png}
 \vspace{-1.3mm}
@@ -878,11 +881,18 @@ $$f_w(x)=\sum_{i=1}^n\sum_{j=0}^iw_{ij}x_1^jx_2^{i-j}$$
 \frame{
 \frametitle{How to minimize error function?}
 \begin{itemize}
+\item Anlytically by setting gradients to zero. Often impossible.
+\item Numerically by iteratively moving towards lower values of the function.
+\item What is the direction of steepest descent?
 \item Differentiable error functions allow for use of gradients (direction of steepest ascent)
 \item Cautious move in opposite direction leads to decrease of error function value
 \end{itemize}
+}
+
+\frame{
+\frametitle{Gradient}
 \begin{figure}
-\includegraphics[width=0.5\textwidth]{gradient.png}
+\includegraphics[width=0.55\textwidth]{gradient.png}
 \vspace{-0.2cm}
 \caption{math.wikia.com/wiki/Gradient}
 \end{figure}
@@ -1052,7 +1062,7 @@ $$f_w(x)=\sigma(w\cdot x)$$
 \frametitle{Sigmoid function}
 \begin{figure}
 \vspace{-2mm}
-\includegraphics[width=0.65\textwidth]{sigmoid.pdf}
+\includegraphics[width=0.55\textwidth]{sigmoid.pdf}
 \caption{M. Nikoli\'c, A. Ze\v cevi\'c, Machine learning, in preparation.}
 \end{figure}
 }
@@ -1113,7 +1123,8 @@ $$w\leftarrow w-\mu X^T\left[\sigma(Xw)-y\right]+2\lambda w$$
 \frame{
 \frametitle{Unregularized vs. regularized}
 \begin{figure}
-\includegraphics[width=0.9\textwidth]{logisticreg.png}
+\vspace{3mm}
+\includegraphics[width=0.7\textwidth]{logisticreg.png}
 \caption{\url{https://playground.tensorflow.org}}
 \end{figure}
 }
@@ -1379,7 +1390,7 @@ $x_1$ & $x_2$ & $x_3$ & $y$\\
 \item No information from the test set should be used in training, therefore:
 \begin{itemize}
 \item For missing value imputation on the test set, use exclusively means computed on the training set
-\item For standardization, use exclusively parameters computed on the training set
+\item For standardization, use exclusively means and standard deviations computed on the training set
 \end{itemize}
 \item Test set selection should follow practically realistic scenarios
 \end{itemize}
