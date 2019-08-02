@@ -102,7 +102,7 @@ print("Addition:\n", x + y)
 print("Substruction:\n", y - x)
 print("Elementwise multiplication:\n", x * y)
 print("Multiplication:\n", np.matmul(x, y))
-print("Divion:\n", x / y)
+print("Divison:\n", x / y)
 print("Square root:\n", np.sqrt(x))
 print("Exp:\n", np.exp(x))
 print("Dot product:\n", np.dot(x[1], y[0]))
@@ -480,7 +480,7 @@ class Trainer:
         # [TODO] Implement loss function based on the formulas above
         return 0
     
-    def calculateGradients(self, features, labels):
+    def calculateGradient(self, features, labels):
         # [TODO] Implement gradient function based on the formulas above
         return 0
     
