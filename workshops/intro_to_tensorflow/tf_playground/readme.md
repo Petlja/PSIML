@@ -92,5 +92,7 @@ From the `Trainer` we are also saving loss and accuracy, as well as ploted predi
 0. Have fun :) (and don't fake results (ಠ_ಠ))
 
 ### Starting scores to beat
-* Gauss - 0.97
-* Xor - 
+* Gauss - 0.9
+* Xor - 0.7
+* Circle - 0.7
+* Spiral - 0.6

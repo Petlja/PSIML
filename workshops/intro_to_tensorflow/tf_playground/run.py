@@ -6,8 +6,8 @@ import utils
 
 def main():
     # Generate and split data
-    # Try and play with arguments (noise, val_factor)
-    all_data = data.generate_data_gauss(numSamples=1000, noise=0.1)
+    # Try and play with arguments
+    all_data = data.generate_data_gauss(numSamples=1000, noise=0.5)
     train_data, valid_data = data.split_data(all_data, val_factor=0.3)
     # Set show to True if you want to see generated dataset
     data.plot_data(train_data, valid_data, show=False)

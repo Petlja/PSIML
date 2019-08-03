@@ -9,7 +9,7 @@ def euclidian(ax, ay, bx, by):
     return math.sqrt((ax-bx)**2 + (ay-by)**2)
 
 
-def generate_data_circle(numSamples, noise=0.1):
+def generate_data_circle(numSamples=1000, noise=0.5):
     random.seed(2019)
     points = []
     radius = 5
@@ -42,7 +42,7 @@ def generate_data_circle(numSamples, noise=0.1):
     random.shuffle(points)
     return np.array(points)
 
-def generate_data_spiral(numSamples, noise=0.1):
+def generate_data_spiral(numSamples=1000, noise=0.5):
     random.seed(2019)
     radius = 5
 
@@ -60,7 +60,7 @@ def generate_data_spiral(numSamples, noise=0.1):
     return np.array(points)
 
 
-def generate_data_xor(numSamples, noise=0.1):
+def generate_data_xor(numSamples=1000, noise=0.5):
     random.seed(2019)
     radius = 5
     padding = 0.3
@@ -82,7 +82,7 @@ def generate_data_xor(numSamples, noise=0.1):
     random.shuffle(points)
     return np.array(points)
 
-def generate_data_gauss(numSamples, noise=0.1):
+def generate_data_gauss(numSamples=1000, noise=0.5):
     random.seed(2019)
     radius = 5
 
