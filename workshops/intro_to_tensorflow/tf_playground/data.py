@@ -88,11 +88,13 @@ def generate_data_gauss(numSamples, noise=0.1):
 
     def generate_one_gauss(cx, cy, label):
         for i in range(numSamples):
-            x = random.gauss(cx, 1)
-            y = random.gauss(cy, 1)
+            noiseX = random.uniform(-radius, radius) * noise
+            noiseY = random.uniform(-radius, radius) * noise
+            x = random.gauss(cx, 1) + noiseX
+            y = random.gauss(cy, 1) + noiseY
             yield [x, y, label]
 
-    points = list(chain(generate_one_gauss(radius // 2, radius // 2, 1), generate_one_gauss(-radius // 2, -radius // 2, 0)))
+    points = list(chain(generate_one_gauss(radius // 4, radius // 4, 1), generate_one_gauss(-radius // 4, -radius // 4, 0)))
 
     random.shuffle(points)
     return np.array(points)
@@ -129,9 +131,3 @@ def plot_data(train_data=None, val_data=None, show=False):
     if show:
         plt.show()
     return fig
-
-
-# data = generate_data_gauss(1000, 0.3)
-# plot_data(train_data=data)
-# train, val = split_data(data, 0.5)
-# plot_data(train, val)
