@@ -1,10 +1,10 @@
 # TensorFlow Playground Workshop
-This is frist of two workshops designed to cover basic use of low level TensorFlow, building and training simple Neural Network.
+This is the frist of two workshops designed to cover basic use of low level TensorFlow, building and training simple Neural Network.
 
 You will need to experiment with different network architectures: changing **features**, **layers**, **activation functions**; as well as training parameters: **optimizer**, number of **epochs**, **batch size**.
 
 ## Main goal
-Inspired by TensorFlow's [Neural Network Playground](https://playground.tensorflow.org/), an easy way to tinker with Neural Networks through simple UI, we provided a simple setup for creating and trainig in TensorFlow where you can edit and add your own ideas, with an end goal of getting the best results on given datasets.
+Inspired by TensorFlow's [Neural Network Playground](https://playground.tensorflow.org/), an easy way to tinker with Neural Networks through simple UI, we provided a simple setup for creating and training in TensorFlow where you can edit and add your own ideas, with an end goal of getting the best results on given datasets.
 
 ![Neural Network Playground](resources/playground.png)
 *Neural Network Playground*
@@ -13,14 +13,14 @@ Inspired by TensorFlow's [Neural Network Playground](https://playground.tensorfl
 There are four main parts of the workshop:
 * **Dataset** - generate - split - visualize
 * **Model** - create tf.Graph with network
-* **Training** - train Model on Dataset - output - accuracy
+* **Training** - train Model on dataset - output - accuracy
 * **TensorBoard** - graph - loss - accuracy - output
 
 ### Dataset
 All dataset logic is in `data.py` file.
 You don't *need* to look into the code, as it's mostly Python/NumPy/MatplotLib.
 
-Datasets are generated similar to those seen in Playground, they contain set of 2D points labeled with two classes (ploted in different color).
+Datasets are generated similar to those seen in Playground, they contain set of 2D points labeled with two classes (plotted in different color).
 You can generate following datasets:
 * Gaussian - `generate_data_gauss(numSamples, noise)`
 
@@ -63,7 +63,7 @@ You can use it to visualize graph, plot metrics, and show additional data like i
 
 Every time you run `run.py` one timestamped folder is created in the *tf_playground/output* folder, where we are saving all TensorBoard-readeable summaries.
 
-In a new terminal (with your conda enviroment activated) run:
+In a new terminal (with your conda environment activated) run:
 ```
 tensorboard --logdir *path_root*/tf_playground/output
 ```
@@ -77,7 +77,7 @@ and you can expand scopes to see more operations and tensors:
 
 ![Graph with layers](resources/graph_layers.png)
 
-From the `Trainer` we are also saving loss and accuracy, as well as ploted predictions on validation set through epochs. You can see them in SCALARS and IMAGES tabs.
+From the `Trainer` we are also saving loss and accuracy, as well as plotted predictions on validation set through epochs. You can see them in SCALARS and IMAGES tabs.
 
 ## So what should you do?
 
