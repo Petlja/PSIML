@@ -37,6 +37,9 @@ class WGAN:
         self.real_image = tf.placeholder(tf.float32,
                                          [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
                                          name="Real_image")
+        self.fake_image = tf.placeholder(tf.float32,
+                                         [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
+                                         name="Fake_image")
         """
         ##################################################################
         
