@@ -17,19 +17,19 @@ class Model(object):
                 dtype=tf.int64, shape=(batch_size,), name='labels')
 
             # Create features
-            with tf.variable_scope('features'):
+            with tf.name_scope('features'):
                 # Try adding more features x^2, sin(x)...
                 features_to_stack = [self.x, self.y]
                 self.features = tf.stack(features_to_stack, axis=1)
                 self.features.set_shape([None, len(features_to_stack)])
 
             # Add hidden layers
-            with tf.variable_scope('layers'):
+            with tf.name_scope('layers'):
                 layer1 = tf.layers.dense(
                     inputs=self.features, units=3, activation=None)
 
             # Create predictions
-            with tf.variable_scope('output'):
+            with tf.name_scope('output'):
                 logits = tf.layers.dense(
                     inputs=layer1, units=2, activation=None)
                 probabilities = tf.nn.softmax(logits=logits, axis=-1)

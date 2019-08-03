@@ -47,12 +47,7 @@ class Trainer(object):
 
                 # TODO: take a look at the previous workshop
                 # use session to run one validation epoch
-                _, accuracy, summary, predictions = self.session.run(
-                    (self.model.update_accuracy, self.model.accuracy,
-                     self.model.summary, self.model.outputs),
-                    feed_dict={self.model.images: images,
-                               self.model.labels: labels}
-                )  # WILL REMOVE
+                ADD RUNNING SESSION
 
                 self.valid_summary_writer.add_summary(
                     summary, self._epochs_training)
@@ -84,11 +79,7 @@ class Trainer(object):
 
                 # TODO: take a look at the previous workshop
                 # use session to run one training epoch
-                _, _, summary = self.session.run(
-                    (self.model.train_op, self.model.update_accuracy, self.model.summary),
-                    feed_dict={self.model.images: images,
-                               self.model.labels: labels}
-                )  # WILL REMOVE
+                ADD RUNNING SESSION
 
                 self.train_summary_writer.add_summary(
                     summary, self._epochs_training)
