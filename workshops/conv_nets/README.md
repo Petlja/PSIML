@@ -28,7 +28,7 @@ General comments:
 * Some task may require you to implement many methods. However, implementations are very short -- up to
 10 lines of code, usually far fewer.
 
-Before you start it is important to examine project a bit. Navigate to conv_nets.py file to the main function at the bottom.
+Before you start it is important to examine project a bit. Navigate to `conv_nets.py` file to the main function at the bottom.
 You will see how executing this file with certain number will do one of the following things:
  * Prepare dataset (1), which makes sure all of the images are present on the machine and shows you how they look.
  * Evaluate image (2), which runs random image from prepared dataset through the model, predicting and visualizing the class it belongs to.
