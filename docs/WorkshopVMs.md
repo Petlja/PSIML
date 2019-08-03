@@ -1,3 +1,22 @@
+# Workshop Virtual Machines instruction
+All the work done for the PSIML workshops will be done in Azure VMs.
+
+## Connecting to a VM
+To connect to a VM, follow these steps (assuming you have a Windows machine. Steps are similar on different OS):
+1. Find your name in the table below, and find your machine details.
+2. Open Remote Desktop Connection by clicking the Start button Start button icon. In the search box, type Remote Desktop Connection, and then, in the list of results, click Remote Desktop Connection.
+3. In the Computer box, type the **DNS name** of the computer that you want to connect to, and then click Connect.
+4. type in username and password per table below and click OK.
+
+## Starting the workshop
+To start the workshop:
+1. find the cloned git repository in c:\PSIML
+2. Click the Start button icon. In the search box, type Anaconda Prompt, and then, in the list of results, click Anaconda Prompt.
+3. Activate the AzureML environment by typing: `conda activate AzureML` in Anaconda Prompt
+3. follow the workshop lead instructions
+
+
+## List of participants and VM details
 |participant            | machine name  |   DNS name                                  | username                | password     |
 |-----------------------|---------------|---------------------------------------------|-------------------------|--------------|
 |Aleksa Milisavljević   | PSIML-WS-VM1  | psiml-ws-vm1.westeurope.cloudapp.azure.com  | psiml-ws-vm1\psimluser  | Petnica2019  |
