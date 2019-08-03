@@ -1,15 +1,6 @@
 import os
 import datetime
 import matplotlib.pyplot as plt
-import io
-
-
-def plot_to_image(figure):
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    plt.close(figure)
-    buf.seek(0)
-    return buf.getvalue()
 
 
 def get_output_dir(output_root='.'):

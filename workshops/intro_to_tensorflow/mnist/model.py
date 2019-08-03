@@ -9,38 +9,37 @@ class Model(object):
         batch_size = None
         with self.graph.as_default():
             # Create input placeholders
-            # TODO: look at the last workshop's placeholders
-            # you should add one placeholder for images
-            # and beware of the shape :)
+            # TODO: look at the last workshop's placeholders,
+            # you should add shape of placeholder for images
             self.images = tf.placeholder(
-                tf.float32, shape=(batch_size, 28, 28)) #WILL REMOVE
+                tf.float32, shape=( ADD SHAPE ))
             self.labels = tf.placeholder(
                 dtype=tf.int64, shape=(batch_size,), name='labels')
 
             # Create features
-            with tf.variable_scope('features'):
+            with tf.name_scope('features'):
                 # TODO: make sure that you have flat features
                 # for the trainable layers
                 # try searching a bit - tf is well documented :)
                 # if stuck, ask for hints
-                self.flat_image = tf.layers.flatten(self.images) #WILL REMOVE, HINT: https://www.tensorflow.org/api_docs/python/tf/layers/flatten
+                self.flat_image =
 
             # Add hidden layers
-            with tf.variable_scope('layers'):
+            with tf.name_scope('layers'):
                 # TODO: you should add layers here
                 # you can try one hidden layer used in tutorial:
                 # https://www.tensorflow.org/tutorials/keras/basic_classification#setup_the_layers
                 # just write it in tensorflow
                 # or try and add your own ideas
-                layer1 = tf.layers.dense(
-                    inputs=self.flat_image, units=128, activation=tf.nn.relu) #WILL REMOVE
+                last_layer = 
 
             # Create predictions
-            with tf.variable_scope('output'):
-                # TODO: you can reuse this part from the previous workshop
-                # just note that now we are predicting 10 different classes
+            with tf.name_scope('output'):
+                # TODO: bellow is the code from the previous workshop
+                # you should make changes to support predicting 
+                # 10 classes
                 logits = tf.layers.dense(
-                    inputs=layer1, units=10, activation=None)
+                    inputs=last_layer, units=2, activation=None)
                 probabilities = tf.nn.softmax(logits=logits, axis=-1)
                 self.outputs = tf.argmax(probabilities, axis=-1)
 
@@ -53,9 +52,11 @@ class Model(object):
 
             # Create training operation
             with tf.name_scope('train'):
-                # TODO: Add train operation, recommendation: adam
-                self.train_op = tf.train.GradientDescentOptimizer(
-                    learning_rate=0.03).minimize(self.loss) # WILL REMOVE
+                # TODO: Add train operation
+                # take a look at the previous workshop,
+                # search for other optimizers
+                # recommendation: adam
+                self.train_op = 
 
             # Create accuracy node
             with tf.name_scope('accuracy'):
