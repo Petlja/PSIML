@@ -36,11 +36,11 @@ To start the workshop:
 |Jelena Ristić          | zumra2-WS-VM3  | zumra2-ws-vm3.westeurope.cloudapp.azure.com  | zumra2-ws-vm3\psimluser  | Petnica2019  |
 |Kosta Grujčić          | zumra2-WS-VM4  | zumra2-ws-vm4.westeurope.cloudapp.azure.com  | zumra2-ws-vm4\psimluser  | Petnica2019  |
 |Kosta Jovanović        | zumra2-WS-VM5  | zumra2-ws-vm5.westeurope.cloudapp.azure.com  | zumra2-ws-vm5\psimluser  | Petnica2019  |
-|Luka Jovičić           | PSIML-WS-VM10 | psiml-ws-vm10.westeurope.cloudapp.azure.com | psiml-ws-vm10\psimluser | Petnica2019  |
-|Marina Vasiljević      | PSIML-WS-VM11 | psiml-ws-vm11.westeurope.cloudapp.azure.com | psiml-ws-vm11\psimluser | Petnica2019  |
-|Marko Ložajić          | PSIML-WS-VM12 | psiml-ws-vm12.westeurope.cloudapp.azure.com | psiml-ws-vm12\psimluser | Petnica2019  |
-|Mihailo Grbić          | PSIML-WS-VM13 | psiml-ws-vm13.westeurope.cloudapp.azure.com | psiml-ws-vm13\psimluser | Petnica2019  |
-|Miloš Stanković        | PSIML-WS-VM14 | psiml-ws-vm14.westeurope.cloudapp.azure.com | psiml-ws-vm14\psimluser | Petnica2019  |
+|Luka Jovičić           | Kacala-WS-VM1 | psiml-ws-vm10.westeurope.cloudapp.azure.com | Kacala-WS-VM1\psimluser | Petnica2019  |
+|Marina Vasiljević      | Kacala-WS-VM2 | psiml-ws-vm11.westeurope.cloudapp.azure.com | Kacala-WS-VM2\psimluser | Petnica2019  |
+|Marko Ložajić          | Kacala-WS-VM3 | psiml-ws-vm12.westeurope.cloudapp.azure.com | Kacala-WS-VM3\psimluser | Petnica2019  |
+|Mihailo Grbić          | Kacala-WS-VM4 | psiml-ws-vm13.westeurope.cloudapp.azure.com | Kacala-WS-VM4\psimluser | Petnica2019  |
+|Miloš Stanković        | Kacala-WS-VM5 | psiml-ws-vm14.westeurope.cloudapp.azure.com | Kacala-WS-VM5\psimluser | Petnica2019  |
 |Nikola Bebić           | PSIML-WS-VM15 | psiml-ws-vm15.westeurope.cloudapp.azure.com | psiml-ws-vm15\psimluser | Petnica2019  |
 |Nikola Spasić          | PSIML-WS-VM16 | psiml-ws-vm16.westeurope.cloudapp.azure.com | psiml-ws-vm16\psimluser | Petnica2019  |
 |Ognjen Milinković      | PSIML-WS-VM17 | psiml-ws-vm17.westeurope.cloudapp.azure.com | psiml-ws-vm17\psimluser | Petnica2019  |
