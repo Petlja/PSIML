@@ -27,15 +27,15 @@ To start the workshop:
 ## List of participants and VM details
 |participant            | machine name  |   DNS name                                  | username                | password     |
 |-----------------------|---------------|---------------------------------------------|-------------------------|--------------|
-|Aleksa Milisavljević   | PSIML-WS-VM1  | psiml-ws-vm1.westeurope.cloudapp.azure.com  | psiml-ws-vm1\psimluser  | Petnica2019  |
-|Aleksandra Stevanović  | PSIML-WS-VM2  | psiml-ws-vm2.westeurope.cloudapp.azure.com  | psiml-ws-vm2\psimluser  | Petnica2019  |
-|Anastasija Ilić        | PSIML-WS-VM3  | psiml-ws-vm3.westeurope.cloudapp.azure.com  | psiml-ws-vm3\psimluser  | Petnica2019  |
-|Haris Gegić            | PSIML-WS-VM4  | psiml-ws-vm4.westeurope.cloudapp.azure.com  | psiml-ws-vm4\psimluser  | Petnica2019  |
-|Irena Đorđević         | PSIML-WS-VM5  | psiml-ws-vm5.westeurope.cloudapp.azure.com  | psiml-ws-vm5\psimluser  | Petnica2019  |
-|Ivan Pop-Jovanov       | PSIML-WS-VM6  | psiml-ws-vm6.westeurope.cloudapp.azure.com  | psiml-ws-vm6\psimluser  | Petnica2019  |
-|Jelena Ristić          | PSIML-WS-VM7  | psiml-ws-vm7.westeurope.cloudapp.azure.com  | psiml-ws-vm7\psimluser  | Petnica2019  |
-|Kosta Grujčić          | PSIML-WS-VM8  | psiml-ws-vm8.westeurope.cloudapp.azure.com  | psiml-ws-vm8\psimluser  | Petnica2019  |
-|Kosta Jovanović        | PSIML-WS-VM9  | psiml-ws-vm9.westeurope.cloudapp.azure.com  | psiml-ws-vm9\psimluser  | Petnica2019  |
+|Aleksa Milisavljević   | zumra-WS-VM1  | zumra-ws-vm1.westeurope.cloudapp.azure.com  | zumra-ws-vm1\psimluser  | Petnica2019  |
+|Aleksandra Stevanović  | zumra-WS-VM2  | zumra-ws-vm2.westeurope.cloudapp.azure.com  | zumra-ws-vm2\psimluser  | Petnica2019  |
+|Anastasija Ilić        | zumra-WS-VM3  | zumra-ws-vm3.westeurope.cloudapp.azure.com  | zumra-ws-vm3\psimluser  | Petnica2019  |
+|Haris Gegić            | zumra-WS-VM4  | zumra-ws-vm4.westeurope.cloudapp.azure.com  | zumra-ws-vm4\psimluser  | Petnica2019  |
+|Irena Đorđević         | zumra2-WS-VM5  | zumra2-ws-vm5.westeurope.cloudapp.azure.com  | zumra2-ws-vm5\psimluser  | Petnica2019  |
+|Ivan Pop-Jovanov       | zumra2-WS-VM6  | zumra2-ws-vm6.westeurope.cloudapp.azure.com  | zumra2-ws-vm6\psimluser  | Petnica2019  |
+|Jelena Ristić          | zumra2-WS-VM7  | zumra2-ws-vm7.westeurope.cloudapp.azure.com  | zumra2-ws-vm7\psimluser  | Petnica2019  |
+|Kosta Grujčić          | zumra2-WS-VM8  | zumra2-ws-vm8.westeurope.cloudapp.azure.com  | zumra2-ws-vm8\psimluser  | Petnica2019  |
+|Kosta Jovanović        | zumra2-WS-VM9  | zumra2-ws-vm9.westeurope.cloudapp.azure.com  | zumra2-ws-vm9\psimluser  | Petnica2019  |
 |Luka Jovičić           | PSIML-WS-VM10 | psiml-ws-vm10.westeurope.cloudapp.azure.com | psiml-ws-vm10\psimluser | Petnica2019  |
 |Marina Vasiljević      | PSIML-WS-VM11 | psiml-ws-vm11.westeurope.cloudapp.azure.com | psiml-ws-vm11\psimluser | Petnica2019  |
 |Marko Ložajić          | PSIML-WS-VM12 | psiml-ws-vm12.westeurope.cloudapp.azure.com | psiml-ws-vm12\psimluser | Petnica2019  |
