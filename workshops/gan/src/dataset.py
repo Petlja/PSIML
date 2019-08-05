@@ -1,4 +1,4 @@
-import scipy
+import imageio
 import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 from utils import *
@@ -81,7 +81,7 @@ class FacesData(DataSet):
     @staticmethod
     def read_image(path):
         # dividing with 256 because we need to get it in the [0, 1] range
-        return scipy.misc.imread(path).astype(np.float) / 256
+        return imageio.imread(path).astype(np.float) / 256
 
     @staticmethod
     def center_crop(x, crop_h, crop_w=None):
