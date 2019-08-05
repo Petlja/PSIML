@@ -37,9 +37,9 @@ class WGAN:
         self.real_image = tf.placeholder(tf.float32,
                                          [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
                                          name="Real_image")
-        self.fake_image = tf.placeholder(tf.float32,
-                                         [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
-                                         name="Fake_image")
+        # self.fake_image = tf.placeholder(tf.float32,
+        #                                  [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
+        #                                  name="Fake_image")
         """
         ##################################################################
         
@@ -51,9 +51,15 @@ class WGAN:
         
         ##################################################################
         """
+        self.fake_image = self.generator(self.z)
 
-        self.g_cost = None
-        self.c_cost = None
+        self.c_real = self.critic(self.real_image)
+        self.c_fake = self.critic(self.fake_image, reuse=True)
+
+        # Tries to minimize the score for fake images
+        self.g_cost = tf.reduce_mean(self.c_fake)
+        # Tries to minimize the score for real images and maximize for fake
+        self.c_cost = tf.reduce_mean(self.c_real - self.c_fake)
 
         """   
         ##################################################################
@@ -92,8 +98,11 @@ class WGAN:
         ##################################################################
         """
 
-        self.c_optimizer = None
-        self.g_optimizer = None
+        c_variables = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, "Critic")  # weights for the critic
+        self.c_optimizer = self.optimizer.minimize(self.c_cost, var_list=c_variables, name="Critic_optimizer")
+
+        g_variables = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, "Generator")  # weights for the generator	
+        self.g_optimizer = self.optimizer.minimize(self.g_cost, var_list=g_variables, name="Generator_optimizer")
 
         """   
         ##################################################################
@@ -166,7 +175,20 @@ class WGAN:
         ##################################################################
         """
 
-        pass
+        if step < 25:
+            c_times = 100
+        else:
+            c_times = 5
+
+        for _ in range(c_times):
+            eta = np.random.rand(batch_size, 1, 1, 1)  # sampling from uniform distribution	
+            data_batch = self.dataset.next_batch_real(batch_size)	
+            z = self.dataset.next_batch_fake(batch_size, self.z_size)	
+
+            sess.run(self.c_optimizer, feed_dict={self.real_image: data_batch, self.z: z, self.eta: eta})	
+
+        z = self.dataset.next_batch_fake(batch_size, self.z_size)	
+        sess.run(self.g_optimizer, feed_dict={self.z: z})
 
         """
         ##################################################################
