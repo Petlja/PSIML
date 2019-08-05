@@ -28,13 +28,13 @@ General comments:
 * Some task may require you to implement many methods. However, implementations are very short -- up to
 10 lines of code, usually far fewer.
 
-Before you start it is important to examine project a bit. Navigate to conv_nets.py file to the main function at the bottom.
+Before you start it is important to examine project a bit. Navigate to `conv_nets.py` file to the main function at the bottom.
 You will see how executing this file with certain number will do one of the following things:
- 1. Prepare dataset, which makes sure all of the images are present on the machine and shows you how they look.
- 2. Evaluate image, which runs random image from prepared dataset through the model, predicting and visualizing the class it belongs to.
- 3. Evaluate dataset, which calculates loss and accuracy of the model (how well the model performs) on test set.
- 4. 6. Train, which will train the model in order to improve its performance (calculated in step 3) and store trained weights on the disk.
- 5. 7. Evaluate image, which is identical to the one in number 2, but is using trained model stored on the disk.
+ * Prepare dataset (1), which makes sure all of the images are present on the machine and shows you how they look.
+ * Evaluate image (2), which runs random image from prepared dataset through the model, predicting and visualizing the class it belongs to.
+ * Evaluate dataset (3), which calculates loss and accuracy of the model (how well the model performs) on test set.
+ * Train (4, 6), which will train the model in order to improve its performance (calculated in step 3) and store trained weights on the disk.
+ * Evaluate image (5, 7), which is identical to the one in number 2, but is using trained model stored on the disk.
 
 In simple words, the relation between `model.py`, `runner.py` and `trainer.py` files can be seen as following:
 `model.py` contains the definition of the network, and its nodes.
