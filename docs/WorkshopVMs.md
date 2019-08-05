@@ -8,6 +8,14 @@ To connect to a VM, follow these steps (assuming you have a Windows machine. Ste
 3. In the Computer box, type the **DNS name** of the computer that you want to connect to, and then click Connect.
 4. type in username and password per table below and click OK.
 
+### Linux notes:
+Linux does not come with RDP viewer by default. To be able to log in one needs to be installed. There are several options available (Remmina, rdesktop, freerdp etc). Please install the RDP viewer using the package manager for your Linux distribution. For  Debian based distributions and Remmina steps are outlined below:
+```
+sudo apt-get update
+sudo apt-get install remmina reminna-plugin-rdp
+```
+Once installed, start Remmina, click + button, fill in the required credentials (username, domain, password) and click Connect.
+
 ## Starting the workshop
 To start the workshop:
 1. find the cloned git repository in c:\PSIML
