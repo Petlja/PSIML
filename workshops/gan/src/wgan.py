@@ -37,9 +37,7 @@ class WGAN:
         self.real_image = tf.placeholder(tf.float32,
                                          [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
                                          name="Real_image")
-        self.fake_image = tf.placeholder(tf.float32,
-                                         [None, self.dataset.img_size, self.dataset.img_size, self.dataset.channels],
-                                         name="Fake_image")
+
         """
         ##################################################################
         
@@ -47,6 +45,7 @@ class WGAN:
         You don't have to worry about adding a regularizing term for the Lipschitz continuity, it's added later to the 
         self.c_cost you define here.
         
+        Hint: You'll need both a real image batch and a fake image batch for this
         YOUR CODE BEGIN.
         
         ##################################################################
