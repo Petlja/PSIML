@@ -11,14 +11,18 @@ dependencies:
     - astor==0.7.1
     - backcall==0.1.0
     - bleach==3.0.2
+    - cloudpickle==1.2.1
     - colorama==0.4.0
     - cycler==0.10.0
     - decorator==4.3.0
     - defusedxml==0.5.0
     - entrypoints==0.2.3
+    - future==0.17.1
     - gast==0.2.0
     - grpcio==1.16.0
+    - gym==0.13.1
     - h5py==2.8.0
+    - imageio==2.5.0
     - ipykernel==5.1.0
     - ipython==7.1.1
     - ipython-genutils==0.2.0
@@ -30,6 +34,7 @@ dependencies:
     - jupyter-client==5.2.3
     - jupyter-console==6.0.0
     - jupyter-core==4.4.0
+    - keras==2.2.4
     - keras-applications==1.0.6
     - keras-preprocessing==1.0.5
     - kiwisolver==1.0.1
@@ -46,16 +51,20 @@ dependencies:
     - pandocfilters==1.4.2
     - parso==0.3.1
     - pickleshare==0.7.5
+    - Pillow==6.1.0
     - prometheus-client==0.4.2
     - prompt-toolkit==2.0.7
     - protobuf==3.6.1
+    - pyglet==1.3.2
     - pygments==2.2.0
     - pyparsing==2.3.0
     - python-dateutil==2.7.5
     - pytz==2018.7
     - pywinpty==0.5.4
+    - pyyaml==5.1.1
     - pyzmq==17.1.2
     - qtconsole==4.4.3
+    - scipy==1.3.0
     - send2trash==1.5.0
     - six==1.11.0
     - tensorboard==1.12.0
