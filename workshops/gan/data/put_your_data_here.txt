@@ -1,3 +1,1 @@
-prodajem 8gb ram ddr3, https://www.njuskalo.hr/ram-memorija/kingston-ddr3-1600mhz-8gb-ram-oglas-25994454
-ocuvano cijena nije fiksna
-
+Download the data from http://vis-www.cs.umass.edu/lfw/lfw-deepfunneled.tgz and extract the folder here.

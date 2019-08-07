@@ -43,6 +43,12 @@ class Runner(object):
         :returns: Dictionary that maps input nodes to data.
             See [`tf.Session.run`](https://www.tensorflow.org/api_docs/python/tf/Session#run).
         """
+
+        # There are multiple ways to alter dimensions of array, in order to expand dimensions you can use:
+        # [`np.expand_dims`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.expand_dims.html).
+        # In order to reduce dimensions you can use:
+        # [`np.squeeze`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html).
+
         return None
 
     def get_predictions(self, result):
@@ -53,6 +59,12 @@ class Runner(object):
 
         :returns: A tuple consisting of a list of class indices, and a list of corresponding class probabilities.
         """
+
+        # There are multiple ways to alter dimensions of array, in order to expand dimensions you can use:
+        # [`np.expand_dims`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.expand_dims.html).
+        # In order to reduce dimensions you can use:
+        # [`np.squeeze`](https://docs.scipy.org/doc/numpy/reference/generated/numpy.squeeze.html).
+
         return None
 
     def create_tensorboard_log(self, log_dir):

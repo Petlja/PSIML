@@ -6,7 +6,7 @@
 
 ## Twitter dataset
 
-Twitter sentiment analysis dataset cna be downloaded from [kaggle](https://www.kaggle.com/kazanova/sentiment140).
+Twitter sentiment analysis dataset can be downloaded from [kaggle](https://www.kaggle.com/kazanova/sentiment140).
 
 For more details refer to the [paper](https://cs.stanford.edu/people/alecmgo/papers/TwitterDistantSupervision09.pdf).
 
