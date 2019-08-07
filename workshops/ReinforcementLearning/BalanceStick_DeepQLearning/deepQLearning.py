@@ -60,10 +60,7 @@ def main():
             reward = reward if not done else -10
             next_state = np.reshape(next_state, [1, state_size])
             
-            target = reward + agent.gamma * np.amax(agent.model.predict(next_state)[0])
-            target_f = agent.model.predict(state)
-            target_f[0][action] = target
-            agent.model.fit(state, target_f, epochs=1, verbose=0)
+            #TODO
 
             if done:
                 print("episode: {}/{}, score: {}, e: {:.2}"

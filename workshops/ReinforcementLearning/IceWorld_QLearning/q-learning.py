@@ -28,28 +28,6 @@ def main():
         cumulative_reward = 0.0
         
         # TO DO
-        # Loop over time-steps
-        while not terminate:
-            # Compute what the greedy action for the current state is
-            qvalues = qtable[state]
-            greedy_action = argmax(qvalues)
-
-            # Sometimes, the agent takes a random action, to explore the environment
-            if random.random() < EPSILON:
-                action = random.randrange(4)
-            else:
-                action = greedy_action
-
-            # Perform the action
-            next_state, reward, terminate = env.step(action)
-
-            # Update the Q-Table
-            td_error = reward + GAMMA * max(qtable[next_state]) - qtable[state][action]
-            qtable[state][action] += LEARNING_RATE * td_error
-
-            # Update statistics
-            cumulative_reward += reward
-            state = next_state
 
         print(i, cumulative_reward)
 
