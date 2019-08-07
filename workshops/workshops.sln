@@ -14,7 +14,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "conv_nets", "conv_nets\conv
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "clustering_pca_autoencoders", "clustering_pca_autoencoders\clustering_pca_autoencoders.pyproj", "{F9BC0229-3FB7-4204-97DA-BF05F3F2DD49}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "LogisticRegression", "LogisticRegression\LogisticRegression.pyproj", "{756EADA5-8CFB-4525-874B-415436F82DE9}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Logistic Regression", "LogisticRegression\LogisticRegression.pyproj", "{756EADA5-8CFB-4525-874B-415436F82DE9}"
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReinforcementLearning", "ReinforcementLearning\ReinforcementLearning.pyproj", "{E3FC6D8A-2B4E-4CFF-8D86-4DD96B23A675}"
 EndProject
