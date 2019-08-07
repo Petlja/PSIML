@@ -31,7 +31,7 @@
       Text="No files found with Pynb attribute. Please read the readme for workshop creation to find info on how to fix this." />
     <MakeDir Directories="$(BuildDir)" />
     <MakeDir Directories="$(BuildDir)\$(ProjectName)" />
-    <Exec Command='"$(FullPythonExePath)" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\@(PyNotebookFile)" -out "$(BuildDir)\$(ProjectName)\@(PyNotebookFile).ipynb"' />
+    <Exec Command='"$(FullPythonExePath)" "$(BuildScriptsDir)\jupyterize.py" -in "$(ProjectDir)\%(PyNotebookFile.Identity)" -out "$(BuildDir)\$(ProjectName)\%(PyNotebookFile.Identity).ipynb"' />
     <Copy SourceFiles="@(PythonFile)" DestinationFiles="@(PythonFile->'$(BuildDir)\$(ProjectName)\%(Identity)')" />
   </Target>
 </Project>

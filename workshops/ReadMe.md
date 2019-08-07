@@ -19,7 +19,7 @@ To work with workshops code one needs to have:
 2. Use conda environment made out of *environment.yml* file in *workshops* directory.
    Assuming *<clone_dir>* is the directory where you cloned this repo, the command to make environment is:
   ```
-  conda env create -f <clone_dir>\workshops\environment.yml -p <environment_name>
+  conda env create -f <clone_dir>\workshops\environment.yml -n <environment_name>
   ```
 3. Activate the conda environment:
   ```

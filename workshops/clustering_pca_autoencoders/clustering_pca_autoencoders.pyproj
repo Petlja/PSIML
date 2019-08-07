@@ -15,7 +15,7 @@
     <IsWindowsApplication>False</IsWindowsApplication>
     <Environment />
     <Name>nnn</Name>
-    <StartupFile>pca_autoencoder.py</StartupFile>
+    <StartupFile>pca_autoencoder_solution.py</StartupFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -23,12 +23,16 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="pca_autoencoder.py">
+    <Compile Include="pca_autoencoder_solution.py">
+      <Pynb>true</Pynb>
+    </Compile>
+    <Compile Include="pca_autoencoder_workshop.py">
       <Pynb>true</Pynb>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="autoencoder_workshop.py.ipynb" />
+    <Content Include="pca_autoencoder_solution.py.ipynb" />
+    <Content Include="pca_autoencoder_workshop.py.ipynb" />
     <Content Include="Robot2s.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
