@@ -14,8 +14,8 @@ Z_SIZE = 100
 CUDA = True if torch.cuda.is_available() else False
 LR = 1e-4
 EPOCHS = 1
-BATCH_SIZE = 8
-NUM_WORKERS = 0  # set to 0 when debugging
+BATCH_SIZE = 64
+NUM_WORKERS = 8  # set to 0 when debugging
 CLIP_VALUE = 1e-2
 
 def train():
