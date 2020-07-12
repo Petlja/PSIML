@@ -37,30 +37,19 @@ class DQNAgent():
         return self.current(x)
 
     def update_target_model(self):
-        self.target.load_state_dict(self.current.state_dict())
+        # Target becomes current
+        pass
 
     def remember(self, state, action, reward, next_state):
         # Remember (Q,S,A,R,S')
-        self.memory.append((state, action, reward, next_state))
+        pass
 
     def backward(self):
         # Expirience replay
         # 1. Create mini batch (size: self.batch_size) for training
         # 2. Update the current net -> use target net to evalute target
             # Tip: For best performance you can use torch gradient accumulation
-        for state, action, reward, next_state in random.sample(self.memory, self.batch_size):
-            state_action_q_values = self.current.forward(torch.from_numpy(state))
-            with torch.no_grad():
-                next_state_action_q_values = self.target.forward(torch.from_numpy(next_state))
-
-                state_action_q_values_target = torch.tensor(state_action_q_values)
-                state_action_q_values_target[action] = reward + GAMMA * torch.max(next_state_action_q_values)
-
-            loss = self.loss_fn(state_action_q_values, state_action_q_values_target)
-            loss.backward()
-
-        self.optimizer.step()
-        self.optimizer.zero_grad()
+        pass
 
 
         
