@@ -1,6 +1,7 @@
 import random
+import torch
 
-SLIP_PROBA = 0.05
+SLIP_CHANCE = 0.05
 
 # Gridworld. ' ' is an empty cell, '*' a pit, 'T' the treasure, and 'G' the goal.
 GRID = [
@@ -9,7 +10,9 @@ GRID = [
     [' ', ' ', 'T', '*'],
     [' ', '*', '*', '*'],
 ]
-REWARD = {' ': 0.0, '*': -10.0, 'T': 20.0, 'G': 100.0}
+
+ACTIONS = ['^', 'v', '<', '>']
+REWARD = {' ': -5.0, '*': -10.0, 'T': 20.0, 'G': 100.0}
 TERMINAL = {' ': False, '*': True, 'T': False, 'G': True}
 
 class Ice(object):
@@ -57,7 +60,7 @@ class Ice(object):
             slip_x = 3
 
         # The agent may slip
-        if random.random() < SLIP_PROBA:
+        if random.random() < SLIP_CHANCE:
             self._x = slip_x
             self._y = slip_y
 
@@ -66,5 +69,31 @@ class Ice(object):
 
         return self.current_state(), REWARD[cell], TERMINAL[cell]
 
+    #def current_state(self):
+    #    return (self._y * 4) + self._x
+
     def current_state(self):
-        return (self._y * 4) + self._x
+        return self._y, self._x
+
+    def action_space(self):
+        return 4,
+
+    def env_space(self):
+        return 4, 4
+
+    def print_qtable_stats(self, qtable):
+        print('ENV')
+        for y in range(self.env_space()[1]):
+            print(GRID[y])
+        print('QACTIONS')
+        print(ACTIONS)
+        print('QVALUES')
+        for x in range(self.env_space()[1]):
+            for y in range(self.env_space()[0]):
+                print("x,y:{0},{1}, f:{2}, qvalues:{3}".format(x, y, GRID[y][x], qtable[y,x]))
+            print()
+        print('GREEDY POLICY')
+        for y in range(self.env_space()[0]):
+            for x in range(self.env_space()[1]):
+                print(ACTIONS[torch.argmax(qtable[y,x])], end='')
+            print()

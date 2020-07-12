@@ -15,7 +15,7 @@
     <IsWindowsApplication>False</IsWindowsApplication>
     <Environment />
     <Name>nn</Name>
-    <StartupFile>BalanceStick_DeepQLearning\deepQLearning.py</StartupFile>
+    <StartupFile>BalanceStick_DeepQLearning\deepQLearning_Replay.py</StartupFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -23,16 +23,22 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BalanceStick_DeepQLearning\dqlWithExperienceReplay.py">
-      <Pynb>true</Pynb>
-    </Compile>
-    <Compile Include="BalanceStick_DeepQLearning\deepQLearning.py">
+    <Compile Include="BalanceStick_DeepQLearning\cartpole_env.py">
       <Pynb>false</Pynb>
     </Compile>
-    <Compile Include="IceWorld_QLearning\ice.py">
+    <Compile Include="BalanceStick_DeepQLearning\deepQLearning_Basic.py">
       <Pynb>false</Pynb>
     </Compile>
-    <Compile Include="IceWorld_QLearning\q-learning.py">
+    <Compile Include="BalanceStick_DeepQLearning\deepQLearning_Replay.py">
+      <Pynb>false</Pynb>
+    </Compile>
+    <Compile Include="BalanceStick_DeepQLearning\dqn.py">
+      <Pynb>false</Pynb>
+    </Compile>
+    <Compile Include="IceWorld_QLearning\ice_env.py">
+      <Pynb>false</Pynb>
+    </Compile>
+    <Compile Include="IceWorld_QLearning\qlearning.py">
       <Pynb>false</Pynb>
     </Compile>
   </ItemGroup>
