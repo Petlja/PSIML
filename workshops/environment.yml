@@ -58,6 +58,7 @@ dependencies:
     - pywinpty==0.5.4
     - pyzmq==17.1.2
     - qtconsole==4.4.3
+    - seaborn==0.10.1
     - send2trash==1.5.0
     - six==1.11.0
     - tensorboard==1.12.0
