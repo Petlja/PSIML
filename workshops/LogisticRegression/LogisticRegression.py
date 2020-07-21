@@ -1,257 +1,19 @@
-# <markdowncell>
-# # Numpy
+#!/usr/bin/env python
+# coding: utf-8
 
-# <markdowncell>
-# NumPy is the fundamental package for scientific computing in Python. It is a Python library that provides a multidimensional array object, various derived objects (such as masked arrays and matrices), and an assortment of routines for fast operations on arrays, including mathematical, logical, shape manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation and much more.
-
-# <codecell>
-import numpy as np
-import matplotlib.pyplot as plt
-%matplotlib inline 
-
-# <markdowncell>
-# ## Arrays
-
-# <codecell>
-# Define array
-a = np.array([1,2,3])
-
-# Some basic properties
-print("Array a: ", a)
-print("\nShape of array a: ", a.shape)
-print("\nData type of array a: ", a.dtype)
-
-# <codecell>
-# Define matrix
-b = np.array([[1, 2, 3], [4, 5, 6]])
-
-# Some basic properties
-print("Matrix b: \n", b)
-print("\nShape of matrix b: ", b.shape)
-print("\nData type of matrix b: ", b.dtype)
-
-
-# <codecell>
-# Multidim arrays - tensor
-c = np.array([[[1,2,3],[4,5,6]],[[7,8,9],[10,11,12]]])
-
-# Some basic properties
-print("Tensor c: \n", c)
-print("\nShape of tensor c: ", c.shape)
-print("\nData type of tensor c: ", c.dtype)
-
-# <markdowncell>
-# ## Initialization functions
-
-# <codecell>
-# All zeros
-print("All zeros: \n", np.zeros((2,2)))
-
-# All ones
-print("\nAll ones: \n", np.ones((2,2)))
-
-# All same value
-print("\nAll same value: \n", np.full((2,2), 2))
-
-# All random
-# Setting a random seed is important for reproducibility of the code.
-# It is good practice to use it in ML before moving to actual training as it makes debuging a lot easier.
-np.random.seed(5)
-print("\nAll random: \n", np.random.random((2,2)))
-
-# Identity matrix
-print("\nIdentity matrix: \n", np.eye(3))
-
-# <markdowncell>
-# ## Array indexing
-#
-# Indexing starts from 0. It is possible to use negative indexes (for example -1 for last element of array)
-
-# <codecell>
-print("Array a: ", a)
-print("First element of a: ", a[0])
-print("Last element of a: ", a[2])
-print("Last element of a: ", a[-1])
-
-# <markdowncell>
-# Indexing in matrix and tensor is the same and we can index any column, row etc.
-
-
-# <codecell>
-print("Tensor c: \n", c)
-print("\nValue of c[0]: \n", c[0])
-print("\nValue of c[-2]: \n", c[-2])
-print("\nValue of c[0][1]: ", c[0][1])
-print("Value of c[0][0][0]: ", c[0][0][0])
-print("Value of c[0, 0, 0]: ", c[0, 0, 0])
-print("\nValue of c[0, :, 0:2]: \n", c[0, :, 0:2])
-
-# <markdowncell>
-# ## Basic operations
-
-# <codecell>
-x = np.array([[1, 2], [3, 4]], dtype=np.float64)
-y = np.array([[5, 6], [7, 8]], dtype=np.float64)
-
-print("Matrix x: \n", x)
-print("\nMatrix y: \n", y)
-
-
-# <codecell>
-print("Addition:\n", x + y)
-print("Substruction:\n", y - x)
-print("Elementwise multiplication:\n", x * y)
-print("Multiplication:\n", np.matmul(x, y))
-print("Divison:\n", x / y)
-print("Square root:\n", np.sqrt(x))
-print("Exp:\n", np.exp(x))
-print("Dot product:\n", np.dot(x[1], y[0]))
-print("Transpose:\n", x.T)
-print("Inverse:\n", np.linalg.inv(x))
-
-# <markdowncell>
-# ## Broadcasting
-#
-# Broadcasting is one of the most important numpy features. The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is "broadcast" across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. 
-
-# <codecell>
-a = np.array([1.0, 2.0, 3.0])
-b = np.array([2.0, 2.0, 2.0])
-print("a * b, a as vector, b as vector:", a * b)
-
-b = np.array([2])
-print("a * b, a as vector, b as scalar:", a * b)
-
-
-# <codecell>
-a = np.array([[1,2,3], [4,5,6]])
-b = np.array([2,4,6])
-
-print("a + b, a as matrix, b as vector:\n", a + b)
-print("a * b, a as matrix, b as vector:\n", a * b)
-print("Dot product of a and b:\n", np.dot(a, b))
-
-# <markdowncell>
-# ## Important ML functions:
-# ### Sigmoid function:
-#
-# \begin{equation*}
-# S(x) = \frac{1}{1 + e^{-x}}
-# \end{equation*}
-#
-# You can find more at *https://en.wikipedia.org/wiki/Sigmoid_function*
-
-# <codecell>
-def sigmoid(x):
-    # [TODO] Implement sigmoid function
-    return 0
-
-# <codecell>
-print("Sigmoid of \"0\":", sigmoid(0))
-print("Expected value: 0.5")
-testArray = np.array([1,5])
-print("Sigmoid of [1,5]:", sigmoid(testArray))
-print("Expected value: [0.73105858 0.99330715]")
-
-# <markdowncell>
 # ### Ploting Sigmoid
 
-
-# <codecell>
-
-x = np.arange(-10., 10., 0.2)
-y = sigmoid(x)
-plt.plot(x,y)
-plt.show()
-
-
-
-
-# <markdowncell>
-# # Linear Regression
-
-# <markdowncell>
-# ## Normal equations
-#
-# Standard variant
-# \begin{equation}
-# w = (X^TX)^{-1}X^Ty
-# \end{equation}
-#
-# Regularized variant
-# \begin{equation}
-# w = (X^TX+\lambda I)^{-1}X^Ty
-# \end{equation}
-
-# <codecell>
-# Fixing random seed
-np.random.seed(5)
-
-# Generating synthetic data from exponential function with some noise
-sampleSize = 20
-x = sorted(np.random.uniform(0, 4, sampleSize))
-y = np.exp(x) + np.random.normal(0, 0.01, sampleSize)
-plt.plot(x, y, 'bo')
-plt.show()
-
-# Save the original vector x because we will be transforming our features
-xo = x;
-
-# Adding column of ones for implicit treatment of bias term
-x = np.concatenate((np.ones((sampleSize,1)), np.reshape(xo, (sampleSize, 1))), 1)
-
-# <codecell>
-# [TODO] Estimate w via normal equations
-
-
-# [TODO] Compute regression values z using w
-
-
-
-# <codecell>
-# Plot predictions against x (using original x)
-plt.plot(xo, y, 'bo');
-plt.plot(xo, z)
-plt.show()
-
-# <codecell>
-# Generating powers of x up to some degree
-degree = 12
-for i in range(1, degree):
-    t = np.reshape(x[:, -1] * xo, (sampleSize, 1))
-    x = np.concatenate((x, t), 1)
-    
-# <codecell>
-# Play with regularization parameter to tune ridge regression 
-# Start from 10^-6 and increase exponentially
-lmbd = 0
-
-# [TODO] Estimate w using regularized normal equations
-
-
-# [TODO] Compute regression values z using w
-
-
-# <codecell>
-# Plot predictions against x
-plt.plot(xo, y, 'bo');
-plt.plot(xo, z)
-plt.show()
-
-
-# <markdowncell>
 # # Logistic Regression
 
-# <markdowncell>
 # ### Data
 # Problem and data taken from *https://www.kaggle.com/c/titanic*
-#
+# 
 # ### Goal 
-#
+# 
 # Based on the provided information about person predict if person survived Titanic crash or not.
-#
+# 
 # ### Feature explanation
-#
+# 
 # | Variable | Definition | Key |
 # | ------------- | ------------- | ------------- |
 # | survival | Survival | 0 = No, 1 = Yes |
@@ -266,7 +28,7 @@ plt.show()
 # | embarked | Port of Embarkation | C = Cherbourg, Q = Queenstown, S = Southampton |
 # 
 # ### Variable Notes
-#
+# 
 # **pclass**: A proxy for socio-economic status (SES)  
 # 1st = Upper  
 # 2nd = Middle  
@@ -285,181 +47,296 @@ plt.show()
 # 
 # Some children travelled only with a nanny, therefore parch=0 for them.  
 
-# <markdowncell>
 # ## Reading the dataset
 
-# <codecell>
-import numpy as np
-import csv
+# In[ ]:
 
-dataPath = r'Data\train.csv'
 
-def readCSVasNumpy(dataPath):
-    with open(dataPath,'r') as dest_f:
-        data_iter = csv.reader(dest_f, delimiter = ',', quotechar = '"')
-        data = [data for data in data_iter]
-    data_array = np.asarray(data, dtype = None)
-    return data_array
+import os
+import pandas as pd
 
-data = readCSVasNumpy(dataPath)
+data_path = os.path.join('Data', 'train.csv')
+data = pd.read_csv(data_path)
 
-# <markdowncell>
+
 # ## Exploring the dataset 
 
-# <codecell>
-print(data)
+# In[ ]:
 
 
-# <codecell>
-labels = (data[1:,1]).astype(int)
-
-print(labels)
-
-# <markdowncell>
-# ## Manual feature selection
-
-# <codecell>
-print(data[0:2,:])
+data.sample(n=10)
 
 
-# <codecell>
-# Select some features
-important_fields = [2, 4, 5, 6, 7, 9]
-features = data[1:, important_fields]
-print(features)
+# In[ ]:
 
-# <markdowncell>
-# ## Trivial dummy coding
 
-# <codecell>
-features[:,1] = (features[:,1]=="male").astype(float)
-print(features)
+data.describe()
 
-# <markdowncell>
+
+# ## Feature engineering
+# Unlike the vast majority of deep learning techniques, data science problems usually require a lot of feature manipulation. It's always a good thing to have an expert in the field take a look at the data and provide input about what makes sense, etc. For example, in our case by domain knowledge, we conclude that a person's name should not be of any value. The next thing to do is to analyze raw attributes and come up with good features candidates. Some of the attributes are going to end up straight as features in our models, some will be removed, some will get replaced by brand new features. An example of the last one is creating dummy coding out of categorical attributes.
+# 
+# ### Guidelines for creating features
+# 1. Consider removing features which domain experts characterized as unimportant
+# 1. Perform missing values imputation
+# 1. Analyze correlation of each feature with the target variable (and with each other)
+# 1. Remove highly correlated features
+# 1. Encode categorical variables in a sensible way (e.g. using dummy coding)
+# 
+# ### Other things to try
+# 1. Perform clustering of the data, and include cluster_id as a feature
+# 1. Perform dimmensionality reduction technique (e.g. PCA)
+
+# ## Remove unnecessary attributes
+
+# In[ ]:
+
+
+# Before we apply any transformation on the data, it's a good idea to copy the data on a safe
+# place in order to have a "raw" copy just as it was loaded from a file.
+df = data.copy()
+df.shape
+
+
+# In[ ]:
+
+
+df = df.drop(columns=['PassengerId', 'Name', 'Ticket'])
+
+
+# ## Missing values imputation
+# Pandas library provides us with a useful function: [DataFrame.isna()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isna.html) which will return an array, every value in a dataframe will be replaced by a boolean value indicating whether this value is NULL or not. We can use this as a mask to select only rows containing NULL values for certain attributes.
+
+# In[ ]:
+
+
+# Example usage of .isna() function
+df.isna()
+
+
+# In[ ]:
+
+
+df['Embarked'].isna()
+
+
+# In[ ]:
+
+
+embarked_null_mask = df['Embarked'].isna()
+df[embarked_null_mask]
+
+
+# In[ ]:
+
+
+df_missing = pd.concat([ df.isna().sum(),  100*df.isna().sum()/891], axis=1)
+df_missing.columns = ['# missing', '% missing']
+df_missing
+
+
+# The simplest ways to impute missing values are:
+# * Remove attributes that contain missing values
+# * Remove instances that contain missing values
+# * Replace missing values with mean value of that feature (we will use Panda's [DataFrame.fillna()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html) function)
+
+# In[ ]:
+
+
+# Fix missing values in attribute "Age" by replacing them with mean value of this attribute
+age_mean = df['Age'].mean()
+df['Age'] = df['Age'].fillna(age_mean)
+
+# Sanity check
+df_missing = pd.concat([ df.isna().sum(),  100*df.isna().sum()/891], axis=1)
+df_missing.columns = ['# missing', '% missing']
+df_missing
+
+
+# In[ ]:
+
+
+# Fix missing values in attribute "Cabin" by removing the attribute
+df = df.drop(columns=['Cabin'])
+
+# Sanity check
+df_missing = pd.concat([ df.isna().sum(),  100*df.isna().sum()/891], axis=1)
+df_missing.columns = ['# missing', '% missing']
+df_missing
+
+
+# In[ ]:
+
+
+# Fix missing values in attribute "Embarked" by removing instances which contain this missing value
+df = df[~df['Embarked'].isna()]
+
+# Sanity check
+df_missing = pd.concat([ df.isna().sum(),  100*df.isna().sum()/891], axis=1)
+df_missing.columns = ['# missing', '% missing']
+df_missing
+
+
+# In[ ]:
+
+
+pd.get_dummies(df)
+
+
+# In[ ]:
+
+
+def get_correct_dummies(df, categorical_attributes):
+    df_copy = df.copy()
+    for attr in categorical_attributes:
+        dummy = pd.get_dummies(df_copy[attr], columns=[attr], prefix=attr)
+        without_last = dummy.drop(columns=[dummy.columns.values[-1]])
+        df_copy = df_copy.drop(columns=[attr])
+        df_copy = pd.concat([df_copy, without_last], axis=1)
+    return df_copy
+    
+df_encoded = get_correct_dummies(df, ['Pclass', 'Sex', 'SibSp', 'Parch', 'Embarked'])
+df_encoded
+
+
+# ## Analyze correlation
+
+# In[ ]:
+
+
+import matplotlib.pyplot as plt
+
+f = plt.figure(figsize=(19, 9))
+plt.matshow(df_encoded.corr(), fignum=f.number)
+plt.xticks(range(df_encoded.shape[1]), df_encoded.columns, fontsize=14, rotation=90)
+plt.yticks(range(df_encoded.shape[1]), df_encoded.columns, fontsize=14)
+cb = plt.colorbar()
+cb.ax.tick_params(labelsize=14)
+
+
+# Let's now separate features from label and remove redundant features (ones that are highly correlated with other features). For example, Fare has high correlation with feature Pclass_1, so we will remove one of them. We selected Pclass_1 but since it's only a part of encoded attribute Pclass, we will have to remove Pclass_2 as well. High correlation between parts of encoded variables could be left as is. They are somewhat expected because of the way we built those encodings. We also observe that Parch is correlated to SibSp attribute, but if we removed one of them we'd end up with a small number of features so for the demonstration purposes let them be included in the final dataset.
+
+# In[ ]:
+
+
+df_features = df_encoded.drop(columns=['Survived', 'Pclass_1', 'Pclass_2'])
+print(f'Number of features in a dataset: {df_features.shape[1]}')
+
+df_labels = df_encoded[['Survived']]
+
+
+# In[ ]:
+
+
+# Conversion from Pandas dataframes to Numpy nd-arrays
+features = df_features.to_numpy()
+labels = df_labels.to_numpy().ravel()
+
+print(features.shape)
+print(labels.shape)
+
+
 # ## Train/Test split
 
-# <codecell>
-trainIndexes = np.sort(np.random.choice(features.shape[0], int(features.shape[0]*0.7), replace=False))
-
-trainFeatures = features[trainIndexes]
-testFeatures = np.delete(features, trainIndexes, axis=0)
-
-trainLabels = labels[trainIndexes]
-testLabels = np.delete(labels, trainIndexes, axis=0)
-
-# <markdowncell>
-# ## Missing data imputation
-
-# <codecell>
-# Identify columns with missing data
-
-print(np.sum(trainFeatures == "", 0))
-print(np.sum(testFeatures == "", 0))
-print(trainFeatures.shape)
-print(testFeatures.shape)
-
-# <codecell>
-# Compute average of existing values on the TRAINING SET and 
-# use it to substitute missing values in both sets
-
-# Column with missing values
-col = 2
-
-agePresentMask = np.where(trainFeatures[:,col] != "")
-averageAge = np.mean(trainFeatures[agePresentMask,col].astype(float))
-trainFeatures[np.where(trainFeatures[:,col] == ""),col] = str(averageAge)
-
-testFeatures[np.where(testFeatures[:,col] == ""),col] = str(averageAge)
+# In[ ]:
 
 
-# <markdowncell>
+import numpy as np
+
+# We will fix pseudo-random number generator so that we all get the same results
+np.random.seed(0)
+
+train_indices = np.sort(np.random.choice(features.shape[0], int(features.shape[0]*0.7), replace=False))
+
+train_features = features[train_indices]
+test_features = np.delete(features, train_indices, axis=0)
+
+train_labels = labels[train_indices]
+test_labels = np.delete(labels, train_indices, axis=0)
+
+
 # ## Feature normalization
 
+# In[ ]:
 
-# <codecell>
+
 # Convert everything to floats so we can transform features
 
-trainFeatures = trainFeatures.astype(float)
-testFeatures = testFeatures.astype(float)
-print(trainFeatures)
-print(testFeatures)
+train_features = train_features.astype(float)
+test_features = test_features.astype(float)
 
 
-# <codecell>
-# Scale features to interval [0,1]
-
-maxFeatures = np.max(trainFeatures, axis=0)
-minFeatures = np.min(trainFeatures, axis=0)
-
-trainFeatures = (trainFeatures - minFeatures) / (maxFeatures - minFeatures)
-testFeatures = (testFeatures - minFeatures) / (maxFeatures - minFeatures)
-
-print(trainFeatures)
-print(testFeatures)
+# In[ ]:
 
 
-# <codecell>
+# Standardize features to have mean=0, and std=1
+
+mean_train = np.mean(train_features, axis=0)
+std_train = np.std(train_features, axis=0)
+
+train_features = (train_features - mean_train) / std_train
+test_features = (test_features - mean_train) / std_train
+
+print(f'Features mean: {train_features.mean(axis=0).round()}')
+print(f'Features std: {train_features.std(axis=0).round()}')
+
+
+# In[ ]:
+
+
 # Adding column of ones for implicit treatment of bias term
 
-trainFeatures = np.concatenate((np.ones((trainFeatures.shape[0],1)), trainFeatures), 1)
-testFeatures = np.concatenate((np.ones((testFeatures.shape[0],1)), testFeatures), 1)
-print(trainFeatures)
-print(testFeatures)
-
-# <markdowncell>
-# ## Logistic Model
-#
-# \begin{equation*}
-# f_w(x) = \frac {1}{1+e^{-\sum_{i=0}^n{w_i x_i}}}
-# \end{equation*}
+train_features = np.concatenate((np.ones((train_features.shape[0],1)), train_features), 1)
+test_features = np.concatenate((np.ones((test_features.shape[0],1)), test_features), 1)
 
 
-# <codecell>
-
-class LRmodel:
-    def __init__(self, weights):
-        self.w = weights
-        
-    def __init__(self, numFeatures):
-        self.w = np.ones(numFeatures)
-            
-    def predict(self, features):   
-		# [TODO] Implement prediction based on the formulas above
-        return 0
-    
-    def getModelParams(self):
-        return self.w
-    
-    def setModelParams(self, w):
-        self.w = w
-
-
-model = LRmodel(trainFeatures.shape[1])
-
-print("Model weights: ", model.w)
-print("Expected values: [1. 1. 1. 1. 1. 1. 1.]")
-
-print("Feature vector shape: ", trainFeatures.shape)
-print("Expected values: (623, 7)")
-
-print("First 3 model evaluations: ", model.predict(trainFeatures)[0:3])
-print("Expected values: 0.96795449 0.84042498 0.96918524")
-
-
-
-# <markdowncell>
-# ## Trainer
+# ## Important ML functions:
+# ### Sigmoid function:
 # 
-# ### Loss function:
-
 # \begin{equation*}
-# E(w) = \frac {1} {N} \sum_{i=1}^N{L(f_w(x_i),y_i)} 
-# \end{equation*}
-# \begin{equation*}
-# E(w) = \frac {1} {N} \sum_{i=1}^N{[-y_i\log(f_w(x_i)) - (1-y_i)\log(1 -f_w(x_i))]} 
+# S(x) = \frac{1}{1 + e^{-x}}
 # \end{equation*}
 # 
-# ### Gradient descent:
+# You can find more at *https://en.wikipedia.org/wiki/Sigmoid_function*
+
+# In[ ]:
+
+
+def sigmoid(x):
+    return np.zeros(x.shape)  # [TODO] Implement sigmoid function
+
+
+# In[ ]:
+
+
+print("Sigmoid of \"0\":", sigmoid(np.array([0])))
+print("Expected value: 0.5")
+testArray = np.array([1,5])
+print("Sigmoid of [1,5]:", sigmoid(testArray))
+print("Expected value: [0.73105858 0.99330715]")
+
+
+# In[ ]:
+
+
+x = np.arange(-10., 10., 0.2)
+y = sigmoid(x)
+plt.plot(x,y)
+plt.show()
+
+
+# ### Logistic Model
+# 
+# \begin{equation*}
+# f_w(x) = \frac {1}{1+e^{-\sum_{i=0}^n{w_i x_i}}} = \frac {1}{1+e^{-\mathbb{x} \mathbb{w}}}\\
+# \end{equation*}
+# 
+# ### Loss function
+# \begin{equation*}
+# L(w) = \frac {1} {N} \sum_{i=1}^N{L(f_w(x_i),y_i)} = \frac {1} {N} \sum_{i=1}^N{[-y_i\log(f_w(x_i)) - (1-y_i)\log(1 -f_w(x_i))]} 
+# \end{equation*}
+# 
+# ### Gradients
 # 
 # \begin{equation*}
 # w_0 = w_0 - \mu \frac{1}{N}\sum_{i=1}^N {(f_w(x_i) - y_i)}
@@ -469,116 +346,168 @@ print("Expected values: 0.96795449 0.84042498 0.96918524")
 # w_j = w_j - \mu \frac{1}{N}\sum_{i=1}^N {(f_w(x_i) - y_i) x_{ij}}
 # \end{equation*}
 
+# In[ ]:
 
-# <codecell>
 
-class Trainer:
-    def __init__(self, model):
-        self.model = model
+class LogisticRegressionPSIML:
+    def __init__(self, num_features):
+        np.random.seed(0)
+        self.__weights = self.__weights = np.random.rand(num_features)
+
+    def predict(self, features):
+        return np.zeros(features.shape[0])  # [TODO] Implement prediction based on the formulas above
+        
+    def loss(self, predictions, labels):
+        return 0  # [TODO] Implement loss calculation based on the formulas above
     
-    def calculateLoss(self, features, labels):
-        # [TODO] Implement loss function based on the formulas above
-        return 0
-    
-    def calculateGradient(self, features, labels):
-        # [TODO] Implement gradient function based on the formulas above
-        return 0
-    
-    def updateModel(self, gradient, learningRate):
-        # [TODO] Implement model update based on the gradients
-    
-    def train(self, features, labels, learningRate, iters, lossValues):
-        for i in iters:
-			# [TODO] Implement one itteration of training
+    def fit(self, features, labels, lr, max_iter=1000, eps=10e-5):
+        loss_history = []
 
-			
-            loss = self.calculateLoss(features, labels)    
-            lossValues.append(loss)
+        predictions = self.predict(features)   
+        loss = self.loss(predictions, labels)
+        loss_history.append(loss)
+        
+        for i in range(max_iter):
+            if len(loss_history) > 2 and np.isclose(loss_history[-2], loss_history[-1], atol=eps):
+                break
 
-
-# <markdowncell>
-# ## Training
+            # [TODO] Implement gradient descent step, based on the formulas above
+            
+            # [CODE ENDS HERE]
+            
+            predictions = self.predict(features)
+            loss = self.loss(predictions, labels)
+            loss_history.append(loss)
+        return np.array(loss_history)
 
 
-# <codecell>
+# In[ ]:
 
-model = LRmodel(trainFeatures.shape[1])
-trainer = Trainer(model)
 
-print("Starting loss training: ", trainer.calculateLoss(trainFeatures, trainLabels))
+model = LogisticRegressionPSIML(num_features=train_features.shape[1])
+predictions = model.predict(train_features)
 
-learningRate = 30
-lossValues = []
-iters = np.arange(1, 2000, 1)
+print('CHECK: Predictions on the first three instances:')
+print(f'Calculated predictions before training:\t{predictions[:3]}')
+print('Expected predictions before training:\t[0.33532259 0.90135813 0.52439258]')
+print('\n')
 
-trainer.train(trainFeatures, trainLabels, learningRate, iters, lossValues)
+loss = model.loss(predictions, train_labels)
+print('CHECK: Loss before training:')
+print(f'Calculated loss before training:\t{loss}')
+print('Expected loss before training:\t\t0.484539684559608')
+print('\n')
 
-lossValues = np.array(lossValues)
-print("End loss training: ", lossValues[-1])
+loss_history = model.fit(train_features, train_labels, lr=0.015)
+print(f'Training finished after {loss_history.size} epochs')
+predictions = model.predict(train_features)
 
-plt.figure(1, figsize=(20, 8))
-plt.plot(iters, lossValues)
-plt.show()
 
-# <markdowncell>
+# In[ ]:
+
+
+f = plt.figure(figsize=(16,9))
+plt.plot(loss_history)
+
+
+# In[ ]:
+
+
+np.random.seed(1)
+rand_ind = np.random.choice(train_labels.shape[0], 5, replace=False)
+pd.DataFrame(data=np.stack([train_labels[rand_ind], predictions[rand_ind].round()], axis=1), columns=['Real Labels', 'Predictions'], dtype=int)
+
+
 # ## Evaluation
+# For many different metrics, a usefull thing to compute is a confusion matrix. This is the matrix of the following form:
+# 
+# \begin{equation*}
+# \begin{array} {|r|r|}\hline TP & FP \\ \hline FN & TN \\ \hline  \end{array}
+# \end{equation*}
+# 
+# Where the entries are as following:
+# * True Positive (TP) - Number of correctly predicted positive examples (where Survive = 1)
+# * True Negative (TN) - Number of correctly predicted negative examples
+# * False Positive (FP) - Number of predictions where the model falsly predicted positive value (the model predicted Survive = 1 where it should be Survive = 0)
+# * False Negative (FN) - Number of predictions where the model falsly predicted negative value
+# 
+# After calculating the confusion matrix, interesting metrics to compute are:
+# \begin{equation*}
+# Accuracy = \frac {TP+TN}{TP+TN+FP+FN}\\
+# Precision = \frac {TP} {TP + FP}\\
+# Recall = \frac {TP} {TP + FN}
+# \end{equation*}
+# 
+# NOTICE: Model will return probabilities! In order for these metrics to be calculated, these probabilities must be thresholded!
 
-# <codecell>
+# In[ ]:
 
-class Evaluator:
-    def __init__(self, model):
-        self.model = model
-        
-    def evaluate(self, features):
-        predictions = self.model.predict(features)
-        return predictions
+
+def confusion_matrix(y_true, y_pred):
+    cm = np.zeros((2, 2))
+    cm[0, 0] = None  # [TODO] Calculate TP
+    cm[0, 1] = None  # [TODO] Calculate FP
+    cm[1, 0] = None  # [TODO] Calculate FN
+    cm[1, 1] = None  # [TODO] Calculate TN
     
-    def calculateAPR(self, features, labels, threshold):
-        predictions = self.evaluate(features)
-        
-        numExamples = predictions.shape[0]
-        binaryPredictions = (predictions > threshold).astype(int)
-        
-        positivePredictions = np.where(binaryPredictions == 1)
-        negativePredictions = np.where(binaryPredictions == 0)
-        
-        # [TODO] Implement calculation of TP, FP, TN, FN, Precision, Recall and Accuracy
-        
-        # TP - Count of examples that were correctlly predicted as positive examples
-        
-        # FP - Count of examples that were incorectlly predicted as positive examples
-        
-        # FN - Count of examples that were incorectlly predicted as negative examples
-        
-        # TN - Count of examples that were correctlly predicted as negative examples
-        
-        
-        return Precision, Recall, Accuracy
+    return cm
+
+def accuracy(y_true, y_pred):
+    tp, fp, fn, tn = confusion_matrix(y_true, y_pred).ravel()
     
-    def plotAPR(self, resultsTest, resultsTrain, ranges):
-        plt.figure(1, figsize=(20, 15))
-        plt.subplot(211)
-        plt.plot(ranges, np.matrix(resultsTrain)[:,0], ranges, np.matrix(resultsTrain)[:,1], ranges, np.matrix(resultsTrain)[:,2])
-        plt.subplot(212)
-        plt.plot(ranges, np.matrix(resultsTest)[:,0], ranges, np.matrix(resultsTest)[:,1], ranges, np.matrix(resultsTest)[:,2])
-        plt.show()
+    return 0  # [TODO] Calculate accuracy
+
+def precision(y_true, y_pred):
+    tp, fp, fn, tn = confusion_matrix(y_true, y_pred).ravel()
+    
+    return 0  # [TODO] Calculate precision
+
+def recall(y_true, y_pred):
+    tp, fp, fn, tn = confusion_matrix(y_true, y_pred).ravel()
+    
+    return 0  # [TODO] Calculate recall
 
 
-# <markdowncell>
-# ## Evaluation of the model
+# In[ ]:
 
 
-# <codecell>
+test_predictions = model.predict(test_features).round()
+print(f'Accuracy: {accuracy(test_labels, test_predictions)}')
+print(f'Precision: {precision(test_labels, test_predictions)}')
+print(f'Recall: {recall(test_labels, test_predictions)}')
 
-evaluator = Evaluator(model)
-t = np.arange(0., 1., 0.001)
-resultsTest = []
-resultsTrain = []
-for i in t:
-    resultsTest.append(evaluator.calculateAPR(testFeatures, testLabels, i))
-    resultsTrain.append(evaluator.calculateAPR(trainFeatures, trainLabels, i))
 
-evaluator.plotAPR(resultsTest, resultsTrain, t)
+# ## Sci-Kit Learn
 
-print("Model w: ", model.w)
-print("Accuracy: ", np.sum((model.predict(testFeatures)>0.5) == (testLabels==1))/testFeatures.shape[0])
+# In[ ]:
+
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, precision_score, confusion_matrix, recall_score
+from sklearn.model_selection import train_test_split
+
+sk_features = df_features.to_numpy()
+sk_labels = df_labels.to_numpy().ravel()
+
+sk_train_features, sk_test_features, sk_train_labels, sk_test_labels = train_test_split(sk_features, sk_labels, stratify=sk_labels, test_size=0.3)
+
+scaler = StandardScaler()
+scaler.fit(sk_train_features)
+sk_train_features = scaler.transform(sk_train_features)
+sk_test_features = scaler.transform(sk_test_features)
+
+model = LogisticRegression(max_iter=1000, penalty='none')
+model.fit(sk_train_features, sk_train_labels)
+sk_test_predictions = model.predict(sk_test_features).round()
+
+print(f'Accuracy: {accuracy_score(sk_test_labels, sk_test_predictions)}')
+print(f'Precision: {precision_score(sk_test_labels, sk_test_predictions)}')
+print(f'Recall: {recall_score(sk_test_labels, sk_test_predictions)}')
+
+
+# In[ ]:
+
+
+
+
