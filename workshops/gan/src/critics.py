@@ -1,7 +1,7 @@
-import tensorflow as tf
+import torch
+import torch.nn as nn
 
-
-class FCCritic:
+class FCCritic(nn.Module):
     def __init__(self, img_size, channels):
         """
         Neural network which takes a batch of images and creates a batch of scalars which represent a score for how
@@ -12,27 +12,30 @@ class FCCritic:
         :param img_size:
         :param channels: number of channels in the image (RGB = 3, Black/White = 1)
         """
+        super(FCCritic, self).__init__()
         self.img_size = img_size
         self.channels = channels
 
-    def __call__(self, image, reuse=None):
+        self.fc1 = nn.Linear(img_size*img_size*channels, 512)
+        self.fc2 = nn.Linear(512, 512)
+        self.fc3 = nn.Linear(512, 1)
+        self.relu = nn.ReLU()
+
+    def forward(self, image_batch):
         """
         Method which performs the computation.
 
         :param image: Tensor of shape [batch_size, self.img_size, self.img_size, self.channels]
-        :param reuse: Boolean which determines tf scope reuse.
         :return: Tensor of shape [batch_size, 1]
         """
-        with tf.variable_scope("Critic", reuse=reuse):
-            image = tf.reshape(image, [-1, self.img_size * self.img_size * self.channels])
+        x = image_batch.reshape(-1, self.img_size*self.img_size*self.channels)
+        x = self.fc1(x)
+        x = self.relu(x)
+        x = self.fc2(x)
+        x = self.relu(x)
+        return self.fc3(x)
 
-            image = tf.layers.dense(image, 512, tf.nn.relu)
-            image = tf.layers.dense(image, 512, tf.nn.relu)
-            critic_output = tf.layers.dense(image, 1)
-            return critic_output
-
-
-class DCGANCritic:
+class DCGANCritic(nn.Module):
     def __init__(self, img_size, channels):
         """
         DCGAN is only defined for 64x64 images, it takes the img_size and channels here only not to break the interface
@@ -40,9 +43,22 @@ class DCGANCritic:
         :param img_size:
         :param channels:
         """
-        pass
+        super(DCGANCritic, self).__init__()
+        assert img_size == 64, "Works only for 64x64 images"
+        self.img_size = img_size
+        self.channels = channels
 
-    def __call__(self, image, reuse=None):
+        kernel_size = (5,5)
+        stride = (2,2)
+        padding_mode = "replicate"
+        self.conv1 = nn.Conv2d(self.channels, 64, kernel_size, stride, padding_mode=padding_mode)
+        self.conv2 = nn.Conv2d(64, 128, kernel_size, stride, padding_mode=padding_mode)
+        self.conv3 = nn.Conv2d(128, 256, kernel_size, stride, padding_mode=padding_mode)
+        self.conv4 = nn.Conv2d(256, 1024, kernel_size, stride, padding_mode=padding_mode)
+        self.fc1 = nn.Linear(4*4*1024, 1)
+        self.relu = nn.ReLU()
+
+    def forward(self, image):
         """
         Works only for 64x64
 
@@ -50,56 +66,19 @@ class DCGANCritic:
         :param reuse:
         :return:
         """
-        with tf.variable_scope("Critic", reuse=reuse):
-            kwargs = {"kernel_size": (5, 5), "strides": (2, 2), "padding": "same", "activation": tf.nn.relu}
+        x = self.conv1(image)
+        x = self.relu(x)
+        x = self.conv2(x)
+        x = self.relu(x)
+        x = self.conv3(x)
+        x = self.relu(x)
+        x = self.conv4(x)
+        x = self.relu(x)
 
-            image = tf.layers.conv2d(image, filters=64, **kwargs)
-            image = tf.layers.conv2d(image, filters=128, **kwargs)
-            image = tf.layers.conv2d(image, filters=256, **kwargs)
-            image = tf.layers.conv2d(image, filters=1024, **kwargs)
-            image = tf.reshape(image, [-1, 4 * 4 * 1024])
-            image = tf.layers.dense(image, 1)
-            return image
+        x = self.fc1(x.flatten())
+        return x
 
 
-class ConvCritic:
+class ConvCritic(nn.Module):
     def __init__(self, img_size, channels):
-        """
-        Takes 64x64 images at this point. Parameters are not to break the interface.
-        :param img_size:
-        :param channels:
-        """
-        pass
-
-    def __call__(self, image, reuse=None):
-        with tf.variable_scope("Critic", reuse=reuse):
-            act = tf.nn.relu
-            pad1 = [[0, 0], [1, 1], [1, 1], [0, 0]]
-
-            kwargs3 = {"kernel_size": (3, 3), "strides": (1, 1), "padding": "valid"}
-            kwargs4 = {"kernel_size": (4, 4), "strides": (4, 4), "padding": "valid"}
-
-            image = tf.pad(image, pad1, mode="SYMMETRIC")
-            image = tf.layers.conv2d(image, filters=64, **kwargs3, activation=act)
-
-            # image is 64x64x1024
-            image = tf.layers.conv2d(image, filters=128, **kwargs4, activation=act)
-
-            # image is 16x16x1024
-            image = tf.pad(image, pad1, mode="SYMMETRIC")
-            image = tf.layers.conv2d(image, filters=256, **kwargs3, activation=act)
-
-            # image is 16x16x1024
-            image = tf.layers.conv2d(image, filters=512, **kwargs4, activation=act)
-
-            # image is 4x4x1024
-            image = tf.pad(image, pad1, mode="SYMMETRIC")
-            image = tf.layers.conv2d(image, filters=1024, **kwargs3, activation=act)
-
-            # image is 4x4x1024
-            image = tf.reshape(image, [-1, 4 * 4 * 1024])
-            image = tf.layers.dense(image, 1)
-
-            print(image.shape)
-            assert image.shape[1] == 1
-            return image
+        raise
