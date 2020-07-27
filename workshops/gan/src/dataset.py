@@ -11,7 +11,7 @@ class FacesDataSet(Dataset):
         assert img_size <= crop_size <= 250
         self.img_size = img_size
         self.crop_size = crop_size
-        project_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) # should be PSIML/workshops/gan
+        project_path = os.path.dirname(os.path.dirname(__file__)) # should be PSIML/workshops/gan
         project_path = os.path.abspath(project_path)
         self.data_root = os.path.join(project_path, "data", "lfw-deepfunneled")
         self.image_paths = glob.glob(os.path.join(self.data_root, "**", "*.jpg"))
