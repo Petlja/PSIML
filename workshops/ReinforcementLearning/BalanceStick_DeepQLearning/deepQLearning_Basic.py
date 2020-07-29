@@ -61,7 +61,7 @@ def main():
         #Loop inside one game episode
         for t in range(STEPS):
             # Display the game. Comment bellow line in order to get faster training.
-            #env.render()
+            env.render()
 
             #0. Currently you are in "state S (state)"
             #1.1 Determine action q values from state S.
@@ -69,26 +69,15 @@ def main():
             #1.3 Play/perform the action in the environment
                 # Move to "next state S' (next_state), get reward, and flag for is game over (is new state terminal)
   
-            state_action_q_values = agent.forward(torch.from_numpy(state))
-            if random.random() <= epsilon:
-                action = random.randrange(env.action_size())
-            else:
-                action = torch.argmax(state_action_q_values).item()
- 
-            next_state, reward, done = env.step(action)
+            pass
+            done = True #Update this flag correctly
 
             #2.1 From state S' peek into the future - Determine action q values from state S'
             #2.2 Using the SARSA-MAX formula update the net. 
                 # Suggestion: You can start with formula: Q(S,A) <- R + gamma * max(Q(S',A'))
                 # Hint1: Don't forget that you should only perform update for taken action (#1.2)
                 # Hint2: Don't forget that the target is no_grad constant.
-            with torch.no_grad():
-                next_state_action_q_values = agent.forward(torch.from_numpy(next_state))
-
-                state_action_q_values_target = torch.tensor(state_action_q_values)
-                state_action_q_values_target[action] = reward + GAMMA * torch.max(next_state_action_q_values)
-
-            agent.backward(state_action_q_values, state_action_q_values_target)
+            pass
 
             if done or (t == STEPS - 1):
                 print("episode: {}/{}, score: {}, e: {:.2}".format(episode, EPISODES, t, epsilon))
@@ -96,7 +85,7 @@ def main():
                 break
 
             #3.1 Current state is now next_state
-            state = next_state
+            pass
 
         if epsilon > EPSILON_END:
             epsilon *= EPSILON_DECAY

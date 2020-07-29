@@ -52,23 +52,11 @@ class DQNAgent():
         self.memory.append((state, action, reward, next_state))
 
     def backward(self):
-        # Experience replay
+        # Expirience replay
         # 1. Create mini batch (size: self.batch_size) for training
         # 2. Update the current net -> use target net to evalute target
             # Tip: For best performance you can use torch gradient accumulation
-        for state, action, reward, next_state in random.sample(self.memory, self.batch_size):
-            state_action_q_values = self.current.forward(torch.from_numpy(state))
-            with torch.no_grad():
-                next_state_action_q_values = self.target.forward(torch.from_numpy(next_state))
-
-                state_action_q_values_target = torch.tensor(state_action_q_values)
-                state_action_q_values_target[action] = reward + GAMMA * torch.max(next_state_action_q_values)
-
-            loss = self.loss_fn(state_action_q_values, state_action_q_values_target)
-            loss.backward()
-
-        self.optimizer.step()
-        self.optimizer.zero_grad()
+        pass
 
 
         
@@ -91,7 +79,7 @@ def main():
         #Loop inside one game episode
         for t in range(STEPS):
             # Display the game. Comment bellow line in order to get faster training.
-            #env.render()
+            env.render()
 
             state_action_q_values = agent.forward(torch.from_numpy(state))
             if random.random() <= epsilon:
