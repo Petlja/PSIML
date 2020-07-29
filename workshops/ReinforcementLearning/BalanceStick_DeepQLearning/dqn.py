@@ -6,7 +6,7 @@ class DQN(nn.Module):
         self.state_size = state_size
         self.action_size = action_size
 
-        h = 24 #hidden dimension
+        h = 18 #hidden dimension
 
         super(DQN, self).__init__()
         self.neuralnet = nn.Sequential(

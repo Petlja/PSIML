@@ -45,6 +45,6 @@ class CartPoleEnv(object):
     #    flag that determines if environment is in terminal state
     def step(self, action):
         next_state, reward, done, _ = self.env.step(action)
-        reward = reward if not done else -10
+        reward = reward if not done else -20
         return next_state, reward, done
 

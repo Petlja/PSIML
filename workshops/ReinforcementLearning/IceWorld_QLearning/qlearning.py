@@ -2,25 +2,20 @@ import random
 
 from ice_env import *
 import torch
-import time
 
-EPISODES = 2000
-EPSILON = 0.15 #Exploration vs Exploatation
+EPISODES = 1000
+EPSILON = 0.15 #Exploration vs Exploitation
 GAMMA = 0.9
 LEARNING_RATE = 0.1
 
-def argmax(l):
-    """ Return the index of the maximum element of a list
-    """
-    return max(enumerate(l), key=lambda x:x[1])[0]
-    
+
 def main():
     env = Ice()
     average_cumulative_reward = 0.0
 
     # Q-table, for each env state have action space
     # (current example: 4x4 states, 4 actions per state)
-    qtable = torch.zeros(env.env_space() + env.action_space(),dtype=torch.float)
+    qtable = torch.zeros(env.env_space() + env.action_space(), dtype=torch.float)
 
     # Loop over episodes
     for i in range(EPISODES):
@@ -34,7 +29,7 @@ def main():
             # 1 Calculate action to be taken from state S. Use 'e-rand off-policy'
                 # 1.1 Compute what the greedy action for the current state is
             qvalues = qtable[state]
-            greedy_action = argmax(qvalues)
+            greedy_action = torch.argmax(qvalues)
                 # 1.2 Sometimes, the agent takes a random action, to explore the environment
             if random.random() < EPSILON:
                 action = random.randrange(4)

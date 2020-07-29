@@ -69,9 +69,6 @@ class Ice(object):
 
         return self.current_state(), REWARD[cell], TERMINAL[cell]
 
-    #def current_state(self):
-    #    return (self._y * 4) + self._x
-
     def current_state(self):
         return self._y, self._x
 

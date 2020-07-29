@@ -1,19 +1,22 @@
 import random
-import numpy as np
 import torch
+import time
 import torch.nn as nn
+import matplotlib.pyplot as plt
 from cartpole_env import CartPoleEnv
 from dqn import DQN
 
 torch.set_default_dtype(torch.double)
+random.seed(0)
 
 #Hyper params
-EPISODES = 1000
+EPISODES = 500
+STEPS = 300
 
 #Epsilon
 EPSILON_START = 1.0
-EPSILON_END = 0.01
-EPSILON_DECAY = 0.9995
+EPSILON_END = 0.001
+EPSILON_DECAY = 0.99
 
 #Discount rate
 GAMMA = 0.95
@@ -24,7 +27,7 @@ class DQNAgent():
 
         self.loss_fn = torch.nn.MSELoss(reduction='sum')
         
-        learning_rate = 0.001
+        learning_rate = 0.0025
         self.optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate)
 
     def forward(self, x):
@@ -48,13 +51,15 @@ def main():
     agent = DQNAgent(env.state_size(), env.action_size())
 
     epsilon = EPSILON_START
+    results = []
+    start = time.time()
 
     for episode in range(EPISODES):
         #Start game/episode
         state = env.reset()
 
-        #Loop inside one game episode for 500 steps
-        for time in range(500):
+        #Loop inside one game episode
+        for t in range(STEPS):
             # Display the game. Comment bellow line in order to get faster training.
             #env.render()
 
@@ -65,7 +70,7 @@ def main():
                 # Move to "next state S' (next_state), get reward, and flag for is game over (is new state terminal)
   
             state_action_q_values = agent.forward(torch.from_numpy(state))
-            if np.random.rand() <= epsilon:
+            if random.random() <= epsilon:
                 action = random.randrange(env.action_size())
             else:
                 action = torch.argmax(state_action_q_values).item()
@@ -74,7 +79,7 @@ def main():
 
             #2.1 From state S' peek into the future - Determine action q values from state S'
             #2.2 Using the SARSA-MAX formula update the net. 
-                # Suggestion: You can start with simplified formula: Q(S,A) <- R + gamma * max(Q(S',A'))
+                # Suggestion: You can start with formula: Q(S,A) <- R + gamma * max(Q(S',A'))
                 # Hint1: Don't forget that you should only perform update for taken action (#1.2)
                 # Hint2: Don't forget that the target is no_grad constant.
             with torch.no_grad():
@@ -83,18 +88,26 @@ def main():
                 state_action_q_values_target = torch.tensor(state_action_q_values)
                 state_action_q_values_target[action] = reward + GAMMA * torch.max(next_state_action_q_values)
 
-            agent.backward(state_action_q_values, state_action_q_values_target) #epochs, verbose
+            agent.backward(state_action_q_values, state_action_q_values_target)
 
-            if done:
-                print("episode: {}/{}, score: {}, e: {:.2}".format(episode, EPISODES, time, epsilon))
+            if done or (t == STEPS - 1):
+                print("episode: {}/{}, score: {}, e: {:.2}".format(episode, EPISODES, t, epsilon))
+                results.append(t)
                 break
 
             #3.1 Current state is now next_state
-            #3.2 Apply epsilon decay
             state = next_state
-            if epsilon > EPSILON_END:
-                epsilon *= EPSILON_DECAY
-            
+
+        if epsilon > EPSILON_END:
+            epsilon *= EPSILON_DECAY
+
+    end = time.time()
+    print("TIME")
+    print(end - start)
+    print("STEPS")
+    print(sum(results))
+    plt.plot(results)
+    plt.show()
 
 if __name__ == '__main__':
     main()
