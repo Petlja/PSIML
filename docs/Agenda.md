@@ -1,4 +1,4 @@
-# PSI:ML 2019
+# PSI:ML 2020
 
 Lectures are in **bold**.
 
