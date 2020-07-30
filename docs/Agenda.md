@@ -74,16 +74,24 @@ Workshops are in **_bold italic_**.
     <tr>
       <td>16</td>
       <td rowspan=2><b><i>Logistic Regression</i></b> (Uroš Stegić)</td>
-      <td rowspan=3><b><i>RNN and NLP</i></b> (Danijela Stepanović & Tamara Stanković) <i>2.5h</i></td>
+      <td rowspan=5>
+        <i>16:00</i> <b><i>RNN and NLP</i></b> (Danijela Stepanović & Tamara Stanković)<br>
+        <i>18:30</i> <b>Unsupervised Learning</b> (Mladen Nikolić)
+      </td>
       <td rowspan=2><b><i>GAN</i></b> (Abi Gicić)</td>
     </tr>
     <tr>
       <td>17</td>
-      <td rowspan=2><b>Object Detection</b> (Uroš Stegić) <i>1.5h</i></td>
+      <td rowspan=4>
+        <i>17:00</i> <b>Object Detection</b> (Uroš Stegić)
+        <i>18:30</i> <b><i>CNN</i></b> (Vladimir Vesić & Aleksa Gordić)
+      </td>
     </tr>
     <tr>
       <td>18</td>
       <td rowspan=2><b>NN and Backpropagation</b> (Katarina Mićić)</td>
+      <td rowspan=2><b>Variational autoencoders</b> (Ulrich Paquet)</td>
+      <td rowspan=2><b><i>Reinforcement Learning</i></b> (Miloš Brzaković)</td>
     </tr>
     <tr>
       <td>19</td>
