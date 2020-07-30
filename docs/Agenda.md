@@ -50,7 +50,6 @@ Workshops are in **_bold italic_**.
     </tr>
     <tr>
       <td>12</td>
-      <td></td>
       <td rowspan=2><b><i>PyTorch NN</i></b> (Stefan Mojsilović) <i>1.5h</i></td>
       <td rowspan=2><b>NLP</b> (Miloš Jovanović)</td>
       <td rowspan=2><b>GAN</b> (Goran Dubajić)</td>
@@ -108,12 +107,6 @@ Workshops are in **_bold italic_**.
     </tr>
     <tr>
       <td>22</td>
-    </tr>
-    <tr>
-      <td>23</td>
-    </tr>
-    <tr>
-      <td>24</td>
     </tr>
   </tbody>
 </table>
