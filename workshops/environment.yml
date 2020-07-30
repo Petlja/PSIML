@@ -16,6 +16,7 @@ dependencies:
   - libcblas=3.8.0=16_mkl
   - liblapack=3.8.0=16_mkl
   - liblapacke=3.8.0=16_mkl
+  - libopencv=3.4.2=h20b85fd_0
   - libpng=1.6.37=hfe6a214_1
   - libtiff=4.1.0=h885aae3_6
   - lz4-c=1.9.2=h62dcd97_1
@@ -29,9 +30,11 @@ dependencies:
   - ninja=1.7.1=0
   - numpy=1.19.1=py37hae9e721_0
   - olefile=0.46=py_0
+  - opencv=3.4.2=py37h40b0b35_0
   - openssl=1.1.1g=he774522_1
   - pillow=7.2.0=py37hc826c6e_1
   - pip=20.2=py_0
+  - py-opencv=3.4.2=py37hc319ecb_0
   - python=3.7.8=h60c2a47_0_cpython
   - python_abi=3.7=1_cp37m
   - pytorch=1.6.0=py3.7_cuda102_cudnn7_0
