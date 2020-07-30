@@ -9,7 +9,6 @@ dependencies:
   - ca-certificates=2020.6.24=0
   - certifi=2020.6.20=py37_0
   - cpuonly=1.0=0
-  - cudatoolkit=10.2.89=h74a9793_1
   - freetype=2.10.2=hd328e21_0
   - intel-openmp=2020.1=216
   - jpeg=9d=he774522_0
