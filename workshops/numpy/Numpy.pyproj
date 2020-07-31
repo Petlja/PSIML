@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{e3fc6d8a-2b4e-4cff-8d86-4dd96b23a675}</ProjectGuid>
+    <ProjectGuid>4fc7b68a-e95b-477f-846d-98c04de2034b</ProjectGuid>
     <ProjectHome />
     <SeatchPath />
     <WorkingDirectory />
@@ -14,8 +14,7 @@
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
     <Environment />
-    <Name>nn</Name>
-    <StartupFile>BalanceStick_DeepQLearning\deepQLearning_Replay.py</StartupFile>
+    <Name>Numpy</Name>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -23,28 +22,9 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BalanceStick_DeepQLearning\cartpole_env.py">
-      <Pynb>false</Pynb>
+    <Compile Include="Numpy.py">
+      <Pynb>true</Pynb>
     </Compile>
-    <Compile Include="BalanceStick_DeepQLearning\deepQLearning_Basic.py">
-      <Pynb>false</Pynb>
-    </Compile>
-    <Compile Include="BalanceStick_DeepQLearning\deepQLearning_Replay.py">
-      <Pynb>false</Pynb>
-    </Compile>
-    <Compile Include="BalanceStick_DeepQLearning\dqn.py">
-      <Pynb>false</Pynb>
-    </Compile>
-    <Compile Include="IceWorld_QLearning\ice_env.py">
-      <Pynb>false</Pynb>
-    </Compile>
-    <Compile Include="IceWorld_QLearning\qlearning.py">
-      <Pynb>false</Pynb>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IceWorld_QLearning\" />
-    <Folder Include="BalanceStick_DeepQLearning\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Import Project="$(SolutionDir)\common.props" />
