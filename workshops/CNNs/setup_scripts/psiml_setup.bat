@@ -4,5 +4,6 @@ cd .\PSIML\workshops\CNNs & ^
 conda env create -f environment_gpu.yml & ^
 conda activate psiml_gpu & ^
 echo "Setup success! Starting jupyter notebook" & ^
-jupyter-notebook 
+jupyter-notebook ^ &
+cmd /k 
 
