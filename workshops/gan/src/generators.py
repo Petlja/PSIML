@@ -1,86 +1,32 @@
-import tensorflow as tf
+import torch
+import torch.nn as nn
 
-
-class FCGenerator:
-    def __init__(self, img_size, channels):
+class FCGenerator(nn.Module):
+    def __init__(self, image_size, channels, z_size):
         """
-        Network which takes a batch of random vectors and creates images out of them with.
+        Network which takes a batch of random vectors and creates images out of them.
 
         :param img_size: width and height of the image
         :param channels: number of channels
         """
-        self.img_size = img_size
+        super(FCGenerator, self).__init__()
+        self.image_size = image_size
         self.channels = channels
 
-    def __call__(self, z):
-        """
-        Method which performs the computation.
+        self.fc1 = nn.Linear(z_size, 512)
+        self.fc2 = nn.Linear(512, 512)
+        self.fc3 = nn.Linear(512, image_size*image_size*channels)
+        self.relu = nn.ReLU()
+        self.sigmoid = nn.Sigmoid()
 
-        :param z: tensor of the shape [batch_size, z_size] representing batch_size random vectors from the
-        prior distribution
-        :return: image of the shape [batch_size, img_size, img_size, channels]
-        """
-        with tf.variable_scope("Generator"):
-            z = tf.layers.dense(z, 512, activation=tf.nn.relu)
-            z = tf.layers.dense(z, 512, activation=tf.nn.relu)
-            z = tf.layers.dense(z, self.img_size * self.img_size * self.channels, activation=tf.nn.sigmoid)
-            image = tf.reshape(z, [-1, self.img_size, self.img_size, self.channels])
-            return image
+    def forward(self, z_batch):
+        x = self.fc1(z_batch)
+        x = self.relu(x)
+        x = self.fc2(x)
+        x = self.relu(x)
+        x = self.fc3(x)
+        x = self.sigmoid(x)
 
+        image = x.reshape(-1, self.channels, self.image_size, self.image_size)
+        return image
 
-class ConvGenerator:
-    def __init__(self, img_size, channels):
-        self.img_size = img_size
-        self.channels = channels
-
-    def __call__(self, z):
-        with tf.variable_scope("Generator"):
-            act = tf.nn.relu
-            res_met = tf.image.ResizeMethod.NEAREST_NEIGHBOR
-            pad2 = [[0, 0], [2, 2], [2, 2], [0, 0]]
-
-            kwargs = {"strides": (1, 1), "padding": "valid"}
-
-            z = tf.layers.dense(z, 32768, activation=act)
-            z = tf.reshape(z, [-1, 4, 4, 2048])
-
-            z = tf.pad(z, pad2, mode="SYMMETRIC")
-            z = tf.layers.conv2d(z, filters=1024, kernel_size=(5, 5), **kwargs, activation=act)
-            z = tf.image.resize_images(z, (16, 16), method=res_met)
-            #
-            z = tf.pad(z, pad2, mode="SYMMETRIC")
-            z = tf.layers.conv2d(z, filters=512, kernel_size=(5, 5), **kwargs, activation=act)
-            z = tf.image.resize_images(z, (32, 32), method=res_met)
-
-            z = tf.pad(z, pad2, mode="SYMMETRIC")
-            z = tf.layers.conv2d(z, filters=256, kernel_size=(5, 5), **kwargs, activation=act)
-            z = tf.image.resize_images(z, (self.img_size, self.img_size), method=res_met)
-
-            z = tf.pad(z, pad2, mode="SYMMETRIC")
-            z = tf.layers.conv2d(z, filters=3, activation=tf.nn.sigmoid, kernel_size=(5, 5), **kwargs)
-            return z
-
-
-class DCGANGenerator:
-    def __init__(self, img_size, channels):
-        self.channels = channels
-
-    def __call__(self, z):
-        """
-
-        :param z:
-        :return: returns tensor of shape [batch_size, 64, 64, channels]
-        """
-        with tf.variable_scope("Generator"):
-            act = tf.nn.relu
-
-            z = tf.layers.dense(z, 32768, activation=act)
-            z = tf.reshape(z, [-1, 4, 4, 2048])
-
-            kwargs = {"kernel_size": (5, 5), "strides": (2, 2), "padding": "same"}
-
-            z = tf.layers.conv2d_transpose(z, filters=512, activation=act, **kwargs)
-            z = tf.layers.conv2d_transpose(z, filters=256, activation=act, **kwargs)
-            z = tf.layers.conv2d_transpose(z, filters=128, activation=act, **kwargs)
-            z = tf.layers.conv2d_transpose(z, filters=self.channels, activation=tf.nn.sigmoid, **kwargs)
-            return z

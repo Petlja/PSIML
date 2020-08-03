@@ -2,7 +2,6 @@
 .idea
 log/
 data/lfw-deepfunneled/
-src/runs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
