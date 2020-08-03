@@ -12,6 +12,7 @@ IMG_SIZE = 128 # Images will be IMG_SIZExIMG_SIZE
 CHANNELS = 3 # RGB
 Z_SIZE = 100 # Size of latent vector
 
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu") # Boilerplate code for using CUDA for faster training
 CUDA = torch.cuda.is_available() # Use CUDA for faster training
 MAX_SUMMARY_IMAGES = 4 # How many images to output to Tensorboard
 LR = 1e-4 # Learning rate
@@ -29,10 +30,9 @@ def train():
     # Initialize the critic and the generator. NOTE: You can use other classes from critis.py and generators.py here.
     critic = FCCritic(IMG_SIZE, CHANNELS)
     generator = FCGenerator(IMG_SIZE, CHANNELS, Z_SIZE)
-    if CUDA:
-        # Boilerplate code for using CUDA for faster training
-        critic.cuda()
-        generator.cuda()
+
+    critic.to(DEVICE)
+    generator.to(DEVICE)
 
     # Initialize the data set. NOTE: You can pass total_images argument to avoid loading the whole dataset.
     data_set = FacesDataSet(IMG_SIZE)
@@ -64,10 +64,9 @@ def train():
             ##################################################################
             """
             z_batch = None
-            if CUDA:
-                # This is just boilerplate if you're using CUDA - All inputs to the network need to be on the same device
-                real_img_batch = real_img_batch.cuda()
-                z_batch = z_batch.cuda()
+            # This is just boilerplate if you're using CUDA - All inputs to the network need to be on the same device
+            real_img_batch = real_img_batch.to(DEVICE)
+            z_batch = z_batch.to(DEVICE)
 
             fake_img_batch = None
 
