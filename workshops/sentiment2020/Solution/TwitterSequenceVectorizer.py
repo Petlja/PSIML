@@ -40,6 +40,29 @@ class TwitterSequenceVectorizer(TwitterVectorizer):
         # 5. pad the output vector sequence with MASK tokens, to fill the remaining "free" space in the output vector of fixed size
         # 6. return output vector
 
+        # firstly add the BEGINNING-OF-SEQUENCE token to the vector
+        indices = [self.text_vocabulary.begin_seq_index]
+
+        for token in tokens:
+            # in case the token in not a punctuation
+            if token not in string.punctuation:
+                # find index of the token in the Vocabulary and add it to vector
+                indices.append(self.text_vocabulary.find_token(token))
+
+        # add the END-OF_SEQUENCE token to the vector
+        indices.append(self.text_vocabulary.end_seq_index)
+
+        if vector_length < 0:
+            vector_length = len(indices)
+
+        out_vector = np.zeros(vector_length, dtype=np.int64)
+
+        # copy the indices to the output vector
+        out_vector[:len(indices)] = indices
+        # pad the sequence with MASK tokens, to fill the remaining "free" space in the output vector of fixed size
+        out_vector[len(indices):] = self.text_vocabulary.mask_index
+
+        return out_vector
         # END workshop task
 
 

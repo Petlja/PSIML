@@ -66,4 +66,24 @@ class SentimentClassifierMLPWithEmbeddings(nn.Module):
         # 6. apply softmax function to the calculate output, if needed
         # 7. return output
 
+        # create vectors for each word in the input data tensor, by converting the indices to vectors
+        x_embedded = self.embeddings(x_in.long())
+
+        # combine the vector in some way such that it captures the overall context of the sequence (e.g. sum the vectors for all the words)
+        x_embedded_sum = x_embedded.sum(dim=1)
+
+        # calculate the output of the first linear layer
+        y_out = self.fc1(x_embedded_sum)
+
+        # apply non-linear function to the output of the linear layer
+        y_out = F.relu(y_out)
+
+        # calculate the output of the second linear layer
+        y_out = self.fc2(y_out)
+
+        # apply softmax function to the calculate output, if needed
+        if (apply_softmax):
+            y_out = F.softmax(y_out, dim=1)
+
+        return y_out
         # END workshop task

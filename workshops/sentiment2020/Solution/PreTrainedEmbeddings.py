@@ -90,7 +90,10 @@ class PreTrainedEmbeddings:
         # Steps:
         # 1. returns top n closest items to the vector from the lookup_index
         # 2. decode words and return
-        
+        nn_indices = self.lookup_index.get_nns_by_vector(vector, n)
+        nn_words = [self.index_to_word[neighbor_index] for neighbor_index in nn_indices]
+
+        return nn_words
         # END workshop task
 
 
@@ -113,7 +116,20 @@ class PreTrainedEmbeddings:
         # Iterate through list of words and for each word:
         # 1. if the word is among pretrained embeddings, use the pretrained embedding vector as initial value for the embedding vector for the word
         # 2. if the word is not available among pretrained embeddings, initialize the embedding vector for the word using Xavier Uniform method
-        # 3. set the embedding vector in final_embeddings for the current word            
+        # 3. set the embedding vector in final_embeddings for the current word
+
+        for i, word in enumerate(word_list):
+            # if the word is among pretrained embeddings
+            if word in self.word_to_index:
+                # use the pretrained embedding vector as initial value for the embedding vector for the word
+                embedding_vector = self.get_embedding(word)
+            else:
+                # if the word is not available among pretrained embeddings, initialize the embedding vector for the word using Xavier Uniform method
+                embedding_vector = torch.ones(1, embedding_size)
+                torch.nn.init.xavier_uniform_(embedding_vector)
+
+            # set the embedding vector for the current word
+            final_embeddings[i, :] = embedding_vector
 
         # END workshop task
         return final_embeddings
