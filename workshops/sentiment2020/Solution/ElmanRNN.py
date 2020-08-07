@@ -67,6 +67,9 @@ class ElmanRNN(nn.Module):
         # steps for each sequence:
         # 1. Each new hidden state is calculated using current input element and previous hidden state. rnn_cell encapsulates the computation of the new hidden state
         # 2. Add calculated state to the list
+        for t in range(sequence_size):
+            hidden_t = self.rnn_cell(x_in[t], hidden_t)
+            hiddens.append(hidden_t)
         
         # END workshop task
 

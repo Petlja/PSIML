@@ -77,7 +77,34 @@ class SentimentClassifierElmanRNN(nn.Module):
         # 7. apply softmax function to the calculate output, if needed
         # 8. return output
 
-        
+        # create vectors for each word in the input data tensor, by converting the indices to vectors
+        x_embedded = self.embeddings(x_in.long())
+
+        # create rnn hidden state vectors for each word in the input data tensor
+        y_out = self.rnn(x_embedded)
+
+        # take the hidden state vector of the last word in the sequence
+        if x_lengths is not None:
+            # if the original sequence length is specified, find the hidden state that corresponds with the last word in the sequence
+            y_out = self._column_gether(y_out, x_lengths)
+        else:
+            # if the original sequence length is not specified, it is assumed that the last hidden state corresponds with the last word in the sequence
+            y_out = y_out[:, -1, :]
+
+        # calculate the output of the first linear layer
+        y_out = self.fc1(y_out)
+
+        # apply non-linear function to the output of the linear layer
+        y_out = F.relu(y_out)
+
+        # calculate the output of the second linear layer
+        y_out = self.fc2(y_out)
+
+        # apply softmax function to the calculate output, if needed
+        if (apply_softmax):
+            y_out = F.softmax(y_out, dim=1)
+
+        return y_out
         # END workshop task
 
 
