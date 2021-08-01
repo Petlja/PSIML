@@ -45,7 +45,7 @@ The installation instructions are provided below. **They assume that you already
       
     If you are using conda environment, you can:
     * `conda install numpy`
-    * `conda install torch`
+    * `conda install pytorch`
     * `conda install gym`
     * `conda install matplotlib`
     * `conda install jupyter`
