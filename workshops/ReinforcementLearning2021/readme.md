@@ -20,6 +20,10 @@ This repository contains the code used in RL workshop 2021. The code contains **
 
 This year's workshop will be held using virtual instances (VM) which will be assigned to each participant, where all dependencies are already installed and properly set up. If you wish, however, to attend the workshop and run the code locally, or to experiment with the code after the workshop is over, you will need to install all dependencies. 
 
+**There are two ways the required resources for this workshop can be installed**:
+1. If you wish to install resources for all workshops at once, so there is no potential conflict between workshops you can follow the instructions [here](../ReadMe.md) under *Prerequisites* and *Setting up the environment*.
+2. If you want to use just this workshop, and are comfortable managing python dependencies in your own way, you can use the installation instructions provided below.
+
 The installation instructions are provided below. **They assume that you already have Python 3.x and git set up on your machine.** If you do not have Python 3.x, you can check out [this guide](https://realpython.com/installing-python/) to help you with the process of installation. For git refer to [this guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), or simply use the GitHub visual interface to download the code from this repository.
 
 1. Create an empty directory on your local machine where you wish to download the resources. Navigate to the folder and open a terminal at its location (for Linux / Unix systems), or right-click the folder and open a git shell (for Windows). Paste the following command: `git clone https://github.com/Petlja/PSIML.git`. Of course, if you wish to download the code in any other way, you can do so. 
